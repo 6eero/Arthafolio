@@ -3,9 +3,7 @@
 import * as R from "ramda";
 import React, { useContext, useEffect } from "react";
 import Loading from "./Loading";
-
-// import ErrorResult from "../Error/ErrorResult";
-// import ErrorModal from "../Error/ErrorModal";
+import { ErrorBlock } from "../error/ErrorBlock";
 
 type ResourceLoaderProps = {
   onLoad?: () => void | Promise<void>;
@@ -32,8 +30,7 @@ export const ResourceLoader = ({
   }
 
   if (error) {
-    return <p>ERRORE</p>;
-    // <ErrorResult error={error} onRetry={() => {}} />;
+    return <ErrorBlock error={error} />;
   }
 
   return (
