@@ -19,7 +19,7 @@ export default function RootLayout({
     <>
       <html lang="en" suppressHydrationWarning>
         <head />
-        <body>
+        <body suppressHydrationWarning>
           <DashboardContextProvider>
             <ThemeProvider
               attribute="class"

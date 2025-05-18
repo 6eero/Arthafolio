@@ -2,27 +2,33 @@
 
 import * as R from "ramda";
 import React, { useContext, useEffect } from "react";
+import Loading from "./Loading";
+
 // import ErrorResult from "../Error/ErrorResult";
 // import ErrorModal from "../Error/ErrorModal";
+
+type ResourceLoaderProps = {
+  onLoad?: () => void | Promise<void>;
+  children: React.ReactNode;
+  context: React.Context<any>;
+};
 
 export const ResourceLoader = ({
   onLoad,
   children,
   context: Context,
-}: {
-  onLoad?: any;
-  children: any;
-  context: any;
-}) => {
+}: ResourceLoaderProps) => {
   const state: any = useContext(Context);
-  const { loading = false, error = false, errorModal = false } = state;
+  const { loading = false, error = false } = state;
 
   useEffect(() => {
+    console.log("before load");
     if (!R.isNil(onLoad)) onLoad();
+    console.log("after load");
   }, []);
 
   if (loading) {
-    return <p>LOADING</p>;
+    return <Loading />;
   }
 
   if (error) {
@@ -33,7 +39,6 @@ export const ResourceLoader = ({
   return (
     <>
       {children}
-      <p>ERRORE</p>
       {/* <ErrorModal onCleanError={() => {}} error={errorModal} /> */}
     </>
   );

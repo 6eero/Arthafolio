@@ -1,3 +1,5 @@
+"use client";
+
 import PageTitle from "@/components/layout/PageTitle";
 import Card from "@/components/Card";
 import {
@@ -11,6 +13,7 @@ const Dashboard = () => {
   const context = useDashboardSearchContext();
   const { onLoad } = useDashboardSearchActions();
   console.log("context", context);
+
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
       <div className="w-full">
