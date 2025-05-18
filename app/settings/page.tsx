@@ -1,10 +1,9 @@
 "use client";
 
-import ThemeSwitcher from "@/components/ThemeSwitcher";
-import * as React from "react";
+import Settings from "@/Modules/Settings/Settings";
 
 const Page = () => {
-  return <ThemeSwitcher />;
+  return <Settings />;
 };
 
 export default Page;

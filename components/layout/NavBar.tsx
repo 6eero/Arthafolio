@@ -15,17 +15,9 @@ import ThemeSwitcher from "./ThemeSwitcher";
 const NavBar = () => {
   const router = useRouter();
   return (
-    <div
-      style={{
-        display: "flex",
-        width: "100%",
-        padding: "20px 40px",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
-      <p style={{ fontSize: 24, fontWeight: 800 }}>Arthafolio</p>
-      <div style={{ display: "flex", alignItems: "center", gap: "40px" }}>
+    <div className="flex w-full px-10 py-5 justify-between items-center">
+      <p className="text-2xl font-extrabold">Arthafolio</p>
+      <div className="flex items-center gap-12">
         <p
           onClick={() => router.push("/dashboard")}
           style={{ cursor: "pointer" }}

@@ -1,22 +1,30 @@
-"use client";
-
-import { ChartAreaInteractive } from "@/components/chart-area-interactive";
-import { DataTable } from "@/components/data-table";
-import { SectionCards } from "@/components/section-cards";
-
-import data from "@/Models/Dashboard/data.json";
+import PageTitle from "@/components/layout/PageTitle";
+import Card from "@/components/Card";
 
 const Dashboard = () => {
   return (
-    <div className="flex flex-1 flex-col">
-      <div className="@container/main flex flex-1 flex-col gap-2">
-        <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-          <SectionCards />
-          <div className="px-4 lg:px-6">
-            <ChartAreaInteractive />
-          </div>
-          <DataTable data={data} />
-        </div>
+    <div className="w-full">
+      <PageTitle title="Dashboard" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full gap-4 pt-8">
+        <Card
+          title="Portfolio Total"
+          value={1250.34}
+          currency="$"
+          percentage={12.5}
+        />
+        <Card
+          title="Liquidity"
+          value={439.11}
+          currency="$"
+          percentage={-32.5}
+        />
+        <Card title="Crypto" value={14.67} currency="$" percentage={12.5} />
+        <Card
+          title="ETF & Stocks"
+          value={3255.87}
+          currency="$"
+          percentage={12.5}
+        />
       </div>
     </div>
   );

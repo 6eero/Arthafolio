@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/layout/NavBar";
+import PageContentLayout from "@/components/layout/PageContentLayout";
 
 export const metadata: Metadata = {
   title: "Arthafolio",
@@ -25,7 +26,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <NavBar />
-            {children}
+            <PageContentLayout>{children}</PageContentLayout>
           </ThemeProvider>
         </body>
       </html>

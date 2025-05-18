@@ -2,6 +2,8 @@
 
 import Dashboard from "@/Modules/Dashboard/Dashboard";
 
-export default function Page() {
+const Page = () => {
   return <Dashboard />;
-}
+};
+
+export default Page;
