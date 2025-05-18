@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import NavBar from "@/components/layout/NavBar";
 import PageContentLayout from "@/components/layout/PageContentLayout";
+import { DashboardContextProvider } from "@/Context/Dashboard";
 
 export const metadata: Metadata = {
   title: "Arthafolio",
@@ -19,15 +20,17 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <head />
         <body>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <NavBar />
-            <PageContentLayout>{children}</PageContentLayout>
-          </ThemeProvider>
+          <DashboardContextProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <NavBar />
+              <PageContentLayout>{children}</PageContentLayout>
+            </ThemeProvider>
+          </DashboardContextProvider>
         </body>
       </html>
     </>
