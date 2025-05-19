@@ -20,7 +20,7 @@ const SectionCards = ({
   return (
     <Card className="@container/card">
       <CardHeader>
-        <div className="w-full flex justify-between items-center pb-2">
+        <div className="w-full flex justify-between items-center pb-4">
           <CardDescription>{title}</CardDescription>
           <BadgePercentage percentage={percentage} />
         </div>
