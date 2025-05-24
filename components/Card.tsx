@@ -13,7 +13,7 @@ const SectionCards = ({
   percentage: number;
 }) => {
   return (
-    <Card className="@container/card">
+    <Card>
       <CardHeader>
         <div className="w-full flex justify-between items-center pb-4">
           <CardTitle>{title}</CardTitle>

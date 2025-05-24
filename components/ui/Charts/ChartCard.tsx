@@ -1,4 +1,3 @@
-import { ResponsiveContainer } from "recharts";
 import {
   Card,
   CardContent,
@@ -20,17 +19,13 @@ const ChartCard = ({
   children: any;
 }) => {
   return (
-    <Card className="flex flex-col h-full">
-      <CardHeader className="items-center">
+    <Card>
+      <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig}>
-          <ResponsiveContainer width="100%" height="100%">
-            {children}
-          </ResponsiveContainer>
-        </ChartContainer>
+        <ChartContainer config={chartConfig}>{children}</ChartContainer>
       </CardContent>
     </Card>
   );
