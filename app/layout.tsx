@@ -34,7 +34,7 @@ export default function RootLayout({
                 <AppSidebar variant="inset" />
                 <SidebarInset>
                   <SiteHeader />
-                  <PageContentLayout>{children}</PageContentLayout>
+                  <div className="p-5 h-full">{children}</div>
                 </SidebarInset>
               </SidebarProvider>
             </ThemeProvider>

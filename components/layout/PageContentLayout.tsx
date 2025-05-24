@@ -1,5 +1,5 @@
 const PageContentLayout = ({ children }: { children: React.ReactNode }) => {
-  return <div className="p-5">{children}</div>;
+  return children;
 };
 
 export default PageContentLayout;

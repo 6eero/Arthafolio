@@ -33,10 +33,5 @@ export const ResourceLoader = ({
     return <ErrorBlock error={error} />;
   }
 
-  return (
-    <>
-      {children}
-      {/* <ErrorModal onCleanError={() => {}} error={errorModal} /> */}
-    </>
-  );
+  return children;
 };
