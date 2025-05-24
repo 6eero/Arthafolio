@@ -93,7 +93,7 @@ const Dashboard = () => {
 
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
-      <div className="h-screen flex flex-col overflow-hidden p-4 gap-4">
+      <div className="h-screen flex flex-col overflow-hidden gap-4">
         {/* Row 1: Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 shrink-0">
           <Card

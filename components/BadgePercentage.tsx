@@ -3,13 +3,15 @@ import { TrendingUpIcon, TrendingDownIcon } from "lucide-react";
 
 const BadgePercentage = ({ percentage }: { percentage: number }) => {
   return (
-    <Badge variant="outline" className="flex gap-1 rounded-lg text-xs">
+    <Badge variant="outline" className="flex rounded-lg text-base gap-2">
       {percentage > 0 ? (
-        <TrendingUpIcon className="size-3 text-green-400" />
+        <TrendingUpIcon className="text-green-400" />
       ) : (
-        <TrendingDownIcon className="size-3 text-red-400" />
+        <TrendingDownIcon className="text-red-400" />
       )}
-      {percentage > 0 ? `+${percentage}` : percentage}
+      <p className="font-normal">
+        {percentage > 0 ? `+${percentage}` : percentage}
+      </p>
     </Badge>
   );
 };

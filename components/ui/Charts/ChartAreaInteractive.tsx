@@ -61,7 +61,7 @@ const ChartAreaInteractive = ({
   });
 
   return (
-    <Card className="@container/card">
+    <Card className="flex flex-col h-full">
       <CardHeader className="relative">
         <CardTitle>{title}</CardTitle>
         <CardDescription>

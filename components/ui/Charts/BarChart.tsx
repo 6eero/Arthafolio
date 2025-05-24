@@ -62,7 +62,7 @@ const CustomBarChart = ({
         <ChartTooltip
           content={<ChartTooltipContent />}
           cursor={false}
-          defaultIndex={1}
+          defaultIndex={-1}
         />
       </BarChart>
     </ChartCard>

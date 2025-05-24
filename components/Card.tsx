@@ -1,9 +1,4 @@
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import BadgePercentage from "./BadgePercentage";
 
 const SectionCards = ({
@@ -21,7 +16,7 @@ const SectionCards = ({
     <Card className="@container/card">
       <CardHeader>
         <div className="w-full flex justify-between items-center pb-4">
-          <CardDescription>{title}</CardDescription>
+          <CardTitle>{title}</CardTitle>
           <BadgePercentage percentage={percentage} />
         </div>
 
