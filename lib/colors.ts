@@ -7,7 +7,7 @@ const colors = {
   red: "#ef4444", // rosso
   green: "#22c55e", // verde
   warning: "#f97316", // arancione
-  info: "#3b82f6", // blu
+  info: "#747474", // blu
 };
 
 export default colors;

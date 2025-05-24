@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import NavBar from "@/components/layout/NavBar";
+//import NavBar from "@/components/layout/NavBar";
 import PageContentLayout from "@/components/layout/PageContentLayout";
 import { DashboardContextProvider } from "@/Context/Dashboard";
 
@@ -27,7 +27,7 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <NavBar />
+              {/* <NavBar /> */}
               <PageContentLayout>{children}</PageContentLayout>
             </ThemeProvider>
           </DashboardContextProvider>
