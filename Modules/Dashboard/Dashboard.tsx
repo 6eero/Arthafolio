@@ -93,9 +93,9 @@ const Dashboard = () => {
 
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
-      <div className="h-screen flex flex-col overflow-hidden gap-4">
+      <div className="h-screen flex flex-col overflow-hidden gap-6">
         {/* Row 1: Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 shrink-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 shrink-0">
           <Card
             title="Total"
             value={R.propOr(0, "value", totalPortfolio)}
@@ -133,7 +133,7 @@ const Dashboard = () => {
         </div>
 
         {/* Row 3: Pie Charts + Bar Chart */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 flex-1 min-h-0 overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1 min-h-0 overflow-hidden">
           <div className="min-h-0 overflow-hidden">
             <PieChart
               title="Totals"

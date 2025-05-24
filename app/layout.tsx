@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-//import NavBar from "@/components/layout/NavBar";
 import PageContentLayout from "@/components/layout/PageContentLayout";
 import { DashboardContextProvider } from "@/Context/Dashboard";
+// import NavBar from "@/components/layout/NavBar";
 
 export const metadata: Metadata = {
   title: "Arthafolio",

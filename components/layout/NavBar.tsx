@@ -15,8 +15,8 @@ import ThemeSwitcher from "./ThemeSwitcher";
 const NavBar = () => {
   const router = useRouter();
   return (
-    <div className="flex w-full px-10 py-5 justify-between items-center">
-      <p className="text-2xl font-extrabold">Arthafolio</p>
+    <div className="flex w-full px-10 py-5 justify-between items-center bg-card border-b-card-foreground">
+      <p className="text-3xl font-extrabold">Arthafolio</p>
       <div className="flex items-center gap-12">
         <p
           onClick={() => router.push("/dashboard")}
@@ -32,7 +32,7 @@ const NavBar = () => {
         </p>
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <Avatar>
+            <Avatar className="size-15">
               <AvatarImage src="https://avatars.githubusercontent.com/u/114809573?v=4" />
               <AvatarFallback>AG</AvatarFallback>
             </Avatar>
