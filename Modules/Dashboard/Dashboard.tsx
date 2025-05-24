@@ -93,59 +93,66 @@ const Dashboard = () => {
 
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
-      <div className="grid grid-cols-4 gap-5">
-        <Card
-          title="Total"
-          value={R.propOr(0, "value", totalPortfolio)}
-          currency={R.propOr("", "currency", totalPortfolio)}
-          percentage={R.propOr(0, "percentage", totalPortfolio)}
-        />
-        <Card
-          title="Liquidity"
-          value={R.propOr(0, "value", totalLiquidity)}
-          currency={R.propOr("", "currency", totalLiquidity)}
-          percentage={R.propOr(0, "percentage", totalLiquidity)}
-        />
-        <Card
-          title="Crypto"
-          value={R.propOr(0, "value", totalCrypto)}
-          currency={R.propOr("", "currency", totalCrypto)}
-          percentage={R.propOr(0, "percentage", totalCrypto)}
-        />
-        <Card
-          title="ETF & Stocks"
-          value={R.propOr(0, "value", totalETF)}
-          currency={R.propOr("", "currency", totalETF)}
-          percentage={R.propOr(0, "percentage", totalETF)}
-        />
-      </div>
-      <div className="flex-grow">
-        <ChartAreaInteractive
-          title="History of the portfolio"
-          description="Total line chart history"
-          chartData={history}
-          chartConfig={lineChartConfig}
-        />
-      </div>
-
-      <div className="grid grid-cols-3 gap-5">
-        <PieChart
-          title="Totals"
-          description="Total asset allocation"
-          chartData={liquidityVsInvestedData}
-          chartConfig={liquidityVsInvestedChartConfig}
-        />
-        <PieChart
-          title="Investments"
-          description="Liquidity and invested"
-          chartData={assetAllocationData}
-          chartConfig={assetAllocationChartConfig}
-        />
-        <CustomBarChart
-          title="Cashflow"
-          description="Monthly inflow and outflow"
-          chartData={cashflow}
-        />
+      <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+        <div className="grid auto-rows-min gap-4 md:grid-cols-4">
+          <Card
+            title="Total"
+            value={R.propOr(0, "value", totalPortfolio)}
+            currency={R.propOr("", "currency", totalPortfolio)}
+            percentage={R.propOr(0, "percentage", totalPortfolio)}
+          />
+          <Card
+            title="Liquidity"
+            value={R.propOr(0, "value", totalLiquidity)}
+            currency={R.propOr("", "currency", totalLiquidity)}
+            percentage={R.propOr(0, "percentage", totalLiquidity)}
+          />
+          <Card
+            title="Crypto"
+            value={R.propOr(0, "value", totalCrypto)}
+            currency={R.propOr("", "currency", totalCrypto)}
+            percentage={R.propOr(0, "percentage", totalCrypto)}
+          />
+          <Card
+            title="ETF & Stocks"
+            value={R.propOr(0, "value", totalETF)}
+            currency={R.propOr("", "currency", totalETF)}
+            percentage={R.propOr(0, "percentage", totalETF)}
+          />
+        </div>
+        <div className="grid auto-rows-min gap-4 md:grid-cols-2">
+          <ChartAreaInteractive
+            title="History of the portfolio"
+            description="Total line chart history"
+            chartData={history}
+            chartConfig={lineChartConfig}
+          />
+          <CustomBarChart
+            title="Cashflow"
+            description="Monthly inflow and outflow"
+            chartData={cashflow}
+          />
+        </div>
+        <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+          <PieChart
+            title="Totals"
+            description="Total asset allocation"
+            chartData={liquidityVsInvestedData}
+            chartConfig={liquidityVsInvestedChartConfig}
+          />
+          <PieChart
+            title="Investments"
+            description="Liquidity and invested"
+            chartData={assetAllocationData}
+            chartConfig={assetAllocationChartConfig}
+          />
+          <PieChart
+            title="Investments"
+            description="Liquidity and invested"
+            chartData={assetAllocationData}
+            chartConfig={assetAllocationChartConfig}
+          />
+        </div>
       </div>
     </ResourceLoader>
   );
