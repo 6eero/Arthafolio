@@ -3,6 +3,9 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import PageContentLayout from "@/components/layout/PageContentLayout";
 import { DashboardContextProvider } from "@/Context/Dashboard";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/layout/Sidebar/Sidebar";
+import { SiteHeader } from "@/components/layout/SiteHeader";
 // import NavBar from "@/components/layout/NavBar";
 
 export const metadata: Metadata = {
@@ -27,8 +30,13 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              {/* <NavBar /> */}
-              <PageContentLayout>{children}</PageContentLayout>
+              <SidebarProvider>
+                <AppSidebar variant="inset" />
+                <SidebarInset>
+                  <SiteHeader />
+                  <PageContentLayout>{children}</PageContentLayout>
+                </SidebarInset>
+              </SidebarProvider>
             </ThemeProvider>
           </DashboardContextProvider>
         </body>
