@@ -12,7 +12,7 @@ import PieChart from "@/components/ui/Charts/PieChart";
 import { ChartConfig } from "@/components/ui/chart";
 import CustomBarChart from "@/components/ui/Charts/BarChart";
 import ChartAreaInteractive from "@/components/ui/Charts/ChartAreaInteractive";
-//import colors from "@/lib/colors";
+import colors from "@/lib/colors";
 
 interface PieChartData {
   label: string;
@@ -28,19 +28,15 @@ const Dashboard = () => {
   const totalLiquidity = R.pathOr("", ["data", "totals", "liquidity"])(context);
   const totalCrypto = R.pathOr("", ["data", "totals", "crypto"])(context);
   const totalETF = R.pathOr("", ["data", "totals", "etf"])(context);
-
   const history = R.pathOr([], ["data", "history"])(context);
   const cashflow = R.pathOr([], ["data", "cashflow"])(context);
-  const cryptoAllocation = R.pathOr(
-    [],
-    ["data", "totals", "crypto", "composition"]
-  )(context);
+  const cryptoAllocation = R.pathOr([], ["composition"])(totalCrypto);
 
   const liquidityVsInvestedData: PieChartData[] = [
     {
       label: "liquidity",
       value: R.propOr(0, "value", totalLiquidity),
-      fill: "#747474",
+      fill: colors.white,
     },
     {
       label: "invested",
@@ -48,7 +44,48 @@ const Dashboard = () => {
         R.propOr(0, "value", totalPortfolio),
         R.propOr(0, "value", totalLiquidity)
       ) as any,
-      fill: "#ffffff",
+      fill: colors.gray_0,
+    },
+  ];
+
+  const assetAllocationData: PieChartData[] = [
+    {
+      label: "crypto",
+      value: R.propOr(0, "value", totalCrypto),
+      fill: colors.gray_0,
+    },
+    {
+      label: "etf",
+      value: R.propOr(0, "value", totalETF),
+      fill: colors.white,
+    },
+  ];
+
+  const cryptoAllocationData: PieChartData[] = [
+    {
+      label: "btc",
+      value: R.pathOr(0, ["btc", "value"], cryptoAllocation),
+      fill: colors.gray_0,
+    },
+    {
+      label: "eth",
+      value: R.pathOr(0, ["eth", "value"], cryptoAllocation),
+      fill: colors.gray_1,
+    },
+    {
+      label: "sol",
+      value: R.pathOr(0, ["sol", "value"], cryptoAllocation),
+      fill: colors.gray_2,
+    },
+    {
+      label: "dot",
+      value: R.pathOr(0, ["dot", "value"], cryptoAllocation),
+      fill: colors.gray_3,
+    },
+    {
+      label: "cro",
+      value: R.pathOr(0, ["cro", "value"], cryptoAllocation),
+      fill: colors.gray_4,
     },
   ];
 
@@ -58,7 +95,7 @@ const Dashboard = () => {
     },
     value: {
       label: "Value",
-      color: "#ffffff",
+      color: colors.white,
     },
   } satisfies ChartConfig;
 
@@ -71,19 +108,6 @@ const Dashboard = () => {
     },
   };
 
-  const assetAllocationData: PieChartData[] = [
-    {
-      label: "crypto",
-      value: R.propOr(0, "value", totalCrypto),
-      fill: "#747474",
-    },
-    {
-      label: "etf",
-      value: R.propOr(0, "value", totalETF),
-      fill: "#ffffff",
-    },
-  ];
-
   const assetAllocationChartConfig: ChartConfig = {
     crypto: {
       label: "Crypto",
@@ -92,34 +116,6 @@ const Dashboard = () => {
       label: "ETF",
     },
   } satisfies ChartConfig;
-
-  const cryptoAllocationData: PieChartData[] = [
-    {
-      label: "btc",
-      value: R.pathOr(0, ["btc", "value"], cryptoAllocation),
-      fill: "#747474",
-    },
-    {
-      label: "eth",
-      value: R.pathOr(0, ["eth", "value"], cryptoAllocation),
-      fill: "#cf2323",
-    },
-    {
-      label: "sol",
-      value: R.pathOr(0, ["sol", "value"], cryptoAllocation),
-      fill: "#366ab4",
-    },
-    {
-      label: "dot",
-      value: R.pathOr(0, ["dot", "value"], cryptoAllocation),
-      fill: "#c39426",
-    },
-    {
-      label: "cro",
-      value: R.pathOr(0, ["cro", "value"], cryptoAllocation),
-      fill: "#881fb9",
-    },
-  ];
 
   const cryptoAllocationChartConfig: ChartConfig = {
     btc: {
