@@ -6,6 +6,13 @@ export const searchDashboard = async () => {
       crypto: { value: 3000, currency: "€", percentage: 23.35 },
       etf: { value: 1000, currency: "€", percentage: 19.5 },
     },
+    crypto: [
+      { label: "btc", value: 3083 },
+      { label: "eth", value: 2653 },
+      { label: "sol", value: 1460 },
+      { label: "cro", value: 400 },
+      { label: "dot", value: 202 },
+    ],
     history: [
       { date: "2024-04-01", value: 222 },
       { date: "2024-04-02", value: 97 },

@@ -31,6 +31,7 @@ const Dashboard = () => {
 
   const history = R.pathOr([], ["data", "history"])(context);
   const cashflow = R.pathOr([], ["data", "cashflow"])(context);
+  const cryptoAllocation = R.pathOr([], ["data", "crypto"])(context);
 
   console.log("value", R.propOr(0, "value", totalETF));
 
@@ -149,7 +150,7 @@ const Dashboard = () => {
           <PieChart
             title="Investments"
             description="Liquidity and invested"
-            chartData={assetAllocationData}
+            chartData={crypto}
             chartConfig={assetAllocationChartConfig}
           />
         </div>
