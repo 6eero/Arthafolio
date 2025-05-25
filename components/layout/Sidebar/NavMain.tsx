@@ -21,12 +21,12 @@ export function NavMain({
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupContent className="flex flex-col gap-2">
+      <SidebarGroupContent className="flex flex-col gap-2 pt-4">
         <SidebarMenu>
           {items.map((item) => (
-            <SidebarMenuItem key={item.title}>
+            <SidebarMenuItem key={item.title} className="mt-2">
               <SidebarMenuButton tooltip={item.title}>
-                <a href={item.url} className="flex gap-2 items-center">
+                <a href={item.url} className="flex gap-4 items-center">
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
                 </a>

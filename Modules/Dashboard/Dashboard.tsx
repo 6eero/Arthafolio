@@ -31,9 +31,10 @@ const Dashboard = () => {
 
   const history = R.pathOr([], ["data", "history"])(context);
   const cashflow = R.pathOr([], ["data", "cashflow"])(context);
-  const cryptoAllocation = R.pathOr([], ["data", "crypto"])(context);
-
-  console.log("value", R.propOr(0, "value", totalETF));
+  const cryptoAllocation = R.pathOr(
+    [],
+    ["data", "totals", "crypto", "composition"]
+  )(context);
 
   const liquidityVsInvestedData: PieChartData[] = [
     {
@@ -89,6 +90,52 @@ const Dashboard = () => {
     },
     etf: {
       label: "ETF",
+    },
+  } satisfies ChartConfig;
+
+  const cryptoAllocationData: PieChartData[] = [
+    {
+      label: "btc",
+      value: R.pathOr(0, ["btc", "value"], cryptoAllocation),
+      fill: "#747474",
+    },
+    {
+      label: "eth",
+      value: R.pathOr(0, ["eth", "value"], cryptoAllocation),
+      fill: "#cf2323",
+    },
+    {
+      label: "sol",
+      value: R.pathOr(0, ["sol", "value"], cryptoAllocation),
+      fill: "#366ab4",
+    },
+    {
+      label: "dot",
+      value: R.pathOr(0, ["dot", "value"], cryptoAllocation),
+      fill: "#c39426",
+    },
+    {
+      label: "cro",
+      value: R.pathOr(0, ["cro", "value"], cryptoAllocation),
+      fill: "#881fb9",
+    },
+  ];
+
+  const cryptoAllocationChartConfig: ChartConfig = {
+    btc: {
+      label: "Bitcoin",
+    },
+    eth: {
+      label: "Ethereum",
+    },
+    sol: {
+      label: "Solana",
+    },
+    cro: {
+      label: "Cronos",
+    },
+    dot: {
+      label: "Dot",
     },
   } satisfies ChartConfig;
 
@@ -148,10 +195,10 @@ const Dashboard = () => {
             chartConfig={assetAllocationChartConfig}
           />
           <PieChart
-            title="Investments"
-            description="Liquidity and invested"
-            chartData={crypto}
-            chartConfig={assetAllocationChartConfig}
+            title="Crypto"
+            description="Crypto allocation"
+            chartData={cryptoAllocationData}
+            chartConfig={cryptoAllocationChartConfig}
           />
         </div>
       </div>

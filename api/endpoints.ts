@@ -1,18 +1,28 @@
 export const searchDashboard = async () => {
   const data = {
     totals: {
-      portfolio: { value: 10000, currency: "€", percentage: 12.5 },
-      liquidity: { value: 6000, currency: "€", percentage: -45.23 },
-      crypto: { value: 3000, currency: "€", percentage: 23.35 },
-      etf: { value: 1000, currency: "€", percentage: 19.5 },
+      portfolio: { value: 32953.34, currency: "€", percentage: 12.5 },
+      liquidity: { value: 3455.43, currency: "€", percentage: -45.23 },
+      crypto: {
+        value: 5464.45,
+        currency: "€",
+        percentage: 23.35,
+        composition: {
+          btc: { label: "Bitcoin", value: 3083 },
+          eth: { label: "Ethereum", value: 2653 },
+          sol: { label: "Solana", value: 1460 },
+          cro: { label: "Cronos", value: 400 },
+          dot: { label: "Dot", value: 202 },
+        },
+      },
+      etf: {
+        value: 54354.12,
+        currency: "€",
+        percentage: 19.5,
+        composition: [],
+      },
     },
-    crypto: [
-      { label: "btc", value: 3083 },
-      { label: "eth", value: 2653 },
-      { label: "sol", value: 1460 },
-      { label: "cro", value: 400 },
-      { label: "dot", value: 202 },
-    ],
+
     history: [
       { date: "2024-04-01", value: 222 },
       { date: "2024-04-02", value: 97 },
