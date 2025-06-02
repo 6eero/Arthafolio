@@ -20,9 +20,7 @@ export const ResourceLoader = ({
   const { loading = false, error = false } = state;
 
   useEffect(() => {
-    console.log("before load");
     if (!R.isNil(onLoad)) onLoad();
-    console.log("after load");
   }, []);
 
   if (loading) {
