@@ -10,7 +10,7 @@ const BadgePercentage = ({ percentage }: { percentage: number }) => {
         <TrendingDownIcon className="text-red-400" />
       )}
       <p className="font-normal">
-        {percentage > 0 ? `+${percentage}` : percentage}
+        {percentage > 0 ? `+${percentage} %` : `${percentage} %`}
       </p>
     </Badge>
   );
