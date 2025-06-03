@@ -22,10 +22,6 @@ const Modal = ({
   onSubmit: () => void;
   children: React.ReactNode;
 }) => {
-  const handleSubmit = () => {
-    onSubmit();
-    onCancel();
-  };
   return (
     <>
       {visible && (
@@ -47,9 +43,7 @@ const Modal = ({
               <Button variant="outline" onClick={onCancel}>
                 {cancelText}
               </Button>
-              <Button type="submit" onClick={handleSubmit}>
-                {submitText}
-              </Button>
+              <Button type="submit">{submitText}</Button>
             </div>
           </Card>
         </div>
