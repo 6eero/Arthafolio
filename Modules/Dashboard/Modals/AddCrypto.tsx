@@ -5,11 +5,11 @@ import FormikInput from "@/components/formik/Input";
 const AddCryptoDialog = ({
   visible,
   onCancel,
-  onSubmit,
+  onConfirm,
 }: {
   visible: boolean;
   onCancel: () => void;
-  onSubmit: () => void;
+  onConfirm: (holding: any) => void;
 }) => {
   const formik = useFormik({
     initialValues: {
@@ -18,6 +18,7 @@ const AddCryptoDialog = ({
       password: "",
     },
     onSubmit: (values) => {
+      onConfirm(values);
       console.log("onSubmit", values);
     },
   });
@@ -29,7 +30,6 @@ const AddCryptoDialog = ({
         description={"Here you can add a cryptocurrency"}
         visible={visible}
         onCancel={onCancel}
-        onSubmit={onSubmit}
       >
         <div className="grid gap-4">
           <FormikInput

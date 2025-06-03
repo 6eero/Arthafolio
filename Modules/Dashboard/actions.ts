@@ -8,7 +8,7 @@ import * as R from "ramda";
 
 const PREFIX = "DASHBOARD";
 const PREFIX_SEARCH = "SEARCH";
-const types = ["LOAD"];
+const types = ["LOAD", "ADD_HOLDING"];
 
 const actions: any = {
   search: {

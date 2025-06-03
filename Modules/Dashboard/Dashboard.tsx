@@ -70,7 +70,7 @@ type Asset = {
 
 const Dashboard = () => {
   const context = useDashboardSearchContext();
-  const { onLoad } = useDashboardSearchActions();
+  const { onLoad, onAddHolding } = useDashboardSearchActions();
   const [addHoldingModal, setAddHoldingModal] = useState(false);
 
   const cryptoHoldings = R.pipe(
@@ -106,11 +106,7 @@ const Dashboard = () => {
       <AddCryptoModal
         visible={addHoldingModal}
         onCancel={() => setAddHoldingModal((prev) => !prev)}
-        onSubmit={() =>
-          toast("Event has been created", {
-            description: "Sunday, December 03, 2023 at 9:00 AM",
-          })
-        }
+        onConfirm={onAddHolding}
       />
     </ResourceLoader>
   );

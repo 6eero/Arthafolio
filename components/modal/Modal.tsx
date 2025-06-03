@@ -18,7 +18,6 @@ const Modal = ({
   width?: string;
   visible: boolean;
   onCancel: () => void;
-  onSubmit: () => void;
   children: React.ReactNode;
 }) => {
   return (
