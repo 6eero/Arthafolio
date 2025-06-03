@@ -6,9 +6,12 @@ import {
 } from "@/Context/Dashboard";
 import { ResourceLoader } from "@/components/layout/ResourceLoader";
 import { useDashboardSearchActions } from "@/api/tasks";
-import Card from "@/components/Card";
+import Card from "@/components/SectionCard";
 import * as R from "ramda";
 import PageTitle from "@/components/layout/PageTitle";
+import AddCryptoModal from "@/Modules/Dashboard/Modals/AddCrypto";
+import { useState } from "react";
+import { toast } from "sonner";
 
 // {
 //   "assets": [
@@ -68,6 +71,7 @@ type Asset = {
 const Dashboard = () => {
   const context = useDashboardSearchContext();
   const { onLoad } = useDashboardSearchActions();
+  const [addHoldingModal, setAddHoldingModal] = useState(false);
 
   const cryptoHoldings = R.pipe(
     R.pathOr<Asset[]>([], ["data", "assets"]),
@@ -80,7 +84,13 @@ const Dashboard = () => {
       <PageTitle
         title={"Dashboard"}
         buttons={[
-          { variant: "default", label: "Add holding", onclick: () => {} },
+          {
+            variant: "default",
+            label: "Add holding",
+            onclick: () => {
+              setAddHoldingModal((prev) => !prev);
+            },
+          },
         ]}
       />
       <div className="w-full h-40 grid grid-cols-5 gap-4">
@@ -93,6 +103,15 @@ const Dashboard = () => {
           />
         ))(cryptoHoldings)}
       </div>
+      <AddCryptoModal
+        visible={addHoldingModal}
+        onCancel={() => setAddHoldingModal((prev) => !prev)}
+        onSubmit={() =>
+          toast("Event has been created", {
+            description: "Sunday, December 03, 2023 at 9:00 AM",
+          })
+        }
+      />
     </ResourceLoader>
   );
 };

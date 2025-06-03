@@ -1,5 +1,6 @@
 import { Button } from "../ui/button";
 import * as R from "ramda";
+import { DialogTrigger, Dialog } from "@/components/ui/dialog";
 
 type ActionButton = {
   variant: "default" | "secondary" | "destructive" | "outline";
@@ -19,9 +20,15 @@ const PageTitle = ({
       <p className="font-semibold text-2xl">{title}</p>
       <div className="flex gap-4">
         {R.map((el: ActionButton) => (
-          <Button key={el.label} variant={el.variant} onClick={el.onclick}>
-            {el.label}
-          </Button>
+          <div key={el.label}>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant={el.variant} onClick={el.onclick}>
+                  {el.label}
+                </Button>
+              </DialogTrigger>
+            </Dialog>
+          </div>
         ))(buttons)}
       </div>
     </div>

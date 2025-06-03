@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/Sidebar/Sidebar";
 import NavBar from "@/components/layout/NavBar";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Arthafolio",
@@ -43,7 +44,7 @@ export default function RootLayout({
                   </header> */}
               <NavBar />
               <div className="w-screen h-screen p-10">{children}</div>
-
+              <Toaster richColors theme="system" />
               {/* </SidebarInset>
               </SidebarProvider> */}
             </ThemeProvider>
