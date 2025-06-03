@@ -69,18 +69,18 @@ const Dashboard = () => {
   const context = useDashboardSearchContext();
   const { onLoad } = useDashboardSearchActions();
 
-  const crypto = R.pipe(
+  const cryptoHoldings = R.pipe(
     R.pathOr<Asset[]>([], ["data", "assets"]),
     R.filter((el: Asset) => el.category === 0)
   )(context);
 
-  console.log("38579283457", crypto);
+  console.log("38579283457", cryptoHoldings);
 
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
       <PageTitle
         title={"Dashboard"}
-        actions={[
+        buttons={[
           { variant: "default", label: "Add holding", onclick: () => {} },
         ]}
       />
@@ -92,7 +92,7 @@ const Dashboard = () => {
             value={Number(el.value.toFixed(2))}
             percentage={el.percentage}
           />
-        ))(crypto)}
+        ))(cryptoHoldings)}
       </div>
     </ResourceLoader>
   );

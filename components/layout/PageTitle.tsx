@@ -1,7 +1,7 @@
 import { Button } from "../ui/button";
 import * as R from "ramda";
 
-type Action = {
+type ActionButton = {
   variant: "default" | "secondary" | "destructive" | "outline";
   label: string;
   onclick: () => void;
@@ -9,20 +9,20 @@ type Action = {
 
 const PageTitle = ({
   title,
-  actions,
+  buttons,
 }: {
   title: string;
-  actions: Action[];
+  buttons: ActionButton[];
 }) => {
   return (
     <div className="flex w-full justify-between pb-10">
       <p className="font-semibold text-2xl">{title}</p>
       <div className="flex gap-4">
-        {R.map((el: Action) => (
+        {R.map((el: ActionButton) => (
           <Button key={el.label} variant={el.variant} onClick={el.onclick}>
             {el.label}
           </Button>
-        ))(actions)}
+        ))(buttons)}
       </div>
     </div>
   );
