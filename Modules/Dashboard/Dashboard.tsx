@@ -73,7 +73,6 @@ const Dashboard = () => {
     R.pathOr<Asset[]>([], ["data", "assets"]),
     R.filter((el: Asset) => el.category === 0)
   )(context);
-
   console.log("38579283457", cryptoHoldings);
 
   return (
