@@ -9,7 +9,6 @@ const Modal = ({
   width = "400px",
   visible = false,
   onCancel,
-  onSubmit,
   children,
 }: {
   title: string;

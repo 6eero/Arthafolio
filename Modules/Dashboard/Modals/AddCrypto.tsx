@@ -1,8 +1,6 @@
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useFormik } from "formik";
-import Modal from "../../../components/modal/Modal";
-import Button from "@/components/custom/Button";
+import Modal from "@/components/modal/Modal";
+import FormikInput from "@/components/formik/Input";
 
 const AddCryptoDialog = ({
   visible,
@@ -34,39 +32,24 @@ const AddCryptoDialog = ({
         onSubmit={onSubmit}
       >
         <div className="grid gap-4">
-          <div className="grid gap-3">
-            <Label>Email</Label>
-            <Input
-              name="email"
-              placeholder="Enter email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-            />
-          </div>
-          <div className="grid gap-3">
-            <Label>Username</Label>
-            <Input
-              name="username"
-              placeholder="Enter username"
-              value={formik.values.username}
-              onChange={formik.handleChange}
-            />
-          </div>
-          <div className="grid gap-3">
-            <Label>Password</Label>
-            <Input
-              name="password"
-              placeholder="Enter password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-            />
-          </div>
-        </div>
-        <div className="w-full flex gap-4 justify-end">
-          <Button variant="outline" onClick={onCancel}>
-            Cancel
-          </Button>
-          <button type="submit">Submit</button>
+          <FormikInput
+            name="email"
+            label="Email"
+            placeholder="Enter email"
+            formik={formik}
+          />
+          <FormikInput
+            name="username"
+            label="Username"
+            placeholder="Enter username"
+            formik={formik}
+          />
+          <FormikInput
+            name="password"
+            label="Password"
+            placeholder="Enter password"
+            formik={formik}
+          />
         </div>
       </Modal>
     </form>
