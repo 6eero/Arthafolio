@@ -1,6 +1,6 @@
-import { Button } from "../ui/button";
 import * as R from "ramda";
 import { DialogTrigger, Dialog } from "@/components/ui/dialog";
+import CustomButton from "../custom/Button";
 
 type ActionButton = {
   variant: "default" | "secondary" | "destructive" | "outline";
@@ -23,9 +23,9 @@ const PageTitle = ({
           <div key={el.label}>
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant={el.variant} onClick={el.onclick}>
+                <CustomButton variant={el.variant} onClick={el.onclick}>
                   {el.label}
-                </Button>
+                </CustomButton>
               </DialogTrigger>
             </Dialog>
           </div>
