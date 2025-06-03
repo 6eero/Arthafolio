@@ -21,6 +21,7 @@ export const ResourceLoader = ({
 
   useEffect(() => {
     if (!R.isNil(onLoad)) onLoad();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading) {

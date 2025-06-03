@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  Area,
-  AreaChart,
-  CartesianGrid,
-  XAxis,
-  ResponsiveContainer,
-} from "recharts";
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import {
   Card,
   CardContent,
