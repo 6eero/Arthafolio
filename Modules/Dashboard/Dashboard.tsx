@@ -8,6 +8,7 @@ import { ResourceLoader } from "@/components/layout/ResourceLoader";
 import { useDashboardSearchActions } from "@/api/tasks";
 import Card from "@/components/Card";
 import * as R from "ramda";
+import PageTitle from "@/components/layout/PageTitle";
 
 // {
 //   "assets": [
@@ -77,7 +78,13 @@ const Dashboard = () => {
 
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
-      <div className="p-4 w-full h-40 grid grid-cols-5 gap-4">
+      <PageTitle
+        title={"Dashboard"}
+        actions={[
+          { variant: "default", label: "Add holding", onclick: () => {} },
+        ]}
+      />
+      <div className="w-full h-40 grid grid-cols-5 gap-4">
         {R.map((el: Asset) => (
           <Card
             key={el.label}

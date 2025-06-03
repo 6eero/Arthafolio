@@ -8,6 +8,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/Sidebar/Sidebar";
+import NavBar from "@/components/layout/NavBar";
 
 export const metadata: Metadata = {
   title: "Arthafolio",
@@ -31,7 +32,7 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <SidebarProvider>
+              {/* <SidebarProvider>
                 <AppSidebar />
                 <SidebarInset>
                   <header className="flex h-16 shrink-0 items-center gap-2">
@@ -39,10 +40,12 @@ export default function RootLayout({
                       <SidebarTrigger className="-ml-1" />
                       <p className="font-semibold text-normal">Dashboard</p>
                     </div>
-                  </header>
-                  {children}
-                </SidebarInset>
-              </SidebarProvider>
+                  </header> */}
+              <NavBar />
+              <div className="w-screen h-screen p-10">{children}</div>
+
+              {/* </SidebarInset>
+              </SidebarProvider> */}
             </ThemeProvider>
           </DashboardContextProvider>
         </body>

@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useRouter } from "next/navigation";
 import {
   DropdownMenu,
@@ -32,7 +32,7 @@ const NavBar = () => {
         </p>
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <Avatar className="size-15">
+            <Avatar className="size-10">
               <AvatarImage src="https://avatars.githubusercontent.com/u/114809573?v=4" />
               <AvatarFallback>AG</AvatarFallback>
             </Avatar>
