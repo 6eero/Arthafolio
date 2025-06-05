@@ -73,11 +73,24 @@ const Dashboard = () => {
   const { onLoad, onAddHolding } = useDashboardSearchActions();
   const [addHoldingModal, setAddHoldingModal] = useState(false);
 
-  const cryptoHoldings = R.pipe(
-    R.pathOr<Asset[]>([], ["data", "assets"]),
-    R.filter((el: Asset) => el.category === 0)
-  )(context);
-  console.log("38579283457", cryptoHoldings);
+  const getHoldingsByCategory = (category: number) =>
+    R.pipe(
+      R.pathOr<Asset[]>([], ["data", "assets"]),
+      R.filter((el: Asset) => el.category === category)
+    );
+
+  const cryptoHoldings = getHoldingsByCategory(0)(context);
+  const liquidityHoldings = getHoldingsByCategory(1)(context);
+  const etfHoldings = getHoldingsByCategory(2)(context);
+
+  const totals = R.pathOr([], ["data", "totals"])(context);
+
+  console.log("38579283457", {
+    totals,
+    cryptoHoldings,
+    liquidityHoldings,
+    etfHoldings,
+  });
 
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
