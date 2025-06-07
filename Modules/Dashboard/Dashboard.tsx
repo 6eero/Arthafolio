@@ -135,8 +135,8 @@ const Dashboard = () => {
               </Carousel>
             </div>
           </div>
-          <div className="flex-[2] bg-green-900">2ª riga (2 parti)</div>
-          <div className="flex-[2] bg-blue-900">3ª riga (2 parti)</div>
+          <div className="flex-[2]"></div>
+          <div className="flex-[2]"></div>
         </div>
       </div>
     </ResourceLoader>
