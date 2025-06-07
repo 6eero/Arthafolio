@@ -15,7 +15,7 @@ export const searchDashboard = async () => {
           quantity: 0.0334706,
           price: 91734.4550832385,
           value: 3070.40725230904,
-          category: 0,
+          category: "crypto",
           percentage: 73.33,
         },
         {
@@ -23,7 +23,7 @@ export const searchDashboard = async () => {
           quantity: 0.2178,
           price: 2279.14365756153,
           value: 496.397488616902,
-          category: 0,
+          category: "crypto",
           percentage: 11.86,
         },
         {
@@ -31,7 +31,7 @@ export const searchDashboard = async () => {
           quantity: 3.46,
           price: 132.906883383482,
           value: 459.857816506849,
-          category: 0,
+          category: "crypto",
           percentage: 10.98,
         },
         {
@@ -39,7 +39,7 @@ export const searchDashboard = async () => {
           quantity: 17.94,
           price: 3.50729189992668,
           value: 62.9208166846847,
-          category: 0,
+          category: "crypto",
           percentage: 1.5,
         },
         {
@@ -47,7 +47,7 @@ export const searchDashboard = async () => {
           quantity: 1104.82,
           price: 0.0882397907303286,
           value: 97.4890855946816,
-          category: 0,
+          category: "crypto",
           percentage: 2.33,
         },
         {
@@ -55,7 +55,7 @@ export const searchDashboard = async () => {
           quantity: 7653.87,
           price: 1,
           value: 7653.87,
-          category: 1,
+          category: "liquidity",
           percentage: 100,
         },
         {
@@ -63,7 +63,7 @@ export const searchDashboard = async () => {
           quantity: 2,
           price: 99.98,
           value: 199.96,
-          category: 2,
+          category: "etf",
           percentage: 100,
         },
       ],

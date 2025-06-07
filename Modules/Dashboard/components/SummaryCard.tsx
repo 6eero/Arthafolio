@@ -22,7 +22,7 @@ const SummaryCard = ({
         {/* <CardAction>Card Action</CardAction> */}
       </CardHeader>
       <CardContent>
-        <p className="font-semibold text-2xl">{`${value.toFixed(2)} €`}</p>
+        <p className="font-semibold text-xl">{`${value.toFixed(2)} €`}</p>
       </CardContent>
     </Card>
   );
