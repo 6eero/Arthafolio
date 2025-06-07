@@ -18,13 +18,14 @@ type Button = {
 const Header = ({ title, buttons }: { title: string; buttons: Button[] }) => {
   return (
     <>
-      <div className="flex justify-between items-center p-3">
-        <div className="flex items-center gap-4">
+      <div className="flex  gap-3 p-3 flex-row items-center justify-between">
+        <div className="flex items-center gap-3">
           <SidebarTrigger />
-          <Separator orientation="vertical" className="!h-6" />
-          <p>{title}</p>
+          <Separator orientation="vertical" className="!h-6 hidden sm:block" />
+          <p className="text-lg font-semibold">{title}</p>
         </div>
-        <div className="flex gap-2">
+
+        <div className="flex flex-wrap gap-2 sm:flex-nowrap">
           {RA.mapIndexed((button: Button, idx: number) => (
             <CustomButton
               key={idx}
@@ -36,6 +37,7 @@ const Header = ({ title, buttons }: { title: string; buttons: Button[] }) => {
           ))(buttons)}
         </div>
       </div>
+
       <Separator />
     </>
   );

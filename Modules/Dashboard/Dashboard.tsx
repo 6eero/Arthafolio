@@ -44,16 +44,16 @@ const Dashboard = () => {
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
       <Header
-        title={"ashboard"}
+        title={"Holdings"}
         buttons={[
           {
-            variant: "outline",
-            text: "Remove holding",
+            variant: "default",
+            text: "Add",
             onClick: () => {},
           },
           {
             variant: "outline",
-            text: "Remove holding",
+            text: "Remove",
             onClick: () => {},
           },
         ]}
