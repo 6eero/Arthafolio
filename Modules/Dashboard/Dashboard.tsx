@@ -113,7 +113,14 @@ const Dashboard = () => {
             </Carousel>
           </div>
 
-          <Card className="h-90"></Card>
+          <div className="flex w-full gap-4">
+            <div className="w-5/8 h-100">
+              <Card className="h-full"></Card>
+            </div>
+            <div className="w-3/8 h-100">
+              <Card className="h-full"></Card>
+            </div>
+          </div>
 
           <Card className="h-full">
             <Tabs defaultValue="all">
