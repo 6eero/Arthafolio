@@ -8,6 +8,8 @@ import { ResourceLoader } from "@/components/layout/ResourceLoader";
 import { useDashboardSearchActions } from "@/api/tasks";
 import * as R from "ramda";
 import Header from "@/components/layout/Header";
+import SummaryCard from "./components/SummaryCard";
+import { Banknote, Bitcoin, Landmark, PiggyBank } from "lucide-react";
 
 type Asset = {
   label: string;
@@ -16,6 +18,11 @@ type Asset = {
   value: number;
   category: number;
   percentage: number;
+};
+
+type Totals = {
+  total: number;
+  [key: string]: number | 0;
 };
 
 const Dashboard = () => {
@@ -32,7 +39,7 @@ const Dashboard = () => {
   const liquidityHoldings = getHoldingsByCategory(1)(context);
   const etfHoldings = getHoldingsByCategory(2)(context);
 
-  const totals = R.pathOr([], ["data", "totals"])(context);
+  const totals = R.pathOr<Totals>({ total: 0 }, ["data", "totals"])(context);
 
   console.log("38579283457", {
     totals,
@@ -59,10 +66,31 @@ const Dashboard = () => {
             },
           ]}
         />
-        <div className="flex-1 flex flex-col">
-          <div className="flex-[1] bg-red-500">1ª riga (1 parte)</div>
-          <div className="flex-[2] bg-green-500">2ª riga (2 parti)</div>
-          <div className="flex-[2] bg-blue-500">3ª riga (2 parti)</div>
+        <div className="flex-1 flex flex-col gap-4 m-4">
+          <div className="flex-[1] flex gap-4">
+            <SummaryCard
+              title="Total"
+              icon={Banknote}
+              value={R.prop("total", totals)}
+            />
+            <SummaryCard
+              title="Liquidity"
+              icon={PiggyBank}
+              value={R.prop("liquidity", totals)}
+            />
+            <SummaryCard
+              title="Cryptocurrencies"
+              icon={Bitcoin}
+              value={R.prop("crypto", totals)}
+            />
+            <SummaryCard
+              title="ETF"
+              icon={Landmark}
+              value={R.prop("etf", totals)}
+            />
+          </div>
+          <div className="flex-[2] bg-green-900">2ª riga (2 parti)</div>
+          <div className="flex-[2] bg-blue-900">3ª riga (2 parti)</div>
         </div>
       </div>
     </ResourceLoader>
