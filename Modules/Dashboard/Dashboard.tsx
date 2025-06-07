@@ -6,12 +6,7 @@ import {
 } from "@/Context/Dashboard";
 import { ResourceLoader } from "@/components/layout/ResourceLoader";
 import { useDashboardSearchActions } from "@/api/tasks";
-import Card from "@/components/SectionCard";
 import * as R from "ramda";
-import PageTitle from "@/components/layout/PageTitle";
-import AddCryptoModal from "@/Modules/Dashboard/Modals/AddCrypto";
-import { useState } from "react";
-import { toast } from "sonner";
 
 // {
 //   "assets": [
@@ -70,8 +65,7 @@ type Asset = {
 
 const Dashboard = () => {
   const context = useDashboardSearchContext();
-  const { onLoad, onAddHolding } = useDashboardSearchActions();
-  const [addHoldingModal, setAddHoldingModal] = useState(false);
+  const { onLoad } = useDashboardSearchActions();
 
   const getHoldingsByCategory = (category: number) =>
     R.pipe(
@@ -94,33 +88,7 @@ const Dashboard = () => {
 
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
-      <PageTitle
-        title={"Dashboard"}
-        buttons={[
-          {
-            variant: "default",
-            label: "Add holding",
-            onclick: () => {
-              setAddHoldingModal((prev) => !prev);
-            },
-          },
-        ]}
-      />
-      <div className="w-full h-40 grid grid-cols-5 gap-4">
-        {R.map((el: Asset) => (
-          <Card
-            key={el.label}
-            title={el.label}
-            value={Number(el.value.toFixed(2))}
-            percentage={el.percentage}
-          />
-        ))(cryptoHoldings)}
-      </div>
-      <AddCryptoModal
-        visible={addHoldingModal}
-        onCancel={() => setAddHoldingModal((prev) => !prev)}
-        onConfirm={onAddHolding}
-      />
+      ciao
     </ResourceLoader>
   );
 };
