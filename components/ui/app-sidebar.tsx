@@ -25,6 +25,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@radix-ui/react-dropdown-menu";
+import Logo from "../icons/Logo";
 
 // Menu items.
 const items = [
@@ -59,7 +60,10 @@ const AppSidebar = ({
   return (
     <Sidebar variant={variant}>
       <SidebarHeader>
-        <p className="text-3xl font-bold mb-5">Arthafolio</p>
+        <div className="flex gap-2 items-center mb-5">
+          <Logo className="w-8 h-8" />
+          <p className="text-2xl font-bold ">Arthafolio</p>
+        </div>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
