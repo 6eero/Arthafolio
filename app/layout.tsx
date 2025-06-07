@@ -29,9 +29,8 @@ export default function RootLayout({
             >
               <SidebarProvider>
                 <AppSidebar variant="inset" />
-                <main className="w-full min-h-screen  p-5">
-                  <div className="w-full h-full bg-background rounded-xl">
-                    {/* <SidebarTrigger /> */}
+                <main className="w-full min-h-screen p-5">
+                  <div className="w-full h-full bg-background rounded-3xl">
                     {children}
                   </div>
                 </main>
