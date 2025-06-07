@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { DashboardContextProvider } from "@/Context/Dashboard";
-import { Toaster } from "sonner";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import AppSidebar from "@/components/ui/app-sidebar";
 
 export const metadata: Metadata = {
   title: "Arthafolio",
@@ -26,8 +27,15 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <div className="w-screen h-screen p-10">{children}</div>
-              <Toaster richColors theme="system" />
+              <SidebarProvider>
+                <AppSidebar variant="inset" />
+                <main className="w-full min-h-screen  p-5">
+                  <div className="w-full h-full bg-background rounded-xl">
+                    {/* <SidebarTrigger /> */}
+                    {children}
+                  </div>
+                </main>
+              </SidebarProvider>
             </ThemeProvider>
           </DashboardContextProvider>
         </body>

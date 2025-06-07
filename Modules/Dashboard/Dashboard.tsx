@@ -7,52 +7,7 @@ import {
 import { ResourceLoader } from "@/components/layout/ResourceLoader";
 import { useDashboardSearchActions } from "@/api/tasks";
 import * as R from "ramda";
-
-// {
-//   "assets": [
-//     {
-//       "label": "BTC",
-//       "quantity": 0.0334706,
-//       "price": 91418.966496129,
-//       "value": 3059.84766000534
-//     },
-//     {
-//       "label": "ETH",
-//       "quantity": 0.2178,
-//       "price": 2233.00929840569,
-//       "value": 486.349425192759
-//     },
-//     {
-//       "label": "SOL",
-//       "quantity": 3.46,
-//       "price": 134.596678975621,
-//       "value": 465.704509255647
-//     },
-//     {
-//       "label": "DOT",
-//       "quantity": 17.94,
-//       "price": 3.53846760162442,
-//       "value": 63.4801087731421
-//     },
-//     {
-//       "label": "CRO",
-//       "quantity": 1104.82,
-//       "price": 0.0898864831429295,
-//       "value": 99.3083843059714
-//     },
-//     {
-//       "label": "EUR",
-//       "quantity": 7653.87,
-//       "price": 1,
-//       "value": 7653.87
-//     }
-//   ],
-//   "totals": {
-//     "total": 11828.5600875329,
-//     "crypto": 4174.69008753286,
-//     "liquidity": 7653.87
-//   }
-// }
+import Header from "@/components/layout/Header";
 
 type Asset = {
   label: string;
@@ -88,7 +43,21 @@ const Dashboard = () => {
 
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
-      ciao
+      <Header
+        title={"ashboard"}
+        buttons={[
+          {
+            variant: "outline",
+            text: "Remove holding",
+            onClick: () => {},
+          },
+          {
+            variant: "outline",
+            text: "Remove holding",
+            onClick: () => {},
+          },
+        ]}
+      />
     </ResourceLoader>
   );
 };
