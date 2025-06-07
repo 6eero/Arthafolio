@@ -10,6 +10,13 @@ import * as R from "ramda";
 import Header from "@/components/layout/Header";
 import SummaryCard from "./components/SummaryCard";
 import { Banknote, Bitcoin, Landmark, PiggyBank } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { useRef } from "react";
 
 type Asset = {
   label: string;
@@ -28,6 +35,7 @@ type Totals = {
 const Dashboard = () => {
   const context = useDashboardSearchContext();
   const { onLoad } = useDashboardSearchActions();
+  const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
 
   const getHoldingsByCategory = (category: number) =>
     R.pipe(
@@ -91,22 +99,40 @@ const Dashboard = () => {
                 value={R.prop("etf", totals)}
               />
             </div>
-            <div className="flex xl:hidden overflow-x-auto gap-4 snap-x snap-mandatory scrollbar-hide">
-              {/* Mobile */}
-              {R.map(({ title, icon, key }) => (
-                <div key={key} className="snap-start flex-shrink-0 w-64">
-                  <SummaryCard
-                    title={title}
-                    icon={icon}
-                    value={R.prop(key, totals)}
-                  />
-                </div>
-              ))([
-                { title: "Total", icon: Banknote, key: "total" },
-                { title: "Liquidity", icon: PiggyBank, key: "liquidity" },
-                { title: "Cryptocurrencies", icon: Bitcoin, key: "crypto" },
-                { title: "ETF", icon: Landmark, key: "etf" },
-              ])}
+            {/* Mobile */}
+            <div className="xl:hidden w-full">
+              <Carousel plugins={[plugin.current]}>
+                <CarouselContent>
+                  <CarouselItem>
+                    <SummaryCard
+                      title="Total"
+                      icon={Banknote}
+                      value={R.prop("total", totals)}
+                    />
+                  </CarouselItem>
+                  <CarouselItem>
+                    <SummaryCard
+                      title="Liquidity"
+                      icon={PiggyBank}
+                      value={R.prop("liquidity", totals)}
+                    />
+                  </CarouselItem>
+                  <CarouselItem>
+                    <SummaryCard
+                      title="Cryptocurrencies"
+                      icon={Bitcoin}
+                      value={R.prop("crypto", totals)}
+                    />
+                  </CarouselItem>
+                  <CarouselItem>
+                    <SummaryCard
+                      title="ETF"
+                      icon={Landmark}
+                      value={R.prop("etf", totals)}
+                    />
+                  </CarouselItem>
+                </CarouselContent>
+              </Carousel>
             </div>
           </div>
           <div className="flex-[2] bg-green-900">2ª riga (2 parti)</div>
