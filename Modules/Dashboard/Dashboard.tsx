@@ -28,6 +28,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import CustomCard from "@/components/custom/Card";
 
 const Dashboard = () => {
   const context = useDashboardSearchContext();
@@ -115,15 +116,18 @@ const Dashboard = () => {
 
           <div className="flex w-full gap-4">
             <div className="w-5/8 h-100">
-              <Card className="h-full"></Card>
+              <CustomCard title={"Line Chart"} description={"Super nice chart"}>
+                aaa
+              </CustomCard>
             </div>
             <div className="w-3/8 h-100">
-              <Card className="h-full"></Card>
+              <CustomCard title={"Pie Chart"} description={"Super nice chart"}>
+                aaa
+              </CustomCard>
             </div>
           </div>
-
-          <Card className="h-full">
-            <Tabs defaultValue="all">
+          <Tabs defaultValue="all">
+            <Card className="h-full">
               <CardHeader>
                 <div className="sm:flex items-center sm:justify-between pb-3">
                   <div>
@@ -168,8 +172,8 @@ const Dashboard = () => {
                   />
                 </TabsContent>
               </CardContent>
-            </Tabs>
-          </Card>
+            </Card>
+          </Tabs>
         </div>
       </div>
     </ResourceLoader>
