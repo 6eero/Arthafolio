@@ -43,21 +43,28 @@ const Dashboard = () => {
 
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
-      <Header
-        title={"Holdings"}
-        buttons={[
-          {
-            variant: "default",
-            text: "Add",
-            onClick: () => {},
-          },
-          {
-            variant: "outline",
-            text: "Remove",
-            onClick: () => {},
-          },
-        ]}
-      />
+      <div className="w-full h-full flex flex-col">
+        <Header
+          title={"Holdings"}
+          buttons={[
+            {
+              variant: "default",
+              text: "Add",
+              onClick: () => {},
+            },
+            {
+              variant: "outline",
+              text: "Remove",
+              onClick: () => {},
+            },
+          ]}
+        />
+        <div className="flex-1 flex flex-col">
+          <div className="flex-[1] bg-red-500">1ª riga (1 parte)</div>
+          <div className="flex-[2] bg-green-500">2ª riga (2 parti)</div>
+          <div className="flex-[2] bg-blue-500">3ª riga (2 parti)</div>
+        </div>
+      </div>
     </ResourceLoader>
   );
 };
