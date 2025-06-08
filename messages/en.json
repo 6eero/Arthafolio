@@ -31,7 +31,15 @@
     },
     "table": {
       "title": "Portfolio Investiment",
-      "description": "Overview of the assets currently allocated within your investment portfolio."
+      "description": "Overview of the assets currently allocated within your investment portfolio.",
+      "header": {
+        "label": "Label",
+        "category": "Category",
+        "price": "Price",
+        "quantity": "Quantity",
+        "value": "Value",
+        "percentage": "Percentage"
+      }
     }
   }
 }

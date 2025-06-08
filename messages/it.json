@@ -31,6 +31,14 @@
     "table": {
       "title": "Portafoglio Investimenti",
       "description": "Panoramica degli asset attualmente allocati nel tuo portafoglio d’investimento."
+    },
+    "header": {
+      "label": "Erichettaa",
+      "category": "Categoria",
+      "price": "Prezzo",
+      "quantity": "Quantità",
+      "value": "Valore",
+      "percentage": "Percentale"
     }
   }
 }
