@@ -43,6 +43,13 @@ const Dashboard = () => {
     ["data", "assets"]
   )(context);
 
+  const totalsData = [
+    { title: "Total", icon: Banknote, key: "total" },
+    { title: "Liquidity", icon: PiggyBank, key: "liquidity" },
+    { title: "Cryptocurrencies", icon: Bitcoin, key: "crypto" },
+    { title: "ETF", icon: Landmark, key: "etf" },
+  ];
+
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
       <div className="w-full flex flex-col">
@@ -50,26 +57,17 @@ const Dashboard = () => {
         <div className="flex-1 flex flex-col gap-4 sm:m-4 mt-4 ">
           {/* Desktop */}
           <div className="h-full hidden xl:flex gap-4">
-            <SummaryCard
-              title="Total"
-              icon={Banknote}
-              value={R.prop("total", totals)}
-            />
-            <SummaryCard
-              title="Liquidity"
-              icon={PiggyBank}
-              value={R.prop("liquidity", totals)}
-            />
-            <SummaryCard
-              title="Cryptocurrencies"
-              icon={Bitcoin}
-              value={R.prop("crypto", totals)}
-            />
-            <SummaryCard
-              title="ETF"
-              icon={Landmark}
-              value={R.prop("etf", totals)}
-            />
+            {R.map(
+              ({ title, icon, key }) => (
+                <SummaryCard
+                  key={key}
+                  title={title}
+                  icon={icon}
+                  value={R.prop(key, totals)}
+                />
+              ),
+              totalsData
+            )}
           </div>
           {/* Mobile */}
           <div className="xl:hidden w-full">
