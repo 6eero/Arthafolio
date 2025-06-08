@@ -20,15 +20,8 @@ import { useRef } from "react";
 import { DataTable } from "./components/DataTable";
 import { columns } from "@/Models/Dashboard/table";
 import { Asset, Totals } from "@/app/types/dashboard";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import CustomCard from "@/components/custom/Card";
+import Card from "@/components/custom/Card";
 
 const Dashboard = () => {
   const context = useDashboardSearchContext();
@@ -116,62 +109,52 @@ const Dashboard = () => {
 
           <div className="flex w-full gap-4">
             <div className="w-5/8 h-100">
-              <CustomCard title={"Line Chart"} description={"Super nice chart"}>
+              <Card title={"Line Chart"} description={"Super nice chart"}>
                 aaa
-              </CustomCard>
+              </Card>
             </div>
             <div className="w-3/8 h-100">
-              <CustomCard title={"Pie Chart"} description={"Super nice chart"}>
+              <Card title={"Pie Chart"} description={"Super nice chart"}>
                 aaa
-              </CustomCard>
+              </Card>
             </div>
           </div>
           <Tabs defaultValue="all">
-            <Card className="h-full">
-              <CardHeader>
-                <div className="sm:flex items-center sm:justify-between pb-3">
-                  <div>
-                    <CardTitle>Portfolio Investments</CardTitle>
-                    <CardDescription className="mt-2">
-                      Overview of the assets currently allocated within your
-                      investment portfolio.
-                    </CardDescription>
-                  </div>
-                  <TabsList className="sm:mt-0 mt-4">
-                    <TabsTrigger value="all">All</TabsTrigger>
-                    <TabsTrigger value="cryptocurrencies">
-                      Cryptocurrencies
-                    </TabsTrigger>
-                    <TabsTrigger value="etf">ETF</TabsTrigger>
-                  </TabsList>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <TabsContent value="all">
-                  <DataTable
-                    columns={columns}
-                    data={R.filter((el: Asset) => el.category !== "liquidity")(
-                      assets
-                    )}
-                  />
-                </TabsContent>
-                <TabsContent value="cryptocurrencies">
-                  <DataTable
-                    columns={columns}
-                    data={R.filter((el: Asset) => el.category === "crypto")(
-                      assets
-                    )}
-                  />
-                </TabsContent>
-                <TabsContent value="etf">
-                  <DataTable
-                    columns={columns}
-                    data={R.filter((el: Asset) => el.category === "etf")(
-                      assets
-                    )}
-                  />
-                </TabsContent>
-              </CardContent>
+            <Card
+              title={"Portfolio Investments"}
+              description="Overview of the assets currently allocated within your investment portfolio."
+              action={
+                <TabsList>
+                  <TabsTrigger value="all">All</TabsTrigger>
+                  <TabsTrigger value="cryptocurrencies">
+                    Cryptocurrencies
+                  </TabsTrigger>
+                  <TabsTrigger value="etf">ETF</TabsTrigger>
+                </TabsList>
+              }
+            >
+              <TabsContent value="all">
+                <DataTable
+                  columns={columns}
+                  data={R.filter((el: Asset) => el.category !== "liquidity")(
+                    assets
+                  )}
+                />
+              </TabsContent>
+              <TabsContent value="cryptocurrencies">
+                <DataTable
+                  columns={columns}
+                  data={R.filter((el: Asset) => el.category === "crypto")(
+                    assets
+                  )}
+                />
+              </TabsContent>
+              <TabsContent value="etf">
+                <DataTable
+                  columns={columns}
+                  data={R.filter((el: Asset) => el.category === "etf")(assets)}
+                />
+              </TabsContent>
             </Card>
           </Tabs>
         </div>

@@ -1,9 +1,9 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Card from "@/components/custom/Card";
 import { LucideIcon } from "lucide-react";
 
 const SummaryCard = ({
   title,
-  icon: Icon,
+  icon,
   value,
 }: {
   title: string;
@@ -11,19 +11,8 @@ const SummaryCard = ({
   value: number;
 }) => {
   return (
-    <Card className="h-full w-full">
-      <CardHeader>
-        <CardTitle>
-          <div className="flex items-center gap-2">
-            {title}
-            <Icon />
-          </div>
-        </CardTitle>
-        {/* <CardAction>Card Action</CardAction> */}
-      </CardHeader>
-      <CardContent>
-        <p className="font-semibold text-xl">{`${value.toFixed(2)} €`}</p>
-      </CardContent>
+    <Card title={title} icon={icon}>
+      <p className="font-semibold text-xl">{`${value.toFixed(2)} €`}</p>
     </Card>
   );
 };
