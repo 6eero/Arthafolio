@@ -41,5 +41,8 @@
         "percentage": "Percentage"
       }
     }
+  },
+  "settings": {
+    "title": "Settings"
   }
 }
