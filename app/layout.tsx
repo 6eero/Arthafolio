@@ -4,20 +4,23 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { DashboardContextProvider } from "@/Context/Dashboard";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import AppSidebar from "@/components/ui/app-sidebar";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "Arthafolio",
   description: "Track your assets",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
   return (
     <>
-      <html lang="en" suppressHydrationWarning>
+      <html lang={locale} suppressHydrationWarning>
         <head />
         <body suppressHydrationWarning>
           <DashboardContextProvider>
@@ -27,14 +30,16 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <SidebarProvider>
-                <AppSidebar variant="inset" />
-                <main className="w-full min-h-screen p-5">
-                  <div className="w-full h-full bg-background rounded-3xl">
-                    {children}
-                  </div>
-                </main>
-              </SidebarProvider>
+              <NextIntlClientProvider>
+                <SidebarProvider>
+                  <AppSidebar variant="inset" />
+                  <main className="w-full min-h-screen p-5">
+                    <div className="w-full h-full bg-background rounded-3xl">
+                      {children}
+                    </div>
+                  </main>
+                </SidebarProvider>
+              </NextIntlClientProvider>
             </ThemeProvider>
           </DashboardContextProvider>
         </body>

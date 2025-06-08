@@ -27,27 +27,21 @@ import {
 } from "@radix-ui/react-dropdown-menu";
 import Logo from "../icons/Logo";
 
+import { useTranslations } from "next-intl";
+
 // Menu items.
 const items = [
+  { titleKey: "dashboard", url: "/dashboard", icon: LayoutDashboard },
   {
-    title: "Dashboard",
-    url: "/dashboard",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "Cryptocurrency",
+    titleKey: "cryptocurrency",
     url: "/cryptocurrency",
     icon: CircleDollarSign,
   },
-  {
-    title: "Settings",
-    url: "/settings",
-    icon: Settings2,
-  },
+  { titleKey: "settings", url: "/settings", icon: Settings2 },
 ];
 
 type MenuVoice = {
-  title: string;
+  titleKey: string;
   url: string;
   icon: LucideIcon;
 };
@@ -57,6 +51,7 @@ const AppSidebar = ({
 }: {
   variant: "sidebar" | "floating" | "inset";
 }) => {
+  const t = useTranslations("sidebar");
   return (
     <Sidebar variant={variant}>
       <SidebarHeader>
@@ -70,11 +65,11 @@ const AppSidebar = ({
           <SidebarGroupContent>
             <SidebarMenu>
               {R.map((item: MenuVoice) => (
-                <SidebarMenuItem key={item.title}>
+                <SidebarMenuItem key={item.titleKey}>
                   <SidebarMenuButton asChild>
                     <a href={item.url}>
                       <item.icon />
-                      <span>{item.title}</span>
+                      <span>{t(item.titleKey)}</span>
                     </a>
                   </SidebarMenuButton>
                 </SidebarMenuItem>

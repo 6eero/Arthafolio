@@ -18,15 +18,19 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import { useRef } from "react";
 import { DataTable } from "./components/DataTable";
-import { columns } from "@/Models/Dashboard/table";
+import { useAssetColumns } from "@/Models/Dashboard/table";
 import { Asset, Totals } from "@/app/types/dashboard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Card from "@/components/custom/Card";
+import { useTranslations } from "next-intl";
 
 const Dashboard = () => {
   const context = useDashboardSearchContext();
   const { onLoad } = useDashboardSearchActions();
   const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
+  const t = useTranslations("");
+
+  const columns = useAssetColumns();
 
   const totals = R.pathOr<Totals>({ total: 0 }, ["data", "totals"])(context);
   const assets = R.pathOr<Asset[]>(
@@ -43,31 +47,33 @@ const Dashboard = () => {
     ["data", "assets"]
   )(context);
 
-  const totalsData = [
-    { title: "Total", icon: Banknote, key: "total" },
-    { title: "Liquidity", icon: PiggyBank, key: "liquidity" },
-    { title: "Cryptocurrencies", icon: Bitcoin, key: "crypto" },
-    { title: "ETF", icon: Landmark, key: "etf" },
-  ];
-
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
       <div className="w-full flex flex-col">
-        <Header title={"Holdings"} />
+        <Header title={t("dashboard.title")} />
         <div className="flex-1 flex flex-col gap-4 sm:m-4 mt-4 ">
           {/* Desktop */}
           <div className="h-full hidden xl:flex gap-4">
-            {R.map(
-              ({ title, icon, key }) => (
-                <SummaryCard
-                  key={key}
-                  title={title}
-                  icon={icon}
-                  value={R.prop(key, totals)}
-                />
-              ),
-              totalsData
-            )}
+            <SummaryCard
+              itemKey="dashboard.totals.total"
+              icon={Banknote}
+              value={R.propOr(0, "total", totals)}
+            />
+            <SummaryCard
+              itemKey="dashboard.totals.liquidity"
+              icon={PiggyBank}
+              value={R.propOr(0, "liquidity", totals)}
+            />
+            <SummaryCard
+              itemKey="dashboard.totals.crypto"
+              icon={Bitcoin}
+              value={R.propOr(0, "crypto", totals)}
+            />
+            <SummaryCard
+              itemKey="dashboard.totals.etf"
+              icon={Landmark}
+              value={R.propOr(0, "etf", totals)}
+            />
           </div>
           {/* Mobile */}
           <div className="xl:hidden w-full">
@@ -75,30 +81,30 @@ const Dashboard = () => {
               <CarouselContent>
                 <CarouselItem>
                   <SummaryCard
-                    title="Total"
+                    itemKey="dashboard.totals.total"
                     icon={Banknote}
-                    value={R.prop("total", totals)}
+                    value={R.propOr(0, "total", totals)}
                   />
                 </CarouselItem>
                 <CarouselItem>
                   <SummaryCard
-                    title="Liquidity"
+                    itemKey="dashboard.totals.liquidity"
                     icon={PiggyBank}
-                    value={R.prop("liquidity", totals)}
+                    value={R.propOr(0, "liquidity", totals)}
                   />
                 </CarouselItem>
                 <CarouselItem>
                   <SummaryCard
-                    title="Cryptocurrencies"
+                    itemKey="dashboard.totals.crypto"
                     icon={Bitcoin}
-                    value={R.prop("crypto", totals)}
+                    value={R.propOr(0, "crypto", totals)}
                   />
                 </CarouselItem>
                 <CarouselItem>
                   <SummaryCard
-                    title="ETF"
+                    itemKey="dashboard.totals.etf"
                     icon={Landmark}
-                    value={R.prop("etf", totals)}
+                    value={R.propOr(0, "etf", totals)}
                   />
                 </CarouselItem>
               </CarouselContent>
@@ -107,27 +113,37 @@ const Dashboard = () => {
 
           <div className="flex w-full gap-4">
             <div className="w-5/8 h-100">
-              <Card title={"Line Chart"} description={"Super nice chart"}>
+              <Card
+                title={"dashboard.charts.linechart.title"}
+                description={"dashboard.charts.linechart.description"}
+              >
                 aaa
               </Card>
             </div>
             <div className="w-3/8 h-100">
-              <Card title={"Pie Chart"} description={"Super nice chart"}>
+              <Card
+                title={"dashboard.charts.piechart.title"}
+                description={"dashboard.charts.piechart.description"}
+              >
                 aaa
               </Card>
             </div>
           </div>
           <Tabs defaultValue="all">
             <Card
-              title={"Portfolio Investments"}
-              description="Overview of the assets currently allocated within your investment portfolio."
+              title={"dashboard.table.title"}
+              description="dashboard.table.description"
               action={
                 <TabsList>
-                  <TabsTrigger value="all">All</TabsTrigger>
-                  <TabsTrigger value="cryptocurrencies">
-                    Cryptocurrencies
+                  <TabsTrigger value="all">
+                    {t("generic.categories.all")}
                   </TabsTrigger>
-                  <TabsTrigger value="etf">ETF</TabsTrigger>
+                  <TabsTrigger value="cryptocurrencies">
+                    {t("generic.categories.crypto")}
+                  </TabsTrigger>
+                  <TabsTrigger value="etf">
+                    {t("generic.categories.etf")}
+                  </TabsTrigger>
                 </TabsList>
               }
             >

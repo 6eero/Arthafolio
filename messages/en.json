@@ -1,0 +1,37 @@
+{
+  "generic": {
+    "categories": {
+      "all": "All",
+      "crypto": "Cryptocurrency",
+      "etf": "ETF"
+    }
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "cryptocurrency": "Cryptocurrency",
+    "settings": "Settings"
+  },
+  "dashboard": {
+    "title": "Holdings",
+    "totals": {
+      "total": "Total",
+      "liquidity": "Liquidity",
+      "crypto": "Cryptocurrency",
+      "etf": "ETF"
+    },
+    "charts": {
+      "linechart": {
+        "title": "Investiment History",
+        "description": "Portfolio changes over time"
+      },
+      "piechart": {
+        "title": "Investiment Allocation",
+        "description": "How assets are distributed"
+      }
+    },
+    "table": {
+      "title": "Portfolio Investiment",
+      "description": "Overview of the assets currently allocated within your investment portfolio."
+    }
+  }
+}

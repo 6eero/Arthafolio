@@ -1,0 +1,36 @@
+{
+  "generic": {
+    "categories": {
+      "crypto": "Criptovalute",
+      "etf": "ETF"
+    }
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "cryptocurrency": "Cryptovalute",
+    "settings": "Impostazioni"
+  },
+  "dashboard": {
+    "title": "Detenzioni",
+    "totals": {
+      "total": "Totale",
+      "liquidity": "Liquidità",
+      "cryptocurrency": "Criptovalute",
+      "etf": "ETF"
+    },
+    "charts": {
+      "linechart": {
+        "title": "Andamento degli Investimenti",
+        "description": "Variazioni del portafoglio nel tempo"
+      },
+      "piechart": {
+        "title": "Allocazione degli Investimenti",
+        "description": "Come sono distribuiti gli asset"
+      }
+    },
+    "table": {
+      "title": "Portafoglio Investimenti",
+      "description": "Panoramica degli asset attualmente allocati nel tuo portafoglio d’investimento."
+    }
+  }
+}

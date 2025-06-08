@@ -3,33 +3,39 @@
 import { Asset } from "@/app/types/dashboard";
 import { Badge } from "@/components/ui/badge";
 import { ColumnDef } from "@tanstack/react-table";
+import { useTranslations } from "next-intl";
 
-export const columns: ColumnDef<Asset>[] = [
-  {
-    accessorKey: "label",
-    header: "Label",
-  },
-  {
-    accessorKey: "category",
-    header: "Category",
-    cell: ({ row }) => {
-      return <Badge variant="outline">{row.getValue("category")}</Badge>;
+export function useAssetColumns(): ColumnDef<Asset>[] {
+  const t = useTranslations("generic.categories");
+
+  return [
+    {
+      accessorKey: "label",
+      header: "Label",
     },
-  },
-  {
-    accessorKey: "price",
-    header: "Price",
-  },
-  {
-    accessorKey: "quantity",
-    header: "Quantity",
-  },
-  {
-    accessorKey: "value",
-    header: "Value",
-  },
-  {
-    accessorKey: "percentage",
-    header: "Percentage",
-  },
-];
+    {
+      accessorKey: "category",
+      header: "Category",
+      cell: ({ row }) => {
+        const category = row.getValue<string>("category");
+        return <Badge variant="outline">{t(category)}</Badge>;
+      },
+    },
+    {
+      accessorKey: "price",
+      header: "Price",
+    },
+    {
+      accessorKey: "quantity",
+      header: "Quantity",
+    },
+    {
+      accessorKey: "value",
+      header: "Value",
+    },
+    {
+      accessorKey: "percentage",
+      header: "Percentage",
+    },
+  ];
+}

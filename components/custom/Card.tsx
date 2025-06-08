@@ -9,6 +9,7 @@ import {
 import { LucideIcon } from "lucide-react";
 import { ReactNode } from "react";
 import * as R from "ramda";
+import { useTranslations } from "next-intl";
 
 const CustomCard = ({
   title,
@@ -23,16 +24,19 @@ const CustomCard = ({
   action?: ReactNode;
   children: ReactNode;
 }) => {
+  const t = useTranslations("");
   return (
     <Card className="h-full w-full">
       <CardHeader>
         <CardTitle>
           <div className="flex items-center gap-2">
-            {title}
+            {t(title)}
             {R.isNotNil(Icon) && <Icon />}
           </div>
         </CardTitle>
-        <CardDescription>{description}</CardDescription>
+        {R.isNotNil(description) && (
+          <CardDescription>{t(description)}</CardDescription>
+        )}
         <CardAction>{action}</CardAction>
       </CardHeader>
       <CardContent>{children}</CardContent>
