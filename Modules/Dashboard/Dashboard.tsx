@@ -112,16 +112,16 @@ const Dashboard = () => {
             </Carousel>
           </div>
 
-          <div className="flex w-full gap-4">
-            <div className="w-5/8">
+          <div className="xl:flex w-full">
+            {/* <div className="xl:w-5/8">
               <Card
                 title={"dashboard.charts.linechart.title"}
                 description={"dashboard.charts.linechart.description"}
               >
                 aaa
               </Card>
-            </div>
-            <div className="w-3/8">
+            </div> */}
+            <div className="xl:w-3/8 xl:pt-0 h-[450px]">
               <Card
                 title={"dashboard.charts.piechart.title"}
                 description={"dashboard.charts.piechart.description"}

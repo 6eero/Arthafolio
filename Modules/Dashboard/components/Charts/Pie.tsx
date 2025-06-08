@@ -2,6 +2,8 @@
 import { Pie, PieChart } from "recharts";
 import {
   ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
@@ -14,6 +16,7 @@ const chartColors = [
   "var(--chart-3)",
   "var(--chart-4)",
   "var(--chart-5)",
+  "var(--chart-6)",
 ];
 
 const Piee = ({ data }: { data: Asset[] }) => {
@@ -36,8 +39,11 @@ const Piee = ({ data }: { data: Asset[] }) => {
   }, [data]);
 
   return (
-    <ChartContainer config={chartConfig} className="mx-auto max-h-[350px]">
-      <PieChart>
+    <ChartContainer
+      config={chartConfig}
+      className="h-full w-full xl:px-[100px]"
+    >
+      <PieChart width={300} height={300}>
         <ChartTooltip
           cursor={false}
           content={<ChartTooltipContent hideLabel />}
@@ -46,22 +52,12 @@ const Piee = ({ data }: { data: Asset[] }) => {
           data={chartData}
           dataKey="value"
           nameKey="label"
-          innerRadius={60}
-          label={({ payload, ...props }) => {
-            return (
-              <text
-                cx={props.cx}
-                cy={props.cy}
-                x={props.x}
-                y={props.y}
-                textAnchor={props.textAnchor}
-                dominantBaseline={props.dominantBaseline}
-                fill="var(--muted-foreground)"
-              >
-                {payload.label}
-              </text>
-            );
-          }}
+          innerRadius={"70%"}
+          outerRadius={"100%"}
+        />
+        <ChartLegend
+          content={<ChartLegendContent nameKey="label" />}
+          className="mt-8 flex-wrap gap-4 *:justify-center"
         />
       </PieChart>
     </ChartContainer>
