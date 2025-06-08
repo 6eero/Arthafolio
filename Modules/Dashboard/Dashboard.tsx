@@ -23,6 +23,7 @@ import { Asset, Totals } from "@/app/types/dashboard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Card from "@/components/custom/Card";
 import { useTranslations } from "next-intl";
+import Pie from "./components/Charts/Pie";
 
 const Dashboard = () => {
   const context = useDashboardSearchContext();
@@ -112,7 +113,7 @@ const Dashboard = () => {
           </div>
 
           <div className="flex w-full gap-4">
-            <div className="w-5/8 h-100">
+            <div className="w-5/8">
               <Card
                 title={"dashboard.charts.linechart.title"}
                 description={"dashboard.charts.linechart.description"}
@@ -120,12 +121,16 @@ const Dashboard = () => {
                 aaa
               </Card>
             </div>
-            <div className="w-3/8 h-100">
+            <div className="w-3/8">
               <Card
                 title={"dashboard.charts.piechart.title"}
                 description={"dashboard.charts.piechart.description"}
               >
-                aaa
+                <Pie
+                  data={R.filter((el: Asset) => el.category !== "liquidity")(
+                    assets
+                  )}
+                />
               </Card>
             </div>
           </div>

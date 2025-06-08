@@ -39,7 +39,7 @@ const CustomCard = ({
         )}
         <CardAction>{action}</CardAction>
       </CardHeader>
-      <CardContent>{children}</CardContent>
+      <CardContent className="h-full">{children}</CardContent>
     </Card>
   );
 };
