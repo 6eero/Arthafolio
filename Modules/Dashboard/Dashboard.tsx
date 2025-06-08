@@ -121,7 +121,7 @@ const Dashboard = () => {
                 aaa
               </Card>
             </div> */}
-            <div className="xl:w-3/8 xl:pt-0 h-[450px]">
+            <div className="xl:w-3/8 xl:pt-0 sm:h-auto h-[500px]">
               <Card
                 title={"dashboard.charts.piechart.title"}
                 description={"dashboard.charts.piechart.description"}
