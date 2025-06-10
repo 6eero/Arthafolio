@@ -67,6 +67,29 @@ export const searchDashboard = async () => {
           percentage: 100,
         },
       ],
+      history: [
+        {
+          value: 15170.4,
+        },
+        {
+          value: 22596.39,
+        },
+        {
+          value: 28359.85,
+        },
+        {
+          value: 32602.92,
+        },
+        {
+          value: 39307.48,
+        },
+        {
+          value: 36653.87,
+        },
+        {
+          value: 47199.96,
+        },
+      ],
       totals: {
         crypto: 4187.07245971216,
         liquidity: 7653.87,

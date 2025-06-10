@@ -24,6 +24,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Card from "@/components/custom/Card";
 import { useTranslations } from "next-intl";
 import Pie from "./components/Charts/Pie";
+import Linee from "./components/Charts/Line";
 
 const Dashboard = () => {
   const context = useDashboardSearchContext();
@@ -34,6 +35,7 @@ const Dashboard = () => {
   const columns = useAssetColumns();
 
   const totals = R.pathOr<Totals>({ total: 0 }, ["data", "totals"])(context);
+  const history = R.pathOr([], ["data", "history"])(context);
   const assets = R.pathOr<Asset[]>(
     [
       {
@@ -112,16 +114,16 @@ const Dashboard = () => {
             </Carousel>
           </div>
 
-          <div className="xl:flex w-full">
-            {/* <div className="xl:w-5/8">
+          <div className="xl:flex w-full h-[450px] gap-4">
+            <div className="xl:w-5/8">
               <Card
                 title={"dashboard.charts.linechart.title"}
                 description={"dashboard.charts.linechart.description"}
               >
-                aaa
+                <Linee data={history} />
               </Card>
-            </div> */}
-            <div className="xl:w-3/8 xl:pt-0 h-[450px]">
+            </div>
+            <div className="xl:w-3/8 xl:pt-0 h-[450px] mt-4 xl:mt-0">
               <Card
                 title={"dashboard.charts.piechart.title"}
                 description={"dashboard.charts.piechart.description"}
