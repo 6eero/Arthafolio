@@ -43,7 +43,7 @@ const Piee = ({ data }: { data: Asset[] }) => {
       config={chartConfig}
       className="h-full w-full xl:px-[100px]"
     >
-      <PieChart width={300} height={300}>
+      <PieChart width={400} height={400}>
         <ChartTooltip
           cursor={false}
           content={<ChartTooltipContent hideLabel />}

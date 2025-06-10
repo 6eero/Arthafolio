@@ -126,7 +126,7 @@ const Dashboard = () => {
             </div>
 
             {/* Pie Chart */}
-            <div className="w-full xl:w-3/8 h-[300px] xl:h-full">
+            <div className="w-full xl:w-3/8 h-[450px] xl:h-full">
               <Card
                 title={"dashboard.charts.piechart.title"}
                 description={"dashboard.charts.piechart.description"}
