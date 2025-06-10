@@ -2,7 +2,7 @@
   "generic": {
     "categories": {
       "all": "All",
-      "crypto": "Cryptocurrency",
+      "crypto": "Crypto",
       "etf": "ETF"
     }
   },
@@ -31,7 +31,7 @@
     },
     "table": {
       "title": "Portfolio Investiment",
-      "description": "Overview of the assets currently allocated within your investment portfolio.",
+      "description": "Overview of your current portfolio assets.",
       "header": {
         "label": "Label",
         "category": "Category",
@@ -41,5 +41,8 @@
         "percentage": "Percentage"
       }
     }
+  },
+  "settings": {
+    "title": "Settings"
   }
 }

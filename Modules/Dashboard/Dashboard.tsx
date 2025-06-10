@@ -122,8 +122,8 @@ const Dashboard = () => {
               >
                 <Linee data={history} />
               </Card>
-            </div>
-            <div className="xl:w-3/8 xl:pt-0 h-[450px] mt-4 xl:mt-0">
+            </div> */}
+            <div className="xl:w-3/8 xl:pt-0 sm:h-auto h-[500px]">
               <Card
                 title={"dashboard.charts.piechart.title"}
                 description={"dashboard.charts.piechart.description"}

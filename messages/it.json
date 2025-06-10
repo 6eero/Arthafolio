@@ -40,5 +40,8 @@
       "value": "Valore",
       "percentage": "Percentale"
     }
+  },
+  "settings": {
+    "title": "Impostazioni"
   }
 }
