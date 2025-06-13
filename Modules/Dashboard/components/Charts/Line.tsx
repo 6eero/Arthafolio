@@ -17,10 +17,7 @@ const Linee = ({ data }: { data: Asset[] }) => {
   } satisfies ChartConfig;
 
   return (
-    <ChartContainer
-      config={chartConfig}
-      className="h-full w-full xl:px-[100px]"
-    >
+    <ChartContainer config={chartConfig} className="h-full w-full">
       <LineChart
         accessibilityLayer
         data={data}
