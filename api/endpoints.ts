@@ -89,6 +89,21 @@ export const searchDashboard = async () => {
         {
           value: 47199.96,
         },
+        {
+          value: 48359.85,
+        },
+        {
+          value: 42602.92,
+        },
+        {
+          value: 49307.48,
+        },
+        {
+          value: 56653.87,
+        },
+        {
+          value: 57199.96,
+        },
       ],
       totals: {
         crypto: 4187.07245971216,

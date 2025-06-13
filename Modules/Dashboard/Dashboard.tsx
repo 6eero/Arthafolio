@@ -114,8 +114,8 @@ const Dashboard = () => {
             </Carousel>
           </div>
 
-          <div className="w-full flex gap-4 xl:flex-row xl:h-[450px] h-[850px] flex-col">
-            <div className="w-full h-full bg-card text-card-foreground rounded-xl border p-6 shadow-sm xl:w-5/8 flex flex-col">
+          <div className="w-full flex gap-4 xl:flex-row  flex-col">
+            <div className="w-full xl:h-[450px]  bg-card text-card-foreground rounded-xl border p-6 shadow-sm xl:w-5/8 flex flex-col">
               <p className="leading-none font-semibold pb-2">
                 {t("dashboard.charts.linechart.title")}
               </p>
@@ -127,7 +127,7 @@ const Dashboard = () => {
                 <Linee data={history} />
               </div>
             </div>
-            <div className="w-full h-full bg-card text-card-foreground rounded-xl border p-6 shadow-sm xl:w-3/8 flex flex-col">
+            <div className="w-full h-[450px] bg-card text-card-foreground rounded-xl border p-6 shadow-sm xl:w-3/8 flex flex-col">
               <p className="leading-none font-semibold pb-2">
                 {t("dashboard.charts.piechart.title")}
               </p>

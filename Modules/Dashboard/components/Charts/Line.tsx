@@ -16,6 +16,8 @@ const Linee = ({ data }: { data: Asset[] }) => {
     },
   } satisfies ChartConfig;
 
+  const isMobile = window.innerWidth <= 1024;
+
   return (
     <ChartContainer config={chartConfig} className="h-full w-full">
       <LineChart
@@ -23,8 +25,8 @@ const Linee = ({ data }: { data: Asset[] }) => {
         data={data}
         margin={{
           top: 20,
-          left: 20,
-          right: 20,
+          left: 25,
+          right: 25,
         }}
       >
         <CartesianGrid vertical={false} />
@@ -45,12 +47,14 @@ const Linee = ({ data }: { data: Asset[] }) => {
             r: 6,
           }}
         >
-          <LabelList
-            position="top"
-            offset={12}
-            className="fill-foreground"
-            fontSize={10}
-          />
+          {!isMobile && (
+            <LabelList
+              position="top"
+              offset={12}
+              className="fill-foreground"
+              fontSize={12}
+            />
+          )}
         </Line>
       </LineChart>
     </ChartContainer>
