@@ -1,5 +1,5 @@
 "use client";
-import { CartesianGrid, LabelList, Line, LineChart, XAxis } from "recharts";
+import { CartesianGrid, LabelList, Line, LineChart } from "recharts";
 import {
   ChartConfig,
   ChartContainer,
@@ -23,18 +23,12 @@ const Linee = ({ data }: { data: Asset[] }) => {
         data={data}
         margin={{
           top: 20,
-          left: 12,
-          right: 12,
+          left: 20,
+          right: 20,
         }}
       >
         <CartesianGrid vertical={false} />
-        <XAxis
-          dataKey="month"
-          tickLine={false}
-          axisLine={false}
-          tickMargin={8}
-          tickFormatter={(value) => value.slice(0, 3)}
-        />
+
         <ChartTooltip
           cursor={false}
           content={<ChartTooltipContent indicator="line" />}
@@ -43,7 +37,7 @@ const Linee = ({ data }: { data: Asset[] }) => {
           dataKey="value"
           type="natural"
           stroke="var(--color-value)"
-          strokeWidth={2}
+          strokeWidth={1.5}
           dot={{
             fill: "var(--color-value)",
           }}
@@ -55,7 +49,7 @@ const Linee = ({ data }: { data: Asset[] }) => {
             position="top"
             offset={12}
             className="fill-foreground"
-            fontSize={12}
+            fontSize={10}
           />
         </Line>
       </LineChart>

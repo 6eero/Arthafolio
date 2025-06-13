@@ -114,32 +114,28 @@ const Dashboard = () => {
             </Carousel>
           </div>
 
-          <div className="w-full flex flex-col gap-4 xl:flex-row">
+          <div className="w-full flex gap-4 xl:flex-row xl:h-[450px] flex-col">
             <div className="w-full h-full bg-card text-card-foreground rounded-xl border p-6 shadow-sm xl:w-5/8 flex flex-col">
-              <div>
-                <p className="leading-none font-semibold pb-2">
-                  {t("dashboard.charts.linechart.title")}
-                </p>
-                <p className="text-muted-foreground text-sm">
-                  {t("dashboard.charts.linechart.description")}
-                </p>
-              </div>
+              <p className="leading-none font-semibold pb-2">
+                {t("dashboard.charts.linechart.title")}
+              </p>
+              <p className="text-muted-foreground text-sm">
+                {t("dashboard.charts.linechart.description")}
+              </p>
 
               <div className="flex-1 min-h-0 w-full">
                 <Linee data={history} />
               </div>
             </div>
             <div className="w-full h-full bg-card text-card-foreground rounded-xl border p-6 shadow-sm xl:w-3/8 flex flex-col">
-              <div>
-                <p className="leading-none font-semibold pb-2">
-                  {t("dashboard.charts.piechart.title")}
-                </p>
-                <p className="text-muted-foreground text-sm">
-                  {t("dashboard.charts.piechart.description")}
-                </p>
-              </div>
+              <p className="leading-none font-semibold pb-2">
+                {t("dashboard.charts.piechart.title")}
+              </p>
+              <p className="text-muted-foreground text-sm">
+                {t("dashboard.charts.piechart.description")}
+              </p>
 
-              <div className="flex-1 min-h-0 w-full">
+              <div className="flex-1 min-h-0 w-full pt-5">
                 <Pie
                   data={R.filter((el: Asset) => el.category !== "liquidity")(
                     assets
