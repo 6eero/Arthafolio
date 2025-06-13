@@ -114,9 +114,9 @@ const Dashboard = () => {
             </Carousel>
           </div>
 
-          <div className="w-full flex flex-col gap-4 xl:flex-row h-auto xl:h-[450px]">
+          <div className="w-full flex flex-col gap-4 xl:flex-row">
             {/* Line Chart */}
-            <div className="w-full xl:w-5/8 h-[300px] xl:h-full">
+            <div className="w-full xl:w-5/8">
               <Card
                 title={"dashboard.charts.linechart.title"}
                 description={"dashboard.charts.linechart.description"}
@@ -126,7 +126,7 @@ const Dashboard = () => {
             </div>
 
             {/* Pie Chart */}
-            <div className="w-full xl:w-3/8 h-[450px] xl:h-full">
+            <div className="w-full xl:w-3/8">
               <Card
                 title={"dashboard.charts.piechart.title"}
                 description={"dashboard.charts.piechart.description"}
