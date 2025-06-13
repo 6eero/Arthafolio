@@ -34,7 +34,7 @@ const CustomCard = ({
       )}
 
       {/* children */}
-      <div className="pt-6">{children}</div>
+      <div className="sm:pt-6 pt-4">{children}</div>
     </div>
   );
 };

@@ -25,6 +25,7 @@ import Card from "@/components/custom/Card";
 import { useTranslations } from "next-intl";
 import Pie from "./components/Charts/Pie";
 import Linee from "./components/Charts/Line";
+import AssetItem from "./components/AssetItem";
 
 const Dashboard = () => {
   const context = useDashboardSearchContext();
@@ -144,7 +145,8 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <Tabs defaultValue="all">
+          {/* Desktop */}
+          <Tabs defaultValue="all" className="xl:block hidden">
             <Card
               title={"dashboard.table.title"}
               description="dashboard.table.description"
@@ -184,6 +186,29 @@ const Dashboard = () => {
                   data={R.filter((el: Asset) => el.category === "etf")(assets)}
                 />
               </TabsContent>
+            </Card>
+          </Tabs>
+
+          {/* Mobile */}
+          <Tabs defaultValue="all" className="xl:hidden">
+            <Card
+              title={"dashboard.table.title"}
+              description="dashboard.table.description"
+            >
+              {R.map(
+                (asset: Asset) => (
+                  <AssetItem
+                    key={asset.label}
+                    label={asset.label}
+                    quantity={asset.quantity}
+                    price={asset.price}
+                    value={asset.value}
+                    percentage={asset.percentage}
+                    category={asset.category}
+                  />
+                ),
+                R.filter((el: Asset) => el.category !== "liquidity", assets)
+              )}
             </Card>
           </Tabs>
         </div>

@@ -60,7 +60,7 @@ export const searchDashboard = async () => {
         },
         {
           label: "ENUL.DE",
-          quantity: 2,
+          quantity: 2.4532,
           price: 99.98,
           value: 199.96,
           category: "etf",
