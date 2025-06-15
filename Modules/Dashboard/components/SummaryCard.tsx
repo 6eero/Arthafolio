@@ -14,7 +14,7 @@ const SummaryCard = ({
   return (
     <Card title={itemKey} icon={icon}>
       {R.isNotNil(itemKey) && (
-        <p className="font-semibold text-xl">{`${value.toFixed(2)} €`}</p>
+        <p className="font-semibold text-xl">{`${value} €`}</p>
       )}
     </Card>
   );

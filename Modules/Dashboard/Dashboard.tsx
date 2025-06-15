@@ -9,7 +9,7 @@ import { useDashboardSearchActions } from "@/api/tasks";
 import * as R from "ramda";
 import Header from "@/components/layout/Header";
 import SummaryCard from "./components/SummaryCard";
-import { Banknote, Bitcoin, Landmark, PiggyBank } from "lucide-react";
+import { Banknote, Bitcoin, Landmark } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -64,11 +64,6 @@ const Dashboard = () => {
               value={R.propOr(0, "total", totals)}
             />
             <SummaryCard
-              itemKey="dashboard.totals.liquidity"
-              icon={PiggyBank}
-              value={R.propOr(0, "liquidity", totals)}
-            />
-            <SummaryCard
               itemKey="dashboard.totals.crypto"
               icon={Bitcoin}
               value={R.propOr(0, "crypto", totals)}
@@ -88,13 +83,6 @@ const Dashboard = () => {
                     itemKey="dashboard.totals.total"
                     icon={Banknote}
                     value={R.propOr(0, "total", totals)}
-                  />
-                </CarouselItem>
-                <CarouselItem>
-                  <SummaryCard
-                    itemKey="dashboard.totals.liquidity"
-                    icon={PiggyBank}
-                    value={R.propOr(0, "liquidity", totals)}
                   />
                 </CarouselItem>
                 <CarouselItem>

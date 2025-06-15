@@ -33,7 +33,7 @@ export function useAssetColumns(): ColumnDef<Asset>[] {
       header: t("dashboard.table.header.price"),
       cell: ({ row }) => {
         const price: number = row.getValue<number>("price");
-        return <p>{`${price.toFixed(2)} €`}</p>;
+        return <p>{`${price} €`}</p>;
       },
     },
     {
@@ -45,7 +45,7 @@ export function useAssetColumns(): ColumnDef<Asset>[] {
       header: t("dashboard.table.header.value"),
       cell: ({ row }) => {
         const value: number = row.getValue<number>("value");
-        return <p>{`${value.toFixed(2)} €`}</p>;
+        return <p>{`${value} €`}</p>;
       },
     },
     {
@@ -55,7 +55,7 @@ export function useAssetColumns(): ColumnDef<Asset>[] {
         const percentage: number = row.getValue<number>("percentage");
         return (
           <div className="flex items-center gap-4 justify-start w-[200px]">
-            <p className="w-16 text-right">{`${percentage.toFixed(2)} %`}</p>
+            <p className="w-16 text-right">{`${percentage} %`}</p>
             <Progress value={percentage} className="w-40" />
           </div>
         );

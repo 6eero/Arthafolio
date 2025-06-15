@@ -13,11 +13,11 @@ const AssetItem = ({ label, quantity, price, value, percentage }: Asset) => {
         </div>
 
         <div className="w-1/3 text-center">
-          <p className="font-medium">{price.toFixed(2)} €</p>
+          <p className="font-medium">{price} €</p>
         </div>
 
         <div className="w-1/3 text-right">
-          <p className="font-medium">{value.toFixed(2)} €</p>
+          <p className="font-medium">{value} €</p>
           <p className="text-muted-foreground">{percentage} %</p>
         </div>
       </div>
