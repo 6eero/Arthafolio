@@ -104,35 +104,10 @@ const Dashboard = () => {
           </div>
 
           <div className="w-full flex gap-4 xl:flex-row  flex-col">
-            <div className="w-full xl:h-[450px]  bg-card text-card-foreground rounded-xl border p-6 shadow-sm xl:w-5/8 flex flex-col">
-              <p className="leading-none font-semibold pb-2">
-                {t("dashboard.charts.linechart.title")}
-              </p>
-              <p className="text-muted-foreground text-sm">
-                {t("dashboard.charts.linechart.description")}
-              </p>
-
-              <div className="flex-1 min-h-0 w-full">
-                <Linee data={history} />
-              </div>
-            </div>
-            <div className="w-full h-[450px] bg-card text-card-foreground rounded-xl border p-6 shadow-sm xl:w-3/8 flex flex-col">
-              <p className="leading-none font-semibold pb-2">
-                {t("dashboard.charts.piechart.title")}
-              </p>
-              <p className="text-muted-foreground text-sm">
-                {t("dashboard.charts.piechart.description")}
-              </p>
-
-              <div className="flex-1 min-h-0 w-full pt-5">
-                <Pie
-                  data={R.filter((el: Asset) => el.category !== "liquidity")(
-                    assets
-                  )}
-                />
-              </div>
-            </div>
+            <Linee data={history} />
+            <Pie data={assets} />
           </div>
+
           {/* Desktop */}
           <Tabs defaultValue="all" className="xl:block hidden">
             <Card
