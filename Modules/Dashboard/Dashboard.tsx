@@ -58,47 +58,40 @@ const Dashboard = () => {
         <div className="flex-1 flex flex-col gap-4 sm:m-4 mt-4 ">
           {/* Desktop */}
           <div className="h-full hidden xl:flex gap-4">
-            <SummaryCard
-              itemKey="dashboard.totals.total"
-              icon={Banknote}
-              value={R.propOr(0, "total", totals)}
-            />
-            <SummaryCard
-              itemKey="dashboard.totals.crypto"
-              icon={Bitcoin}
-              value={R.propOr(0, "crypto", totals)}
-            />
-            <SummaryCard
-              itemKey="dashboard.totals.etf"
-              icon={Landmark}
-              value={R.propOr(0, "etf", totals)}
-            />
+            {R.map(
+              ([key, value]) => (
+                <SummaryCard
+                  key={key}
+                  itemKey={`dashboard.totals.${key}`}
+                  icon={Banknote}
+                  value={value}
+                />
+              ),
+              R.toPairs(totals)
+            )}
           </div>
           {/* Mobile */}
           <div className="xl:hidden w-full">
             <Carousel plugins={[plugin.current]}>
               <CarouselContent>
-                <CarouselItem>
-                  <SummaryCard
-                    itemKey="dashboard.totals.total"
-                    icon={Banknote}
-                    value={R.propOr(0, "total", totals)}
-                  />
-                </CarouselItem>
-                <CarouselItem>
-                  <SummaryCard
-                    itemKey="dashboard.totals.crypto"
-                    icon={Bitcoin}
-                    value={R.propOr(0, "crypto", totals)}
-                  />
-                </CarouselItem>
-                <CarouselItem>
-                  <SummaryCard
-                    itemKey="dashboard.totals.etf"
-                    icon={Landmark}
-                    value={R.propOr(0, "etf", totals)}
-                  />
-                </CarouselItem>
+                {R.map(
+                  ([key, value]) => (
+                    <CarouselItem key={key}>
+                      <SummaryCard
+                        itemKey={`dashboard.totals.${key}`}
+                        icon={
+                          {
+                            total: Banknote,
+                            crypto: Bitcoin,
+                            etf: Landmark,
+                          }[key] || Banknote
+                        }
+                        value={value}
+                      />
+                    </CarouselItem>
+                  ),
+                  R.toPairs(totals)
+                )}
               </CarouselContent>
             </Carousel>
           </div>
@@ -170,7 +163,7 @@ const Dashboard = () => {
                     category={asset.category}
                   />
                 ),
-                R.filter((el: Asset) => el.category !== "liquidity", assets)
+                assets
               )}
             </Card>
           </Tabs>
