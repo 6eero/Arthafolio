@@ -1,5 +1,9 @@
 {
   "generic": {
+    "actions": {
+      "add": "Aggiungi",
+      "remove": "Rimuovi"
+    },
     "categories": {
       "crypto": "Criptovalute",
       "etf": "ETF"

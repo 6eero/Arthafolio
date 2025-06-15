@@ -1,5 +1,9 @@
 {
   "generic": {
+    "actions": {
+      "add": "Add",
+      "remove": "Remove"
+    },
     "categories": {
       "all": "All",
       "crypto": "Crypto",

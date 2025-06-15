@@ -2,7 +2,10 @@ import { Asset } from "@/app/types/dashboard";
 
 const AssetItem = ({ label, quantity, price, value, percentage }: Asset) => {
   return (
-    <div className="bg-card-2 w-full my-4 p-4 rounded-md">
+    <div
+      className="bg-card-2 w-full mt-4 p-3 rounded-md hover:outline"
+      onClick={() => console.log("sankdfdjks")}
+    >
       <div className="flex justify-between items-center text-sm">
         <div className="w-1/3">
           <p className="text-left font-semibold">{label}</p>
