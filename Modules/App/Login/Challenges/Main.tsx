@@ -9,12 +9,18 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
+import * as R from "ramda";
+
 import CustomButton from "@/components/custom/Button";
 
 import { useAppActions } from "@/api/App/tasks";
+import { useGlobalContext } from "@/Context/Global";
 
 const LoginMain = () => {
   const { onLogin } = useAppActions();
+  const { error } = useGlobalContext();
+
+  console.log("aaaa", error);
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
@@ -31,6 +37,11 @@ const LoginMain = () => {
           Enter your email below to login to your account
         </CardDescription>
       </CardHeader>
+      {error && (
+        <div className="p-4 mx-6 bg-red-800 rounded-md border-red-500 border-1 opacity-50">
+          {R.pathOr("Errore generico", ["response", "data", "message"])(error)}
+        </div>
+      )}
       <CardContent>
         <form>
           <div className="flex flex-col gap-10">

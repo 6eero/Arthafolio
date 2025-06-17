@@ -5,14 +5,7 @@ import {
 import * as R from "ramda";
 
 const PREFIX = "GENERIC";
-const types = [
-  "APP_LOAD",
-  "LOAD",
-  "LOGIN",
-  "LOGOUT",
-  "RESET_PASSWORD",
-  "CREATE_NEW_PASSWORD",
-];
+const types = ["LOGIN"];
 
 const actions: any = {
   ...getAsyncActions(`${PREFIX}`, types),
@@ -23,5 +16,7 @@ const actionsFunctions: any = {
 };
 
 const aa = R.mergeDeepLeft(actions, actionsFunctions);
+
+console.log("8y78", aa);
 
 export default aa;

@@ -5,16 +5,25 @@ import { useReducer } from "react";
 
 const initState: GlobalState = {
   loading: false,
-  data: [],
+  data: {},
   error: false,
   errorModal: false,
 };
 
-export const GlobalContext = createContext(null);
+export const GlobalContext = createContext<GlobalState | null>(null);
 export const GlobalDispatchContext =
   createContext<Dispatch<DashboardAction> | null>(null);
 
-export const useGlobalContext = () => useContext(GlobalContext);
+export const useGlobalContext = () => {
+  const context = useContext(GlobalContext);
+  if (!context) {
+    throw new Error(
+      "useGlobalContext must be used within GlobalContextProvider"
+    );
+  }
+  return context;
+};
+
 export const useGlobalDispatchContext = () => {
   const context = useContext(GlobalDispatchContext);
   if (!context) {

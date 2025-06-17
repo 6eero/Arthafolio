@@ -15,7 +15,7 @@ type GlobalState = {
   loading: boolean;
   error: boolean;
   errorModal: boolean;
-  data: any[];
+  [key: string]: any;
 };
 
 type DashboardState = {
