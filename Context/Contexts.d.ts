@@ -11,6 +11,13 @@ type DashboardAction = {
   payload?: any;
 };
 
+type GlobalState = {
+  loading: boolean;
+  error: boolean;
+  errorModal: boolean;
+  data: any[];
+};
+
 type DashboardState = {
   search: {
     loading: boolean;
