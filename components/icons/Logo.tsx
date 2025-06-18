@@ -1,4 +1,10 @@
-const Logo = ({ className = "w-[54px] h-[54px]" }: { className?: string }) => {
+const Logo = ({
+  className = "w-[54px] h-[54px]",
+  bgColor,
+}: {
+  className?: string;
+  bgColor?: string;
+}) => {
   return (
     <svg
       className={className}
@@ -10,7 +16,7 @@ const Logo = ({ className = "w-[54px] h-[54px]" }: { className?: string }) => {
         width="54"
         height="54"
         rx="15"
-        style={{ fill: "var(--color-background)" }}
+        style={{ fill: bgColor ? bgColor : "var(--color-background)" }}
       />
       <path
         d="M11 34C11 32.8954 11.8954 32 13 32H26C27.1046 32 28 32.8954 28 34V42H11V34Z"
