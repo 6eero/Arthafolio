@@ -6,86 +6,168 @@ import {
 } from "@/Context/Dashboard";
 import { ResourceLoader } from "@/components/layout/ResourceLoader";
 import { useDashboardSearchActions } from "@/api/tasks";
-import Card from "@/components/Card";
 import * as R from "ramda";
-
-// {
-//   "assets": [
-//     {
-//       "label": "BTC",
-//       "quantity": 0.0334706,
-//       "price": 91418.966496129,
-//       "value": 3059.84766000534
-//     },
-//     {
-//       "label": "ETH",
-//       "quantity": 0.2178,
-//       "price": 2233.00929840569,
-//       "value": 486.349425192759
-//     },
-//     {
-//       "label": "SOL",
-//       "quantity": 3.46,
-//       "price": 134.596678975621,
-//       "value": 465.704509255647
-//     },
-//     {
-//       "label": "DOT",
-//       "quantity": 17.94,
-//       "price": 3.53846760162442,
-//       "value": 63.4801087731421
-//     },
-//     {
-//       "label": "CRO",
-//       "quantity": 1104.82,
-//       "price": 0.0898864831429295,
-//       "value": 99.3083843059714
-//     },
-//     {
-//       "label": "EUR",
-//       "quantity": 7653.87,
-//       "price": 1,
-//       "value": 7653.87
-//     }
-//   ],
-//   "totals": {
-//     "total": 11828.5600875329,
-//     "crypto": 4174.69008753286,
-//     "liquidity": 7653.87
-//   }
-// }
-
-type Asset = {
-  label: string;
-  quantity: number;
-  price: number;
-  value: number;
-  category: number;
-  percentage: number;
-};
+import Header from "@/components/layout/Header";
+import SummaryCard from "./components/SummaryCard";
+import { Banknote, Bitcoin, Landmark } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { useRef } from "react";
+import { DataTable } from "./components/DataTable";
+import { useAssetColumns } from "@/Models/Dashboard/table";
+import { Asset, Totals } from "@/app/types/dashboard";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Card from "@/components/custom/Card";
+import { useTranslations } from "next-intl";
+import Pie from "./components/Charts/Pie";
+import Linee from "./components/Charts/Line";
+import AssetItem from "./components/AssetItem";
 
 const Dashboard = () => {
   const context = useDashboardSearchContext();
   const { onLoad } = useDashboardSearchActions();
+  const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
+  const t = useTranslations("");
 
-  const crypto = R.pipe(
-    R.pathOr<Asset[]>([], ["data", "assets"]),
-    R.filter((el: Asset) => el.category === 0)
+  const columns = useAssetColumns();
+
+  const totals = R.pathOr<Totals>({ total: 0 }, ["data", "totals"])(context);
+  const history = R.pathOr([], ["data", "history"])(context);
+  const assets = R.pathOr<Asset[]>(
+    [
+      {
+        label: "",
+        quantity: 0,
+        price: 0,
+        value: 0,
+        category: "",
+        percentage: 0,
+      },
+    ],
+    ["data", "assets"]
   )(context);
-
-  console.log("38579283457", crypto);
 
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
-      <div className="p-4 w-full h-40 grid grid-cols-5 gap-4">
-        {R.map((el: Asset) => (
-          <Card
-            key={el.label}
-            title={el.label}
-            value={Number(el.value.toFixed(2))}
-            percentage={el.percentage}
-          />
-        ))(crypto)}
+      <div className="w-full flex flex-col">
+        <Header title={t("dashboard.title")} />
+        <div className="flex-1 flex flex-col gap-4 sm:m-4 mt-4 ">
+          {/* Desktop */}
+          <div className="h-full hidden xl:flex gap-4">
+            {R.map(
+              ([key, value]) => (
+                <SummaryCard
+                  key={key}
+                  itemKey={`dashboard.totals.${key}`}
+                  icon={Banknote}
+                  value={value}
+                />
+              ),
+              R.toPairs(totals)
+            )}
+          </div>
+          {/* Mobile */}
+          <div className="xl:hidden w-full">
+            <Carousel plugins={[plugin.current]}>
+              <CarouselContent>
+                {R.map(
+                  ([key, value]) => (
+                    <CarouselItem key={key}>
+                      <SummaryCard
+                        itemKey={`dashboard.totals.${key}`}
+                        icon={
+                          {
+                            total: Banknote,
+                            crypto: Bitcoin,
+                            etf: Landmark,
+                          }[key] || Banknote
+                        }
+                        value={value}
+                      />
+                    </CarouselItem>
+                  ),
+                  R.toPairs(totals)
+                )}
+              </CarouselContent>
+            </Carousel>
+          </div>
+
+          <div className="w-full flex gap-4 xl:flex-row  flex-col">
+            <Linee data={history} />
+            <Pie data={assets} />
+          </div>
+
+          {/* Desktop */}
+          <Tabs defaultValue="all" className="xl:block hidden">
+            <Card
+              title={"dashboard.table.title"}
+              description="dashboard.table.description"
+              action={
+                <TabsList>
+                  <TabsTrigger value="all">
+                    {t("generic.categories.all")}
+                  </TabsTrigger>
+                  <TabsTrigger value="cryptocurrencies">
+                    {t("generic.categories.crypto")}
+                  </TabsTrigger>
+                  <TabsTrigger value="etf">
+                    {t("generic.categories.etf")}
+                  </TabsTrigger>
+                </TabsList>
+              }
+            >
+              <TabsContent value="all">
+                <DataTable
+                  columns={columns}
+                  data={R.filter((el: Asset) => el.category !== "liquidity")(
+                    assets
+                  )}
+                />
+              </TabsContent>
+              <TabsContent value="cryptocurrencies">
+                <DataTable
+                  columns={columns}
+                  data={R.filter((el: Asset) => el.category === "crypto")(
+                    assets
+                  )}
+                />
+              </TabsContent>
+              <TabsContent value="etf">
+                <DataTable
+                  columns={columns}
+                  data={R.filter((el: Asset) => el.category === "etf")(assets)}
+                />
+              </TabsContent>
+            </Card>
+          </Tabs>
+
+          {/* Mobile */}
+          <Tabs defaultValue="all" className="xl:hidden">
+            <Card
+              title={"dashboard.table.title"}
+              description="dashboard.table.description"
+            >
+              {R.map(
+                (asset: Asset) => (
+                  <AssetItem
+                    key={asset.label}
+                    label={asset.label}
+                    quantity={asset.quantity}
+                    price={asset.price}
+                    value={asset.value}
+                    percentage={asset.percentage}
+                    category={asset.category}
+                  />
+                ),
+                assets
+              )}
+            </Card>
+          </Tabs>
+        </div>
       </div>
     </ResourceLoader>
   );

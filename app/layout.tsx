@@ -1,52 +1,35 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { DashboardContextProvider } from "@/Context/Dashboard";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/layout/Sidebar/Sidebar";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale } from "next-intl/server";
+import { GlobalContextProvider } from "@/Context/Global";
 
 export const metadata: Metadata = {
   title: "Arthafolio",
   description: "Track your assets",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
   return (
-    <>
-      <html lang="en" suppressHydrationWarning>
-        <head />
-        <body suppressHydrationWarning>
-          <DashboardContextProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <SidebarProvider>
-                <AppSidebar />
-                <SidebarInset>
-                  <header className="flex h-16 shrink-0 items-center gap-2">
-                    <div className="flex items-center gap-2 px-4">
-                      <SidebarTrigger className="-ml-1" />
-                      <p className="font-semibold text-normal">Dashboard</p>
-                    </div>
-                  </header>
-                  {children}
-                </SidebarInset>
-              </SidebarProvider>
-            </ThemeProvider>
-          </DashboardContextProvider>
-        </body>
-      </html>
-    </>
+    <html lang={locale} suppressHydrationWarning>
+      <body suppressHydrationWarning>
+        <GlobalContextProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <NextIntlClientProvider>{children}</NextIntlClientProvider>
+          </ThemeProvider>
+        </GlobalContextProvider>
+      </body>
+    </html>
   );
 }

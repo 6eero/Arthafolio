@@ -18,5 +18,17 @@ export const useDashboardSearchActions = () => {
         dispatch(actions.search.loadFail({ error }));
       }
     },
+
+    onAddHolding: async (holding: any) => {
+      dispatch(actions.search.addHolding({}));
+
+      try {
+        const { data } = await APIDashboard.addHolding(holding);
+
+        dispatch(actions.search.addHoldingSuccess({ data }));
+      } catch (error) {
+        dispatch(actions.search.addHoldingFail({ error }));
+      }
+    },
   };
 };
