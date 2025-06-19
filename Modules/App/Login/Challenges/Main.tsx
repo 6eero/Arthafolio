@@ -44,16 +44,16 @@ const LoginMain = () => {
                 <div className="grid gap-3">
                   <FormikInput
                     name="email"
-                    label="email"
-                    placeholder="Inserisci la tua email"
+                    label={"login.fields.email.label"}
+                    placeholder={"login.fields.email.placeholder"}
                     formik={formik}
                   />
                 </div>
                 <div className="grid gap-3">
                   <FormikInput
                     name="password"
-                    label="password"
-                    placeholder="Inserisci la tua password"
+                    label={"login.fields.password.label"}
+                    placeholder={"login.fields.password.placeholder"}
                     formik={formik}
                   />
                 </div>

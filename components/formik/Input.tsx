@@ -20,7 +20,7 @@ const FormikInput = ({
       <Label>{t(label)}</Label>
       <Input
         name={name}
-        placeholder={placeholder}
+        placeholder={t(placeholder)}
         value={formik.values.name}
         onChange={formik.handleChange}
       />
