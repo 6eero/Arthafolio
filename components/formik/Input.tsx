@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FormikProps } from "formik";
+import { useTranslations } from "next-intl";
 
 const FormikInput = ({
   name,
@@ -13,12 +14,13 @@ const FormikInput = ({
   label: string;
   formik: FormikProps<any>;
 }) => {
+  const t = useTranslations("");
   return (
     <div className="grid gap-3">
-      <Label>{label}</Label>
+      <Label>{t(label)}</Label>
       <Input
         name={name}
-        placeholder={placeholder}
+        placeholder={t(placeholder)}
         value={formik.values.name}
         onChange={formik.handleChange}
       />
