@@ -5,7 +5,7 @@ import {
   useDashboardSearchContext,
 } from "@/Context/Dashboard";
 import { ResourceLoader } from "@/components/layout/ResourceLoader";
-import { useDashboardSearchActions } from "@/api/tasks";
+import { useDashboardSearchActions } from "@/api/Holdings/tasks";
 import * as R from "ramda";
 import Header from "@/components/layout/Header";
 import SummaryCard from "./components/SummaryCard";
