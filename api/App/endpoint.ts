@@ -27,8 +27,6 @@ export const login = async ({
 
   const { data, headers } = await makeApiRequest("/api/login", "POST", options);
 
-  console.log("endpoint", { data, headers });
-
   return { data, headers };
 };
 
