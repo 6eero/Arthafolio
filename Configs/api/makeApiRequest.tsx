@@ -105,6 +105,7 @@ export const makeApiRequest = async (
     apiName?: string;
   }
 ) => {
+  console.log("345894756834", { endpoint, method, options });
   const basePath = getBaseUrl(options?.apiName ?? "private");
 
   const service = "execute-api"; // Adjust based on your service type
