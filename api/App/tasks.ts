@@ -25,5 +25,16 @@ export const useAppActions = () => {
         dispatch(actions.loginFail({ error }));
       }
     },
+
+    onWhoAmI: async () => {
+      try {
+        dispatch(actions.whoAmI({}));
+        const { data } = await APIGlobal.whoAmI();
+
+        dispatch(actions.whoAmISuccess({ data }));
+      } catch (error) {
+        dispatch(actions.whoAmIFail({ error }));
+      }
+    },
   };
 };

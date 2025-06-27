@@ -4,6 +4,7 @@ import * as R from "ramda";
 import React, { useContext, useEffect } from "react";
 import Loading from "./Loading";
 import { ErrorBlock } from "../error/ErrorBlock";
+import { useAppActions } from "@/api/App/tasks";
 
 type ResourceLoaderProps = {
   onLoad?: () => void | Promise<void>;
@@ -16,11 +17,15 @@ export const ResourceLoader = ({
   children,
   context: Context,
 }: ResourceLoaderProps) => {
-  const state: any = useContext(Context);
+  const state = useContext(Context);
+  const { onWhoAmI } = useAppActions();
   const { loading = false, error = false } = state;
 
   useEffect(() => {
-    if (!R.isNil(onLoad)) onLoad();
+    if (!R.isNil(onLoad)) {
+      onWhoAmI();
+      onLoad();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

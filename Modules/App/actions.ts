@@ -5,7 +5,7 @@ import {
 import * as R from "ramda";
 
 const PREFIX = "GENERIC";
-const types = ["LOGIN"];
+const types = ["LOGIN", "WHO_AM_I"];
 
 const actions: any = {
   ...getAsyncActions(`${PREFIX}`, types),

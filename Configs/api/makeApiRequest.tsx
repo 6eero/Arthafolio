@@ -50,7 +50,7 @@ const refreshAccessToken = async () => {
 const getBaseUrl = (apiName: string) => {
   let basePath = "localhost:3001";
 
-  basePath += apiName === "public" ? "" : "/api";
+  basePath += apiName === "public" ? "" : "/private";
 
   return basePath;
 };
@@ -98,7 +98,7 @@ api.interceptors.request.use(
 
 export const makeApiRequest = async (
   endpoint: string,
-  method: string, // POST, GET, PATCH, DELETE, PUT
+  method: "POST" | "GET" | "PATCH" | "DELETE" | "PUT",
   options?: {
     body?: any;
     queryParams?: any;
@@ -106,7 +106,7 @@ export const makeApiRequest = async (
   }
 ) => {
   console.log("345894756834", { endpoint, method, options });
-  const basePath = getBaseUrl(options?.apiName ?? "private");
+  const basePath = "localhost:3001"; //getBaseUrl(options?.apiName ?? "private");
 
   const service = "execute-api"; // Adjust based on your service type
 

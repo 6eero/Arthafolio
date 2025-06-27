@@ -1,3 +1,4 @@
+"use client";
 import {
   LayoutDashboard,
   CircleDollarSign,
@@ -28,6 +29,7 @@ import {
 import Logo from "../icons/Logo";
 
 import { useTranslations } from "next-intl";
+import { useGlobalContext } from "@/Context/Global";
 
 // Menu items.
 const items = [
@@ -52,6 +54,10 @@ const AppSidebar = ({
   variant: "sidebar" | "floating" | "inset";
 }) => {
   const t = useTranslations("sidebar");
+  const context = useGlobalContext();
+
+  const user = R.pathOr("Arthafolio user", ["data", "email"], context);
+
   return (
     <Sidebar variant={variant}>
       <SidebarHeader>
@@ -84,7 +90,7 @@ const AppSidebar = ({
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  <User2 /> Arthafolio user
+                  <User2 /> {user}
                   <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
