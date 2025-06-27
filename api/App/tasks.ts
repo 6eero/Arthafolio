@@ -8,7 +8,6 @@ export const useAppActions = () => {
   const dispatch = useGlobalDispatchContext();
   const router = useRouter();
   return {
-    // LOGIN
     onLogin: async (values: { email: string; password: string }) => {
       try {
         dispatch(actions.login({}));
@@ -34,6 +33,22 @@ export const useAppActions = () => {
         dispatch(actions.whoAmISuccess({ data }));
       } catch (error) {
         dispatch(actions.whoAmIFail({ error }));
+      }
+    },
+
+    onLogout: async () => {
+      try {
+        dispatch(actions.logout({}));
+        await APIGlobal.logout();
+
+        Cookies.remove("access_token");
+        Cookies.remove("refresh_token");
+
+        router.push("/login");
+
+        dispatch(actions.logoutSuccess({}));
+      } catch (error) {
+        dispatch(actions.logoutFail({ error }));
       }
     },
   };

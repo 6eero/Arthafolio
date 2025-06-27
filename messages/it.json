@@ -29,7 +29,8 @@
   "sidebar": {
     "dashboard": "Dashboard",
     "cryptocurrency": "Cryptovalute",
-    "settings": "Impostazioni"
+    "settings": "Impostazioni",
+    "logout": "Logout"
   },
   "dashboard": {
     "title": "Detenzioni",

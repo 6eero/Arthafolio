@@ -4,23 +4,31 @@ import { produce } from "immer";
 const reducer = produce(
   (state: any, action: { type: string; payload?: any }) => {
     switch (action.type) {
+      // BASE
       case actions.LOGIN:
-      case actions.WHO_AM_I: {
+      case actions.WHO_AM_I:
+      case actions.LOGOUT: {
         state.loading = true;
         state.error = false;
         state.data = {};
         return;
       }
+
+      // SUCCESS
       case actions.LOGIN_SUCCESS:
-      case actions.WHO_AM_I_SUCCESS: {
+      case actions.WHO_AM_I_SUCCESS:
+      case actions.LOGOUT_SUCCESS: {
         const { data } = action.payload;
         state.loading = false;
         state.data = data;
         state.error = false;
         return;
       }
+
+      // FAIL
       case actions.LOGIN_FAIL:
-      case actions.WHO_AM_I_FAIL: {
+      case actions.WHO_AM_I_FAIL:
+      case actions.LOGOUT_FAIL: {
         const { error } = action.payload;
         state.loading = false;
         state.error = error;

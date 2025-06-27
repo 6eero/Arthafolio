@@ -23,16 +23,7 @@ export const login = async ({
 };
 
 export const logout = async () => {
-  const options = {
-    body: {},
-    apiName: "public",
-  };
-
-  const { data, headers } = await makeApiRequest(
-    "/api/v1/logout",
-    "DELETE",
-    options
-  );
+  const { data, headers } = await makeApiRequest("/api/logout", "DELETE");
 
   return { data, headers };
 };

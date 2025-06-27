@@ -6,6 +6,7 @@ import {
   LucideIcon,
   ChevronUp,
   User2,
+  LogOut,
 } from "lucide-react";
 
 import {
@@ -30,6 +31,8 @@ import Logo from "../icons/Logo";
 
 import { useTranslations } from "next-intl";
 import { useGlobalContext } from "@/Context/Global";
+import { useAppActions } from "@/api/App/tasks";
+import Button from "@/components/custom/Button";
 
 // Menu items.
 const items = [
@@ -55,6 +58,7 @@ const AppSidebar = ({
 }) => {
   const t = useTranslations("sidebar");
   const context = useGlobalContext();
+  const { onLogout } = useAppActions();
 
   const user = R.pathOr("Arthafolio user", ["data", "email"], context);
 
@@ -99,13 +103,9 @@ const AppSidebar = ({
                 className="w-[--radix-popper-anchor-width]"
               >
                 <DropdownMenuItem>
-                  <span>Account</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Billing</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Sign out</span>
+                  <Button icon={<LogOut />} onClick={onLogout} variant="link">
+                    {t("logout")}
+                  </Button>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

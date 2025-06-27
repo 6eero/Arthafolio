@@ -67,12 +67,6 @@ const LoginMain = () => {
                   </CustomButton>
                 </div>
               </div>
-              <div className="mt-8 text-center text-sm">
-                {t("dont_have_account")}
-                <a href="#" className="underline underline-offset-4 ml-2">
-                  {t("sing_up")}
-                </a>
-              </div>
             </CardContent>
           </Card>
         </form>

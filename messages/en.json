@@ -30,7 +30,8 @@
   "sidebar": {
     "dashboard": "Dashboard",
     "cryptocurrency": "Cryptocurrency",
-    "settings": "Settings"
+    "settings": "Settings",
+    "logout": "Logout"
   },
   "dashboard": {
     "title": "Holdings",
