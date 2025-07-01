@@ -29,7 +29,7 @@ const refreshAccessToken = async () => {
 
   try {
     const response = await axios.post(
-      `http://${getBaseUrl("public")}/api/refresh`,
+      `https://${getBaseUrl("public")}/api/refresh`,
       { refresh_token, access_token }
     );
     const { access_token: newAccessToken, refresh_token: newRefreshToken } =
@@ -140,7 +140,7 @@ export const makeApiRequest = async (
   } as any;
 
   return await api({
-    url: `http://${basePath}${endpoint}`,
+    url: `https://${basePath}${endpoint}`,
     ...(opts as any),
   });
 };
