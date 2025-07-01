@@ -106,7 +106,7 @@ export const makeApiRequest = async (
   }
 ) => {
   console.log("345894756834", { endpoint, method, options });
-  const basePath = "localhost:3001"; //getBaseUrl(options?.apiName ?? "private");
+  const basePath = "http://192.168.1.137:3001"; //getBaseUrl(options?.apiName ?? "private");
 
   const service = "execute-api"; // Adjust based on your service type
 
