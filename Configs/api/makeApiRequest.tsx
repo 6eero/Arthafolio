@@ -106,7 +106,7 @@ export const makeApiRequest = async (
   }
 ) => {
   console.log("345894756834", { endpoint, method, options });
-  const basePath = "192.168.1.137:3001"; //getBaseUrl(options?.apiName ?? "private");
+  const basePath = "https://arthafolio-be.onrender.com"; //getBaseUrl(options?.apiName ?? "private");
 
   const service = "execute-api"; // Adjust based on your service type
 
@@ -140,7 +140,7 @@ export const makeApiRequest = async (
   } as any;
 
   return await api({
-    url: `http://${basePath}${endpoint}`,
+    url: `${basePath}${endpoint}`,
     ...(opts as any),
   });
 };
