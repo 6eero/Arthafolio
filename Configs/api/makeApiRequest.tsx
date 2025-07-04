@@ -105,8 +105,10 @@ export const makeApiRequest = async (
     apiName?: string;
   }
 ) => {
-  console.log("345894756834", { endpoint, method, options });
-  const basePath = "https://arthafolio-be.onrender.com"; //getBaseUrl(options?.apiName ?? "private");
+  const basePath =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3001"
+      : "https://arthafolio-be.onrender.com";
 
   const service = "execute-api"; // Adjust based on your service type
 
