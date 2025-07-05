@@ -7,11 +7,13 @@ const FormikInput = ({
   name,
   placeholder,
   label,
+  type,
   formik,
 }: {
   name: string;
   placeholder: string;
   label: string;
+  type?: string;
   formik: FormikProps<any>;
 }) => {
   const t = useTranslations("");
@@ -19,9 +21,10 @@ const FormikInput = ({
     <div className="grid gap-3">
       <Label>{t(label)}</Label>
       <Input
+        type={type}
         name={name}
         placeholder={t(placeholder)}
-        value={formik.values.name}
+        value={formik.values[name]}
         onChange={formik.handleChange}
       />
     </div>

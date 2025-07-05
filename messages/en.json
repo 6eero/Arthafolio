@@ -69,7 +69,17 @@
     "add_modal": {
       "title": "Add an investment",
       "description": "Fill out the fields below to add a new investment to your portfolio.",
-      "button": "Add"
+
+      "fields": {
+        "ticker": {
+          "label": "Ticker",
+          "placeholder": "Enter the label"
+        },
+        "quantity": {
+          "label": "Quantity",
+          "placeholder": "Enter the quantity"
+        }
+      }
     }
   },
   "settings": {

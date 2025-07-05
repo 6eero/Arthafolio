@@ -27,7 +27,7 @@ import Pie from "./components/Charts/Pie";
 import Linee from "./components/Charts/Line";
 import AssetItem from "./components/AssetItem";
 import Button from "@/components/custom/Button";
-import DrawerDialog from "@/components/custom/DrowerDialog";
+import DrawerDialog from "@/Modules/Dashboard/components/DrowerDialog";
 import ButtonFloating from "@/components/custom/ButtonFloating";
 
 const Dashboard = () => {

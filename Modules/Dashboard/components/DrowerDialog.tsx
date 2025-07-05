@@ -22,7 +22,10 @@ import {
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useTranslations } from "next-intl";
 import { Formik } from "formik";
-import FormikInput from "../formik/Input";
+import FormikInput from "../../../components/formik/Input";
+import SelectWithSearch from "../../../components/formik/SelectWithSearch";
+import { cryptoTickers } from "@/lib/crypto";
+import * as R from "ramda";
 
 const DrawerDialog = ({
   open,
@@ -72,21 +75,39 @@ const ProfileForm = () => {
   const t = useTranslations("");
   return (
     <Formik
-      initialValues={{}}
+      initialValues={{ ticker: "", quantity: 0 }}
       onSubmit={(values) => {
         console.log(values);
       }}
     >
       {(formik) => (
         <form onSubmit={formik.handleSubmit}>
-          <div className="flex flex-col gap-10 mx-4">
-            <FormikInput
-              name="password"
-              label={"login.fields.password.label"}
-              placeholder={"login.fields.password.placeholder"}
+          <div className="flex flex-col gap-10 sm:mx-0 mx-4">
+            <SelectWithSearch
+              name="ticker"
+              label={"dashboard.add_modal.fields.ticker.label"}
+              placeholder={"dashboard.add_modal.fields.ticker.placeholder"}
+              domain={cryptoTickers}
               formik={formik}
             />
-            <Button loading={false} type="submit" className="w-full">
+            <FormikInput
+              type="number"
+              name="quantity"
+              label={"dashboard.add_modal.fields.quantity.label"}
+              placeholder={"dashboard.add_modal.fields.quantity.placeholder"}
+              formik={formik}
+            />
+            <Button
+              loading={false}
+              type="submit"
+              className="w-full"
+              disabled={
+                !formik.values.ticker ||
+                !R.includes(formik.values.ticker, cryptoTickers) ||
+                !formik.values.quantity ||
+                formik.values.quantity <= 0
+              }
+            >
               {t("generic.actions.add")}
             </Button>
           </div>

@@ -10,7 +10,7 @@ const CustomCard = ({
   action,
   children,
 }: {
-  title: string;
+  title?: string;
   icon?: LucideIcon;
   description?: string;
   action?: ReactNode;
@@ -20,13 +20,15 @@ const CustomCard = ({
   return (
     <div className="w-full bg-card text-card-foreground rounded-xl border p-6 shadow-sm">
       {/* title */}
-      <div className="flex justify-between">
-        <div className="flex items-center gap-2 pb-2">
-          <p className="leading-none font-semibold">{t(title)}</p>
-          {R.isNotNil(Icon) && <Icon />}
+      {R.isNotNil(title) && (
+        <div className="flex justify-between">
+          <div className="flex items-center gap-2 pb-2">
+            <p className="leading-none font-semibold">{t(title)}</p>
+            {R.isNotNil(Icon) && <Icon />}
+          </div>
+          {action}
         </div>
-        {action}
-      </div>
+      )}
 
       {/* description */}
       {R.isNotNil(description) && (
@@ -34,7 +36,7 @@ const CustomCard = ({
       )}
 
       {/* children */}
-      <div className="sm:pt-6 pt-4">{children}</div>
+      <div className="sm:pt-6">{children}</div>
     </div>
   );
 };
