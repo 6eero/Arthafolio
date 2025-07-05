@@ -26,6 +26,7 @@ import FormikInput from "../../../components/formik/Input";
 import SelectWithSearch from "../../../components/formik/SelectWithSearch";
 import { cryptoTickers } from "@/lib/crypto";
 import * as R from "ramda";
+import { useDashboardSearchActions } from "@/api/Holdings/tasks";
 
 const DrawerDialog = ({
   open,
@@ -73,11 +74,13 @@ const DrawerDialog = ({
 
 const ProfileForm = () => {
   const t = useTranslations("");
+  const { onAddHolding } = useDashboardSearchActions();
   return (
     <Formik
       initialValues={{ ticker: "", quantity: 0 }}
       onSubmit={(values) => {
         console.log(values);
+        onAddHolding(values);
       }}
     >
       {(formik) => (
