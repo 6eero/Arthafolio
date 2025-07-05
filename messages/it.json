@@ -2,7 +2,9 @@
   "generic": {
     "actions": {
       "add": "Aggiungi",
-      "remove": "Rimuovi"
+      "remove": "Rimuovi",
+      "cancel": "Cancella",
+      "close": "Chiudi"
     },
     "categories": {
       "crypto": "Criptovalute",
@@ -34,6 +36,7 @@
   },
   "dashboard": {
     "title": "Detenzioni",
+    "add_investment": "Aggiungi investimento",
     "totals": {
       "total": "Totale",
       "liquidity": "Liquidità",
@@ -61,6 +64,11 @@
       "quantity": "Quantità",
       "value": "Valore",
       "percentage": "Percentale"
+    },
+    "add_modal": {
+      "title": "Aggiungi un investimento",
+      "description": "Compila i campi seguenti per registrare un nuovo investimento nel tuo portafoglio.",
+      "button": "Aggiungi"
     }
   },
   "settings": {

@@ -2,7 +2,9 @@
   "generic": {
     "actions": {
       "add": "Add",
-      "remove": "Remove"
+      "remove": "Remove",
+      "cancel": "Cancel",
+      "close": "Close"
     },
     "categories": {
       "all": "All",
@@ -35,6 +37,7 @@
   },
   "dashboard": {
     "title": "Holdings",
+    "add_investment": "Add investment",
     "totals": {
       "total": "Total",
       "liquidity": "Liquidity",
@@ -62,6 +65,11 @@
         "value": "Value",
         "percentage": "Percentage"
       }
+    },
+    "add_modal": {
+      "title": "Add an investment",
+      "description": "Fill out the fields below to add a new investment to your portfolio.",
+      "button": "Add"
     }
   },
   "settings": {

@@ -16,7 +16,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { DataTable } from "./components/DataTable";
 import { useAssetColumns } from "@/Models/Dashboard/table";
 import { Asset, Totals } from "@/app/types/dashboard";
@@ -26,12 +26,16 @@ import { useTranslations } from "next-intl";
 import Pie from "./components/Charts/Pie";
 import Linee from "./components/Charts/Line";
 import AssetItem from "./components/AssetItem";
+import Button from "@/components/custom/Button";
+import DrawerDialog from "@/components/custom/DrowerDialog";
+import ButtonFloating from "@/components/custom/ButtonFloating";
 
 const Dashboard = () => {
   const context = useDashboardSearchContext();
   const { onLoad } = useDashboardSearchActions();
   const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
   const t = useTranslations("");
+  const [openEditProfile, setOpenEditProfile] = useState(false);
 
   const columns = useAssetColumns();
 
@@ -53,6 +57,11 @@ const Dashboard = () => {
 
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
+      <DrawerDialog open={openEditProfile} setOpen={setOpenEditProfile} />
+      <ButtonFloating
+        onClick={() => setOpenEditProfile(true)}
+        className="xl:hidden"
+      />
       <div className="w-full flex flex-col">
         <Header title={t("dashboard.title")} />
         <div className="flex-1 flex flex-col gap-4 sm:m-4 mt-4 ">
@@ -107,17 +116,27 @@ const Dashboard = () => {
               title={"dashboard.table.title"}
               description="dashboard.table.description"
               action={
-                <TabsList>
-                  <TabsTrigger value="all">
-                    {t("generic.categories.all")}
-                  </TabsTrigger>
-                  <TabsTrigger value="cryptocurrencies">
-                    {t("generic.categories.crypto")}
-                  </TabsTrigger>
-                  <TabsTrigger value="etf">
-                    {t("generic.categories.etf")}
-                  </TabsTrigger>
-                </TabsList>
+                <div>
+                  <Button
+                    variant="default"
+                    onClick={() => setOpenEditProfile(true)}
+                    className="mr-4"
+                  >
+                    {t("dashboard.add_investment")}
+                  </Button>
+
+                  <TabsList>
+                    <TabsTrigger value="all">
+                      {t("generic.categories.all")}
+                    </TabsTrigger>
+                    <TabsTrigger value="cryptocurrencies">
+                      {t("generic.categories.crypto")}
+                    </TabsTrigger>
+                    <TabsTrigger value="etf">
+                      {t("generic.categories.etf")}
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
               }
             >
               <TabsContent value="all">
