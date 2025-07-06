@@ -1,10 +1,25 @@
 import { Asset } from "@/app/types/dashboard";
 
-const AssetItem = ({ label, quantity, price, value, percentage }: Asset) => {
+const AssetItem = ({
+  label,
+  quantity,
+  price,
+  value,
+  percentage,
+  setIsManageAssetModalOpen,
+  setClickedAsset,
+}: Asset & {
+  setIsManageAssetModalOpen: (value: boolean) => void;
+  setClickedAsset: (value: { label: string; quantity: number }) => void;
+}) => {
+  const handleAssetClick = () => {
+    setIsManageAssetModalOpen(true);
+    setClickedAsset({ label, quantity });
+  };
   return (
     <div
-      className="bg-card-2 w-full mt-4 p-3 rounded-md hover:outline"
-      onClick={() => console.log("sankdfdjks")}
+      className="bg-card-2 w-full mt-2 p-2 rounded-md hover:outline"
+      onClick={handleAssetClick}
     >
       <div className="flex justify-between items-center text-sm">
         <div className="w-1/3">

@@ -18,7 +18,7 @@ const CustomCard = ({
 }) => {
   const t = useTranslations("");
   return (
-    <div className="w-full bg-card text-card-foreground rounded-xl border p-6 shadow-sm">
+    <div className="w-full bg-card text-card-foreground rounded-xl border sm:p-6 p-4 shadow-sm">
       {/* title */}
       {R.isNotNil(title) && (
         <div className="flex justify-between">
@@ -36,7 +36,7 @@ const CustomCard = ({
       )}
 
       {/* children */}
-      <div className="sm:pt-6">{children}</div>
+      <div className="pt-6">{children}</div>
     </div>
   );
 };

@@ -2,6 +2,7 @@
   "generic": {
     "actions": {
       "add": "Aggiungi",
+      "delete": "Elimina",
       "remove": "Rimuovi",
       "cancel": "Cancella",
       "close": "Chiudi"

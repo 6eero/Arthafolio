@@ -31,9 +31,13 @@ import { useDashboardSearchActions } from "@/api/Holdings/tasks";
 const DrawerDialog = ({
   open,
   setOpen,
+  setClickedAsset,
+  initialValues,
 }: {
   open: boolean;
   setOpen: (value: boolean) => void;
+  setClickedAsset: (value: { label: string; quantity: number }) => void;
+  initialValues: { label: string; quantity: number };
 }) => {
   const isMobile = useIsMobile();
   const t = useTranslations("");
@@ -41,7 +45,11 @@ const DrawerDialog = ({
   if (isMobile === undefined) return null;
 
   return isMobile ? (
-    <Drawer open={open} onOpenChange={setOpen}>
+    <Drawer
+      open={open}
+      onOpenChange={setOpen}
+      onClose={() => setClickedAsset({ label: "", quantity: 0 })}
+    >
       <DrawerContent>
         <DrawerHeader className="text-left">
           <DrawerTitle>{t("dashboard.add_modal.title")}</DrawerTitle>
@@ -49,7 +57,7 @@ const DrawerDialog = ({
             {t("dashboard.add_modal.description")}
           </DrawerDescription>
         </DrawerHeader>
-        <ProfileForm />
+        <ProfileForm initialValues={initialValues} setOpen={setOpen} />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button variant="outline">{t("generic.actions.close")}</Button>
@@ -66,53 +74,74 @@ const DrawerDialog = ({
             {t("dashboard.add_modal.description")}
           </DialogDescription>
         </DialogHeader>
-        <ProfileForm />
+        <ProfileForm initialValues={initialValues} setOpen={setOpen} />
       </DialogContent>
     </Dialog>
   );
 };
 
-const ProfileForm = () => {
+const ProfileForm = ({
+  setOpen,
+  initialValues,
+}: {
+  setOpen: (value: boolean) => void;
+  initialValues: any;
+}) => {
   const t = useTranslations("");
-  const { onAddHolding } = useDashboardSearchActions();
+  const { onAddHolding, onRemoveHolding } = useDashboardSearchActions();
+
   return (
     <Formik
-      initialValues={{ label: "", quantity: 0 }}
+      initialValues={initialValues}
       onSubmit={(values) => {
         console.log(values);
         onAddHolding(values);
+        setOpen(false);
       }}
     >
       {(formik) => (
         <form onSubmit={formik.handleSubmit}>
-          <div className="flex flex-col gap-10 sm:mx-0 mx-4">
-            <SelectWithSearch
-              name="label"
-              label={"dashboard.add_modal.fields.label.label"}
-              placeholder={"dashboard.add_modal.fields.label.placeholder"}
-              domain={cryptoLabels}
-              formik={formik}
-            />
-            <FormikInput
-              type="number"
-              name="quantity"
-              label={"dashboard.add_modal.fields.quantity.label"}
-              placeholder={"dashboard.add_modal.fields.quantity.placeholder"}
-              formik={formik}
-            />
-            <Button
-              loading={false}
-              type="submit"
-              className="w-full"
-              disabled={
-                !formik.values.label ||
-                !R.includes(formik.values.label, cryptoLabels) ||
-                !formik.values.quantity ||
-                formik.values.quantity <= 0
-              }
-            >
-              {t("generic.actions.add")}
-            </Button>
+          <div className="sm:mx-0 mx-4">
+            <div className="flex flex-col gap-10">
+              <SelectWithSearch
+                name="label"
+                label={"dashboard.add_modal.fields.label.label"}
+                placeholder={"dashboard.add_modal.fields.label.placeholder"}
+                domain={cryptoLabels}
+                formik={formik}
+              />
+              <FormikInput
+                type="number"
+                name="quantity"
+                label={"dashboard.add_modal.fields.quantity.label"}
+                placeholder={"dashboard.add_modal.fields.quantity.placeholder"}
+                formik={formik}
+              />
+            </div>
+            <div className="flex flex-col gap-2 mt-6">
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={
+                  !formik.values.label ||
+                  !R.includes(formik.values.label, cryptoLabels) ||
+                  !formik.values.quantity ||
+                  formik.values.quantity <= 0
+                }
+              >
+                {t("generic.actions.add")}
+              </Button>
+              {R.isNotEmpty(initialValues.label) && (
+                <Button
+                  onClick={() => onRemoveHolding(initialValues.label)}
+                  type="submit"
+                  variant="destructive"
+                  className="w-full"
+                >
+                  {t("generic.actions.delete")}
+                </Button>
+              )}
+            </div>
           </div>
         </form>
       )}

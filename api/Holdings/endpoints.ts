@@ -25,3 +25,12 @@ export const addHolding = async ({
 
   return { data, headers };
 };
+
+export const removeHolding = async (label: string) => {
+  const { data, headers } = await makeApiRequest(
+    `/api/holdings/${label}`,
+    "DELETE"
+  );
+
+  return { data, headers };
+};

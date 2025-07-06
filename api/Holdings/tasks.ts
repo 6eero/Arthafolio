@@ -39,5 +39,16 @@ export const useDashboardSearchActions = () => {
         dispatch(actions.search.addHoldingFail({ error }));
       }
     },
+    onRemoveHolding: async (label: string) => {
+      dispatch(actions.search.removeHolding({}));
+
+      try {
+        const { data } = await APIDashboard.removeHolding(label);
+
+        dispatch(actions.search.removeHoldingSuccess({ data }));
+      } catch (error) {
+        dispatch(actions.search.removeHoldingFail({ error }));
+      }
+    },
   };
 };

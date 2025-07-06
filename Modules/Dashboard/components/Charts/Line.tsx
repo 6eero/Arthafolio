@@ -21,7 +21,7 @@ const Linee = ({ data }: { data: Asset[] }) => {
   } satisfies ChartConfig;
 
   return (
-    <div className="w-full xl:h-[450px]  bg-card text-card-foreground rounded-xl border p-6 shadow-sm xl:w-5/8 flex flex-col">
+    <div className="w-full xl:h-[450px]  bg-card text-card-foreground rounded-xl border sm:p-6 p-4 shadow-sm xl:w-5/8 flex flex-col">
       <p className="leading-none font-semibold pb-2">{t("title")}</p>
       <p className="text-muted-foreground text-sm">{t("description")}</p>
 

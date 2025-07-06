@@ -35,7 +35,8 @@ const Dashboard = () => {
   const { onLoad } = useDashboardSearchActions();
   const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
   const t = useTranslations("");
-  const [openEditProfile, setOpenEditProfile] = useState(false);
+  const [isManageAssetModalOpen, setIsManageAssetModalOpen] = useState(false);
+  const [clickedAsset, setClickedAsset] = useState({ label: "", quantity: 0 });
 
   const columns = useAssetColumns();
 
@@ -57,9 +58,14 @@ const Dashboard = () => {
 
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
-      <DrawerDialog open={openEditProfile} setOpen={setOpenEditProfile} />
+      <DrawerDialog
+        open={isManageAssetModalOpen}
+        setOpen={setIsManageAssetModalOpen}
+        setClickedAsset={setClickedAsset}
+        initialValues={clickedAsset}
+      />
       <ButtonFloating
-        onClick={() => setOpenEditProfile(true)}
+        onClick={() => setIsManageAssetModalOpen(true)}
         className="xl:hidden"
       />
       <div className="w-full flex flex-col">
@@ -119,7 +125,7 @@ const Dashboard = () => {
                 <div>
                   <Button
                     variant="default"
-                    onClick={() => setOpenEditProfile(true)}
+                    onClick={() => setIsManageAssetModalOpen(true)}
                     className="mr-4"
                   >
                     {t("dashboard.add_investment")}
@@ -170,6 +176,11 @@ const Dashboard = () => {
               title={"dashboard.table.title"}
               description="dashboard.table.description"
             >
+              <div className="flex justify-between text-sm">
+                <div className="w-1/3">Quantity</div>
+                <div className="w-1/3 text-center">Price</div>
+                <div className="w-1/3 text-right">Value</div>
+              </div>
               {R.map(
                 (asset: Asset) => (
                   <AssetItem
@@ -180,6 +191,8 @@ const Dashboard = () => {
                     value={asset.value}
                     percentage={asset.percentage}
                     category={asset.category}
+                    setIsManageAssetModalOpen={setIsManageAssetModalOpen}
+                    setClickedAsset={setClickedAsset}
                   />
                 ),
                 assets
