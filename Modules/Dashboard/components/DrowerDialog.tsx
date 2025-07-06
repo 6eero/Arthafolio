@@ -57,7 +57,11 @@ const DrawerDialog = ({
             {t("dashboard.add_modal.description")}
           </DrawerDescription>
         </DrawerHeader>
-        <ProfileForm initialValues={initialValues} setOpen={setOpen} />
+        <ProfileForm
+          initialValues={initialValues}
+          setOpen={setOpen}
+          setClickedAsset={setClickedAsset}
+        />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button variant="outline">{t("generic.actions.close")}</Button>
@@ -74,7 +78,11 @@ const DrawerDialog = ({
             {t("dashboard.add_modal.description")}
           </DialogDescription>
         </DialogHeader>
-        <ProfileForm initialValues={initialValues} setOpen={setOpen} />
+        <ProfileForm
+          initialValues={initialValues}
+          setOpen={setOpen}
+          setClickedAsset={setClickedAsset}
+        />
       </DialogContent>
     </Dialog>
   );
@@ -83,12 +91,20 @@ const DrawerDialog = ({
 const ProfileForm = ({
   setOpen,
   initialValues,
+  setClickedAsset,
 }: {
   setOpen: (value: boolean) => void;
   initialValues: any;
+  setClickedAsset: (value: { label: string; quantity: number }) => void;
 }) => {
   const t = useTranslations("");
   const { onAddHolding, onRemoveHolding } = useDashboardSearchActions();
+
+  const handleRemove = () => {
+    onRemoveHolding(initialValues.label);
+    setOpen(false);
+    setClickedAsset({ label: "", quantity: 0 });
+  };
 
   return (
     <Formik
@@ -133,7 +149,7 @@ const ProfileForm = ({
               </Button>
               {R.isNotEmpty(initialValues.label) && (
                 <Button
-                  onClick={() => onRemoveHolding(initialValues.label)}
+                  onClick={handleRemove}
                   type="submit"
                   variant="destructive"
                   className="w-full"
