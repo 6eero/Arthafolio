@@ -53,13 +53,13 @@ const FormikSelectWithSearch = ({
         R.take(5 - matches.length - startsWith.length)
       )(domain) as string[];
 
-      const filteredTickers = [...matches, ...startsWith, ...contains];
+      const filteredLabels = [...matches, ...startsWith, ...contains];
 
-      setDetailCard(filteredTickers);
+      setDetailCard(filteredLabels);
     }
   };
   return (
-    <div className="grid gap-3">
+    <div className="grid gap-3 relative">
       <Label>{t(label)}</Label>
       <Input
         name={name}
@@ -68,10 +68,10 @@ const FormikSelectWithSearch = ({
         onChange={handleChange}
       />
       {R.isNotEmpty(detailCard) && (
-        <div className="w-full bg-card text-card-foreground rounded-md border shadow-sm">
+        <div className="absolute top-full mt-1 left-0 w-full bg-card text-card-foreground rounded-md border shadow-lg z-50">
           {R.map((element: string) => (
             <div
-              className="m-2 p-2 bg-card-2 rounded-md hover:outline"
+              className="m-2 p-2 bg-card-2 rounded-md hover:outline cursor-pointer"
               onClick={() => handleClick(element)}
               key={element}
             >
