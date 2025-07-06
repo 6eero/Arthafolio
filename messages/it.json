@@ -69,7 +69,7 @@
       "title": "Aggiungi un investimento",
       "description": "Compila i campi seguenti per registrare un nuovo investimento nel tuo portafoglio.",
       "fields": {
-        "ticker": {
+        "label": {
           "label": "Etichetta",
           "placeholder": "Inserisci l'etichetta"
         },

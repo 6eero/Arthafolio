@@ -24,7 +24,7 @@ import { useTranslations } from "next-intl";
 import { Formik } from "formik";
 import FormikInput from "../../../components/formik/Input";
 import SelectWithSearch from "../../../components/formik/SelectWithSearch";
-import { cryptoTickers } from "@/lib/crypto";
+import { cryptoLabels } from "@/lib/crypto";
 import * as R from "ramda";
 import { useDashboardSearchActions } from "@/api/Holdings/tasks";
 
@@ -77,7 +77,7 @@ const ProfileForm = () => {
   const { onAddHolding } = useDashboardSearchActions();
   return (
     <Formik
-      initialValues={{ ticker: "", quantity: 0 }}
+      initialValues={{ label: "", quantity: 0 }}
       onSubmit={(values) => {
         console.log(values);
         onAddHolding(values);
@@ -87,10 +87,10 @@ const ProfileForm = () => {
         <form onSubmit={formik.handleSubmit}>
           <div className="flex flex-col gap-10 sm:mx-0 mx-4">
             <SelectWithSearch
-              name="ticker"
-              label={"dashboard.add_modal.fields.ticker.label"}
-              placeholder={"dashboard.add_modal.fields.ticker.placeholder"}
-              domain={cryptoTickers}
+              name="label"
+              label={"dashboard.add_modal.fields.label.label"}
+              placeholder={"dashboard.add_modal.fields.label.placeholder"}
+              domain={cryptoLabels}
               formik={formik}
             />
             <FormikInput
@@ -105,8 +105,8 @@ const ProfileForm = () => {
               type="submit"
               className="w-full"
               disabled={
-                !formik.values.ticker ||
-                !R.includes(formik.values.ticker, cryptoTickers) ||
+                !formik.values.label ||
+                !R.includes(formik.values.label, cryptoLabels) ||
                 !formik.values.quantity ||
                 formik.values.quantity <= 0
               }

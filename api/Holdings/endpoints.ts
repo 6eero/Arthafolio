@@ -6,14 +6,15 @@ export const searchDashboard = async () => {
 };
 
 export const addHolding = async ({
-  ticker,
+  label,
   quantity,
 }: {
-  ticker: string;
+  label: string;
   quantity: number;
 }) => {
+  const category = "crypto";
   const options = {
-    body: { ticker, quantity },
+    body: { label, quantity, category },
   };
 
   const { data, headers } = await makeApiRequest(

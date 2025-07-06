@@ -1,4 +1,4 @@
-export const cryptoTickers: string[] = [
+export const cryptoLabels: string[] = [
   "BTC",
   "ETH",
   "BNB",

@@ -71,8 +71,8 @@
       "description": "Fill out the fields below to add a new investment to your portfolio.",
 
       "fields": {
-        "ticker": {
-          "label": "Ticker",
+        "label": {
+          "label": "Label",
           "placeholder": "Enter the label"
         },
         "quantity": {

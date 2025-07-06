@@ -20,17 +20,17 @@ export const useDashboardSearchActions = () => {
     },
 
     onAddHolding: async ({
-      ticker,
+      label,
       quantity,
     }: {
-      ticker: string;
+      label: string;
       quantity: number;
     }) => {
       dispatch(actions.search.addHolding({}));
 
       try {
         const { data } = await APIDashboard.addHolding({
-          ticker,
+          label,
           quantity,
         });
 
