@@ -2,6 +2,7 @@
   "generic": {
     "actions": {
       "add": "Add",
+      "edit": "Edit",
       "delete": "Delete",
       "remove": "Remove",
       "cancel": "Cancel",
@@ -67,9 +68,11 @@
         "percentage": "Percentage"
       }
     },
-    "add_modal": {
-      "title": "Add an investment",
-      "description": "Fill out the fields below to add a new investment to your portfolio.",
+    "manage_asset_modal": {
+      "add": "Add the investment",
+      "edit": "Edit the investment",
+      "description_add": "Fill out the fields below to add a new investment to your portfolio.",
+      "description_edit": "Fill out the fields below to edit this investment.",
 
       "fields": {
         "label": {

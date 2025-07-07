@@ -26,6 +26,27 @@ export const addHolding = async ({
   return { data, headers };
 };
 
+export const editHolding = async ({
+  label,
+  quantity,
+}: {
+  label: string;
+  quantity: number;
+}) => {
+  const category = "crypto";
+  const options = {
+    body: { label, quantity, category },
+  };
+
+  const { data, headers } = await makeApiRequest(
+    `/api/holdings/${label}`,
+    "PUT",
+    options
+  );
+
+  return { data, headers };
+};
+
 export const removeHolding = async (label: string) => {
   const { data, headers } = await makeApiRequest(
     `/api/holdings/${label}`,

@@ -10,6 +10,7 @@ const reducer = produce(
 
       case actions.search.LOAD:
       case actions.search.ADD_HOLDING:
+      case actions.search.EDIT_HOLDING:
       case actions.search.REMOVE_HOLDING: {
         state.search.loading = true;
         state.search.error = false;
@@ -19,6 +20,7 @@ const reducer = produce(
       }
       case actions.search.LOAD_SUCCESS:
       case actions.search.ADD_HOLDING_SUCCESS:
+      case actions.search.EDIT_HOLDING_SUCCESS:
       case actions.search.REMOVE_HOLDING_SUCCESS: {
         const { data } = action.payload;
         state.search.loading = false;
@@ -30,6 +32,7 @@ const reducer = produce(
       }
       case actions.search.LOAD_FAIL:
       case actions.search.ADD_HOLDING_FAIL:
+      case actions.search.EDIT_HOLDING_FAIL:
       case actions.search.REMOVE_HOLDING_FAIL: {
         const { error } = action.payload;
         state.search.loading = false;

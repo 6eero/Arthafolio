@@ -39,6 +39,28 @@ export const useDashboardSearchActions = () => {
         dispatch(actions.search.addHoldingFail({ error }));
       }
     },
+
+    onEditHolding: async ({
+      label,
+      quantity,
+    }: {
+      label: string;
+      quantity: number;
+    }) => {
+      dispatch(actions.search.editHolding({}));
+
+      try {
+        const { data } = await APIDashboard.editHolding({
+          label,
+          quantity,
+        });
+
+        dispatch(actions.search.editHoldingSuccess({ data }));
+      } catch (error) {
+        dispatch(actions.search.editHoldingFail({ error }));
+      }
+    },
+
     onRemoveHolding: async (label: string) => {
       dispatch(actions.search.removeHolding({}));
 

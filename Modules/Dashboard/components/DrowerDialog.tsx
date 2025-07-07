@@ -43,6 +43,7 @@ const DrawerDialog = ({
   const t = useTranslations("");
 
   if (isMobile === undefined) return null;
+  const isEdit = R.isNotEmpty(initialValues.label);
 
   return isMobile ? (
     <Drawer
@@ -52,15 +53,22 @@ const DrawerDialog = ({
     >
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DrawerTitle>{t("dashboard.add_modal.title")}</DrawerTitle>
+          <DrawerTitle>
+            {isEdit
+              ? t("dashboard.manage_asset_modal.edit")
+              : t("dashboard.manage_asset_modal.add")}
+          </DrawerTitle>
           <DrawerDescription>
-            {t("dashboard.add_modal.description")}
+            {isEdit
+              ? t("dashboard.manage_asset_modal.description_edit")
+              : t("dashboard.manage_asset_modal.description_add")}
           </DrawerDescription>
         </DrawerHeader>
         <ProfileForm
           initialValues={initialValues}
           setOpen={setOpen}
           setClickedAsset={setClickedAsset}
+          isEdit={isEdit}
         />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
@@ -73,15 +81,22 @@ const DrawerDialog = ({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>{t("dashboard.add_modal.title")}</DialogTitle>
+          <DialogTitle>
+            {isEdit
+              ? t("dashboard.manage_asset_modal.edit")
+              : t("dashboard.manage_asset_modal.add")}
+          </DialogTitle>
           <DialogDescription>
-            {t("dashboard.add_modal.description")}
+            {isEdit
+              ? t("dashboard.manage_asset_modal.description_edit")
+              : t("dashboard.manage_asset_modal.description_add")}
           </DialogDescription>
         </DialogHeader>
         <ProfileForm
           initialValues={initialValues}
           setOpen={setOpen}
           setClickedAsset={setClickedAsset}
+          isEdit={isEdit}
         />
       </DialogContent>
     </Dialog>
@@ -92,13 +107,16 @@ const ProfileForm = ({
   setOpen,
   initialValues,
   setClickedAsset,
+  isEdit,
 }: {
   setOpen: (value: boolean) => void;
   initialValues: any;
   setClickedAsset: (value: { label: string; quantity: number }) => void;
+  isEdit: boolean;
 }) => {
   const t = useTranslations("");
-  const { onAddHolding, onRemoveHolding } = useDashboardSearchActions();
+  const { onAddHolding, onRemoveHolding, onEditHolding } =
+    useDashboardSearchActions();
 
   const handleRemove = () => {
     onRemoveHolding(initialValues.label);
@@ -110,8 +128,11 @@ const ProfileForm = ({
     <Formik
       initialValues={initialValues}
       onSubmit={(values) => {
-        console.log(values);
-        onAddHolding(values);
+        if (isEdit) {
+          onEditHolding(values);
+        } else {
+          onAddHolding(values);
+        }
         setOpen(false);
       }}
     >
@@ -121,16 +142,20 @@ const ProfileForm = ({
             <div className="flex flex-col gap-10">
               <SelectWithSearch
                 name="label"
-                label={"dashboard.add_modal.fields.label.label"}
-                placeholder={"dashboard.add_modal.fields.label.placeholder"}
+                label={"dashboard.manage_asset_modal.fields.label.label"}
+                placeholder={
+                  "dashboard.manage_asset_modal.fields.label.placeholder"
+                }
                 domain={cryptoLabels}
                 formik={formik}
               />
               <FormikInput
                 type="number"
                 name="quantity"
-                label={"dashboard.add_modal.fields.quantity.label"}
-                placeholder={"dashboard.add_modal.fields.quantity.placeholder"}
+                label={"dashboard.manage_asset_modal.fields.quantity.label"}
+                placeholder={
+                  "dashboard.manage_asset_modal.fields.quantity.placeholder"
+                }
                 formik={formik}
               />
             </div>
@@ -145,9 +170,9 @@ const ProfileForm = ({
                   formik.values.quantity <= 0
                 }
               >
-                {t("generic.actions.add")}
+                {isEdit ? t("generic.actions.edit") : t("generic.actions.add")}
               </Button>
-              {R.isNotEmpty(initialValues.label) && (
+              {isEdit && (
                 <Button
                   onClick={handleRemove}
                   type="submit"
