@@ -148,6 +148,7 @@ const ProfileForm = ({
                 }
                 domain={cryptoLabels}
                 formik={formik}
+                disabled={isEdit}
               />
               <FormikInput
                 type="number"

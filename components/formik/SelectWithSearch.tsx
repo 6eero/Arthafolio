@@ -10,12 +10,14 @@ const FormikSelectWithSearch = ({
   placeholder,
   label,
   domain,
+  disabled,
   formik,
 }: {
   name: string;
   placeholder: string;
   label: string;
   domain: string[];
+  disabled: boolean;
   formik: FormikProps<any>;
 }) => {
   const t = useTranslations("");
@@ -66,6 +68,7 @@ const FormikSelectWithSearch = ({
         placeholder={t(placeholder)}
         value={formik.values[name] ?? ""}
         onChange={handleChange}
+        disabled={disabled}
       />
       {R.isNotEmpty(detailCard) && (
         <div className="absolute top-full mt-1 left-0 w-full bg-card text-card-foreground rounded-md border shadow-lg z-50">
