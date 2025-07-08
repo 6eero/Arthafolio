@@ -96,7 +96,11 @@ const LoginMain = () => {
               />
             </div>
 
-            <CustomButton loading={loading} type="submit" className="w-full">
+            <CustomButton
+              loading={loading}
+              type="submit"
+              className="w-full mb-10"
+            >
               {t("login")}
             </CustomButton>
           </div>
