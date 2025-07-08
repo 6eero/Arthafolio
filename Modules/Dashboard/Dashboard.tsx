@@ -176,11 +176,8 @@ const Dashboard = () => {
 
           {/* Mobile */}
           <Tabs defaultValue="all" className="xl:hidden">
-            <Card
-              title={"dashboard.table.title"}
-              description="dashboard.table.description"
-            >
-              <div className="flex justify-between text-sm">
+            <Card>
+              <div className="flex justify-between text-sm text-muted-foreground px-2 pb-4">
                 <div className="w-1/3">Quantity</div>
                 <div className="w-1/3 text-center">Price</div>
                 <div className="w-1/3 text-right">Value</div>

@@ -42,7 +42,7 @@ const Piee = ({ data }: { data: Asset[] }) => {
 
   return (
     <div className="w-full h-[450px] bg-card text-card-foreground rounded-xl border sm:p-6 p-4 shadow-sm xl:w-3/8 flex flex-col">
-      <p className="leading-none font-semibold pb-2">{t("title")}</p>
+      {<p className="leading-none font-semibold pb-2">{t("title")}</p>}
       <p className="text-muted-foreground text-sm">{t("description")}</p>
 
       <div className="flex-1 min-h-0 w-full pt-5">
