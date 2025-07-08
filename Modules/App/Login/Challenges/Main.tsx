@@ -71,7 +71,7 @@ const LoginMain = () => {
             </CardContent>
           </Card>
 
-          <div className="sm:hidden w-screen h-screen overflow-hidden p-6 flex flex-col justify-between">
+          <div className="sm:hidden w-screen h-[100dvh] overflow-hidden p-6 flex flex-col justify-between">
             {error && <Alert className="mb-4" error={error} />}
 
             <div className="flex flex-col gap-8 pt-26">
@@ -96,13 +96,11 @@ const LoginMain = () => {
               />
             </div>
 
-            <CustomButton
-              loading={loading}
-              type="submit"
-              className="w-full mb-10"
-            >
-              {t("login")}
-            </CustomButton>
+            <div className="sticky bottom-0 left-0 right-0 bg-background">
+              <CustomButton loading={loading} type="submit" className="w-full">
+                {t("login")}
+              </CustomButton>
+            </div>
           </div>
         </form>
       )}
