@@ -71,43 +71,34 @@ const LoginMain = () => {
             </CardContent>
           </Card>
 
-          <div className="sm:hidden w-screen p-6">
+          <div className="sm:hidden w-screen h-screen p-6 flex flex-col justify-between">
             {error && <Alert className="mb-4" error={error} />}
-            <div className="flex flex-col gap-10">
-              <div className="flex flex-col items-center gap-4">
-                <Logo bgColor="var(--color-card-2)" className="w-12 h-12" />
-                <p className="leading-none font-semibold">{t("title")}</p>
-                <p className="text-muted-foreground text-sm">
-                  {t("description")}
+
+            <div className="flex flex-col gap-8 pt-26">
+              <div className="flex flex-col items-center gap-4 pb-6">
+                <Logo bgColor="var(--color-card-2)" className="w-20 h-20" />
+                <p className="text-xl leading-none font-semibold">
+                  {t("title")}
                 </p>
               </div>
+              <FormikInput
+                name="email"
+                label={"login.fields.email.label"}
+                placeholder={"login.fields.email.placeholder"}
+                formik={formik}
+              />
 
-              <div className="grid gap-3">
-                <FormikInput
-                  name="email"
-                  label={"login.fields.email.label"}
-                  placeholder={"login.fields.email.placeholder"}
-                  formik={formik}
-                />
-              </div>
-              <div className="">
-                <FormikInput
-                  name="password"
-                  label={"login.fields.password.label"}
-                  placeholder={"login.fields.password.placeholder"}
-                  formik={formik}
-                />
-              </div>
-              <div className="flex flex-col gap-3">
-                <CustomButton
-                  loading={loading}
-                  type="submit"
-                  className="w-full"
-                >
-                  {t("login")}
-                </CustomButton>
-              </div>
+              <FormikInput
+                name="password"
+                label={"login.fields.password.label"}
+                placeholder={"login.fields.password.placeholder"}
+                formik={formik}
+              />
             </div>
+
+            <CustomButton loading={loading} type="submit" className="w-full">
+              {t("login")}
+            </CustomButton>
           </div>
         </form>
       )}
