@@ -113,10 +113,12 @@ const Dashboard = () => {
             </Carousel>
           </div>
 
-          <div className="w-full flex gap-4 xl:flex-row  flex-col">
-            {!isMobile && <Linee data={history} />}
-            {(!isMobile || R.isNotEmpty(assets)) && <Pie data={assets} />}
-          </div>
+          {R.isNotEmpty(history) && R.isNotEmpty(assets) && (
+            <div className="w-full flex gap-4 xl:flex-row  flex-col">
+              {!isMobile && <Linee data={history} />}
+              {(!isMobile || R.isNotEmpty(assets)) && <Pie data={assets} />}
+            </div>
+          )}
 
           {/* Desktop */}
           <Tabs defaultValue="all" className="xl:block hidden">
