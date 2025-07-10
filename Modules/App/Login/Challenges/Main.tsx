@@ -71,7 +71,7 @@ const LoginMain = () => {
             </CardContent>
           </Card>
 
-          <div className="sm:hidden w-screen h-[100dvh] overflow-hidden p-6 flex flex-col justify-between">
+          <div className="sm:hidden w-screen h-svh p-6 flex flex-col justify-between">
             {error && <Alert className="mb-4" error={error} />}
 
             <div className="flex flex-col gap-8 pt-26">
