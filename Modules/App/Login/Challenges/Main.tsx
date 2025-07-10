@@ -71,35 +71,49 @@ const LoginMain = () => {
             </CardContent>
           </Card>
 
-          <div className="sm:hidden w-screen min-h-screen flex flex-col">
-            {error && <Alert className="p-4" error={error} />}
+          {/* --- Sezione Mobile (MODIFICATA) --- */}
+          {/*
+            MODIFICA 1:
+            - Usiamo `min-h-dvh` invece di `h-dvh` per garantire che il contenitore occupi almeno
+              l'intera altezza del viewport visibile, ma possa crescere se il contenuto è più lungo.
+            - Rimuoviamo `justify-between` per permettere al layout di fluire naturalmente.
+          */}
+          <div className="sm:hidden w-screen min-h-dvh p-6 flex flex-col">
+            {error && <Alert className="mb-4 flex-shrink-0" error={error} />}
 
-            <div className="flex-1 overflow-y-auto px-6 py-4">
+            {/*
+              MODIFICA 2:
+              - Aggiungiamo `flex-grow` a questo contenitore per farlo espandere e occupare
+                tutto lo spazio verticale disponibile, spingendo il pulsante in basso.
+            */}
+            <div className="flex flex-col gap-8 pt-16 flex-grow">
               <div className="flex flex-col items-center gap-4 pb-6">
                 <Logo bgColor="var(--color-card-2)" className="w-20 h-20" />
                 <p className="text-xl leading-none font-semibold">
                   {t("title")}
                 </p>
               </div>
-
-              <div className="flex flex-col gap-8">
-                <FormikInput
-                  name="email"
-                  label={"login.fields.email.label"}
-                  placeholder={"login.fields.email.placeholder"}
-                  formik={formik}
-                />
-
-                <FormikInput
-                  name="password"
-                  label={"login.fields.password.label"}
-                  placeholder={"login.fields.password.placeholder"}
-                  formik={formik}
-                />
-              </div>
+              <FormikInput
+                name="email"
+                label={"login.fields.email.label"}
+                placeholder={"login.fields.email.placeholder"}
+                formik={formik}
+              />
+              <FormikInput
+                name="password"
+                label={"login.fields.password.label"}
+                placeholder={"login.fields.password.placeholder"}
+                formik={formik}
+              />
             </div>
 
-            <div className="px-6 pb-6 pt-3 bg-background shadow-md">
+            {/*
+              MODIFICA 3:
+              - Rimuoviamo `position: sticky` e `bg-background` perché non più necessari.
+              - `flex-shrink-0` previene che questo div si restringa.
+              - `pt-4` aggiunge un po' di spazio sopra il pulsante.
+            */}
+            <div className="flex-shrink-0 pt-4">
               <CustomButton loading={loading} type="submit" className="w-full">
                 {t("login")}
               </CustomButton>
