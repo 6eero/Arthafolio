@@ -71,32 +71,35 @@ const LoginMain = () => {
             </CardContent>
           </Card>
 
-          <div className="sm:hidden w-screen h-dvh p-6 flex flex-col justify-between">
-            {error && <Alert className="mb-4" error={error} />}
+          <div className="sm:hidden w-screen min-h-screen flex flex-col">
+            {error && <Alert className="p-4" error={error} />}
 
-            <div className="flex flex-col gap-8 pt-26">
+            <div className="flex-1 overflow-y-auto px-6 py-4">
               <div className="flex flex-col items-center gap-4 pb-6">
                 <Logo bgColor="var(--color-card-2)" className="w-20 h-20" />
                 <p className="text-xl leading-none font-semibold">
                   {t("title")}
                 </p>
               </div>
-              <FormikInput
-                name="email"
-                label={"login.fields.email.label"}
-                placeholder={"login.fields.email.placeholder"}
-                formik={formik}
-              />
 
-              <FormikInput
-                name="password"
-                label={"login.fields.password.label"}
-                placeholder={"login.fields.password.placeholder"}
-                formik={formik}
-              />
+              <div className="flex flex-col gap-8">
+                <FormikInput
+                  name="email"
+                  label={"login.fields.email.label"}
+                  placeholder={"login.fields.email.placeholder"}
+                  formik={formik}
+                />
+
+                <FormikInput
+                  name="password"
+                  label={"login.fields.password.label"}
+                  placeholder={"login.fields.password.placeholder"}
+                  formik={formik}
+                />
+              </div>
             </div>
 
-            <div className="sticky bottom-0 left-0 right-0 bg-background">
+            <div className="px-6 pb-6 pt-3 bg-background shadow-md">
               <CustomButton loading={loading} type="submit" className="w-full">
                 {t("login")}
               </CustomButton>
