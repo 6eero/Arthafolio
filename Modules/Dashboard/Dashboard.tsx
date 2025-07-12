@@ -29,7 +29,6 @@ import AssetItem from "./components/AssetItem";
 import Button from "@/components/custom/Button";
 import DrawerDialog from "@/Modules/Dashboard/components/DrowerDialog";
 import ButtonFloating from "@/components/custom/ButtonFloating";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 const Dashboard = () => {
   const context = useDashboardSearchContext();
@@ -38,7 +37,6 @@ const Dashboard = () => {
   const t = useTranslations("");
   const [isManageAssetModalOpen, setIsManageAssetModalOpen] = useState(false);
   const [clickedAsset, setClickedAsset] = useState({ label: "", quantity: 0 });
-  const isMobile = useIsMobile();
 
   const columns = useAssetColumns();
 
@@ -115,8 +113,8 @@ const Dashboard = () => {
 
           {(R.isNotEmpty(history) || R.isNotEmpty(assets)) && (
             <div className="w-full flex gap-4 xl:flex-row  flex-col">
-              {!isMobile && <Linee data={history} />}
-              {(!isMobile || R.isNotEmpty(assets)) && <Pie data={assets} />}
+              <Linee data={history} />
+              <Pie data={assets} />
             </div>
           )}
 

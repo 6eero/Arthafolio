@@ -1,5 +1,5 @@
 "use client";
-import { CartesianGrid, LabelList, Line, LineChart } from "recharts";
+import { CartesianGrid, LabelList, Line, LineChart, YAxis } from "recharts";
 import {
   ChartConfig,
   ChartContainer,
@@ -14,7 +14,7 @@ const Linee = ({ data }: { data: Asset[] }) => {
   const t = useTranslations("dashboard.charts.linechart");
   const isMobile = useIsMobile();
   const chartConfig = {
-    value: {
+    total_value: {
       label: "Desktop",
       color: "var(--chart-5)",
     },
@@ -38,14 +38,16 @@ const Linee = ({ data }: { data: Asset[] }) => {
           >
             <CartesianGrid vertical={false} />
 
+            <YAxis domain={["dataMin - 5", "dataMax + 5"]} hide />
+
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent indicator="line" />}
             />
             <Line
-              dataKey="value"
+              dataKey="total_value"
               type="natural"
-              stroke="var(--color-value)"
+              stroke="var(--foreground)"
               strokeWidth={1.5}
               dot={{
                 fill: "var(--color-value)",
