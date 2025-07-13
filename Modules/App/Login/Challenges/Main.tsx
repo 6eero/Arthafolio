@@ -52,11 +52,11 @@ const LoginMain = () => {
                 </div>
                 <div className="grid gap-3">
                   <FormikInput
+                    type="password"
                     name="password"
                     label={"login.fields.password.label"}
                     placeholder={"login.fields.password.placeholder"}
                     formik={formik}
-                    type="password"
                   />
                 </div>
                 <div className="flex flex-col gap-3">
@@ -101,6 +101,7 @@ const LoginMain = () => {
                 formik={formik}
               />
               <FormikInput
+                type="password"
                 name="password"
                 label={"login.fields.password.label"}
                 placeholder={"login.fields.password.placeholder"}
