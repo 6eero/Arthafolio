@@ -56,6 +56,7 @@ const LoginMain = () => {
                     label={"login.fields.password.label"}
                     placeholder={"login.fields.password.placeholder"}
                     formik={formik}
+                    type="password"
                   />
                 </div>
                 <div className="flex flex-col gap-3">
