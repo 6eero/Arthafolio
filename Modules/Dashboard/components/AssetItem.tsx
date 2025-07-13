@@ -18,7 +18,7 @@ const AssetItem = ({
   };
   return (
     <div
-      className="bg-card-2 w-full mt-3 p-3 rounded-md hover:outline"
+      className="bg-background w-full mt-3 p-3 rounded-md hover:outline"
       onClick={handleAssetClick}
     >
       <div className="flex justify-between items-center text-sm">
