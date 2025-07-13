@@ -89,7 +89,7 @@
 
   /* Cards & Containers */
   --card: oklch(0.14 0.01 240); /* #1a1b20 - Un po' più chiaro */
-  --card-2: oklch(0.17 0.01 240); /* #212228 - Per layering */
+  --card-2: oklch(0.16 0.004 257); /* #212228 - Per layering */
   --card-foreground: var(--foreground);
 
   --popover: var(--card);
