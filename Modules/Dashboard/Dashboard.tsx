@@ -22,7 +22,6 @@ import Linee from "./components/Charts/Line";
 import AssetItem from "./components/AssetItem";
 import Button from "@/components/custom/Button";
 import DrawerDialog from "@/Modules/Dashboard/components/DrowerDialog";
-import ButtonFloating from "@/components/custom/ButtonFloating";
 
 const Dashboard = () => {
   const context = useDashboardSearchContext();
@@ -56,10 +55,6 @@ const Dashboard = () => {
         setOpen={setIsManageAssetModalOpen}
         setClickedAsset={setClickedAsset}
         initialValues={clickedAsset}
-      />
-      <ButtonFloating
-        onClick={() => setIsManageAssetModalOpen(true)}
-        className="xl:hidden"
       />
       <div className="w-full flex flex-col">
         <Header title={t("dashboard.title")} />
@@ -172,6 +167,12 @@ const Dashboard = () => {
                 ),
                 assets
               )}
+              <Button
+                onClick={() => setIsManageAssetModalOpen(true)}
+                className="xl:hidden w-full mt-4"
+              >
+                {t("dashboard.add_investment")}
+              </Button>
             </Card>
           </Tabs>
         </div>

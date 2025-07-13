@@ -24,7 +24,7 @@ const CustomCard = ({
         <div className="flex justify-between">
           <div className="flex items-center gap-2 pb-2">
             <p className="leading-none font-semibold">{t(title)}</p>
-            {R.isNotNil(Icon) && <Icon />}
+            {R.isNotNil(Icon) && <Icon color="var(--accent)" />}
           </div>
           {action}
         </div>
