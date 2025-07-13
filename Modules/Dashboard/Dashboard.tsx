@@ -9,14 +9,8 @@ import { useDashboardSearchActions } from "@/api/Holdings/tasks";
 import * as R from "ramda";
 import Header from "@/components/layout/Header";
 import SummaryCard from "./components/SummaryCard";
-import { Banknote, Bitcoin, Landmark } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
-import { useRef, useState } from "react";
+import { Banknote } from "lucide-react";
+import { useState } from "react";
 import { DataTable } from "./components/DataTable";
 import { useAssetColumns } from "@/Models/Dashboard/table";
 import { Asset, Totals } from "@/app/types/dashboard";
@@ -33,7 +27,6 @@ import ButtonFloating from "@/components/custom/ButtonFloating";
 const Dashboard = () => {
   const context = useDashboardSearchContext();
   const { onLoad } = useDashboardSearchActions();
-  const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
   const t = useTranslations("");
   const [isManageAssetModalOpen, setIsManageAssetModalOpen] = useState(false);
   const [clickedAsset, setClickedAsset] = useState({ label: "", quantity: 0 });
@@ -87,28 +80,11 @@ const Dashboard = () => {
           </div>
           {/* Mobile */}
           <div className="xl:hidden w-full">
-            <Carousel plugins={[plugin.current]}>
-              <CarouselContent>
-                {R.map(
-                  ([key, value]) => (
-                    <CarouselItem key={key}>
-                      <SummaryCard
-                        itemKey={`dashboard.totals.${key}`}
-                        icon={
-                          {
-                            total: Banknote,
-                            crypto: Bitcoin,
-                            etf: Landmark,
-                          }[key] || Banknote
-                        }
-                        value={value}
-                      />
-                    </CarouselItem>
-                  ),
-                  R.toPairs(totals)
-                )}
-              </CarouselContent>
-            </Carousel>
+            <SummaryCard
+              itemKey={`dashboard.totals.total`}
+              icon={Banknote}
+              value={totals.total}
+            />
           </div>
 
           {(R.isNotEmpty(history) || R.isNotEmpty(assets)) && (
