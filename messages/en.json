@@ -48,16 +48,16 @@
     },
     "charts": {
       "linechart": {
-        "title": "Investiment History",
+        "title": "Investment History",
         "description": "Portfolio changes over time"
       },
       "piechart": {
-        "title": "Investiment Allocation",
+        "title": "Investment Allocation",
         "description": "How assets are distributed"
       }
     },
     "table": {
-      "title": "Portfolio Investiment",
+      "title": "Portfolio Investment",
       "description": "Overview of your current portfolio assets.",
       "header": {
         "label": "Label",
