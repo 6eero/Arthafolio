@@ -34,6 +34,8 @@ import { useGlobalContext } from "@/Context/Global";
 import { useAppActions } from "@/api/App/tasks";
 import Button from "@/components/custom/Button";
 
+import { usePathname } from "next/navigation";
+
 // Menu items.
 const items = [
   { titleKey: "dashboard", url: "/dashboard", icon: LayoutDashboard },
@@ -59,13 +61,14 @@ const AppSidebar = ({
   const t = useTranslations("sidebar");
   const context = useGlobalContext();
   const { onLogout } = useAppActions();
+  const pathname = usePathname();
 
   const user = R.pathOr("Arthafolio user", ["data", "email"], context);
 
   return (
     <Sidebar variant={variant}>
       <SidebarHeader>
-        <div className="flex gap-2 items-center mb-5">
+        <div className="flex gap-2 items-center mb-5 p-2">
           <Logo className="w-8 h-8" />
           <p className="text-2xl font-bold ">Arthafolio</p>
         </div>
@@ -74,16 +77,31 @@ const AppSidebar = ({
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {R.map((item: MenuVoice) => (
-                <SidebarMenuItem key={item.titleKey}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{t(item.titleKey)}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))(items)}
+              {R.map((item: MenuVoice) => {
+                const isActive = pathname === item.url;
+
+                return (
+                  <SidebarMenuItem key={item.titleKey} className="py-1">
+                    <SidebarMenuButton asChild>
+                      <a
+                        href={item.url}
+                        className={`
+            flex gap-4 rounded-lg
+            text-[16px] font-semibold transition-colors
+            ${
+              isActive
+                ? "bg-primary text-background"
+                : "hover:bg-muted text-muted-foreground"
+            }
+          `}
+                      >
+                        <item.icon />
+                        {t(item.titleKey)}
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })(items)}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
