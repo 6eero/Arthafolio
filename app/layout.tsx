@@ -8,6 +8,7 @@ import { GlobalContextProvider } from "@/Context/Global";
 export const metadata: Metadata = {
   title: "Arthafolio",
   description: "Track your assets",
+  manifest: "/manifest.json",
 };
 
 export default async function RootLayout({
@@ -18,6 +19,10 @@ export default async function RootLayout({
   const locale = await getLocale();
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#000000" />
+      </head>
       <body suppressHydrationWarning>
         <GlobalContextProvider>
           <ThemeProvider
