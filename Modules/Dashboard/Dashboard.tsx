@@ -90,58 +90,30 @@ const Dashboard = () => {
           )}
 
           {/* Desktop */}
-          <Tabs defaultValue="all" className="xl:block hidden">
-            <Card
-              title={"dashboard.table.title"}
-              description="dashboard.table.description"
-              action={
-                <div>
-                  <Button
-                    variant="default"
-                    onClick={() => setIsManageAssetModalOpen(true)}
-                    className="mr-4"
-                  >
-                    {t("dashboard.add_investment")}
-                  </Button>
 
-                  <TabsList>
-                    <TabsTrigger value="all">
-                      {t("generic.categories.all")}
-                    </TabsTrigger>
-                    <TabsTrigger value="cryptocurrencies">
-                      {t("generic.categories.crypto")}
-                    </TabsTrigger>
-                    <TabsTrigger value="etf">
-                      {t("generic.categories.etf")}
-                    </TabsTrigger>
-                  </TabsList>
-                </div>
-              }
-            >
-              <TabsContent value="all">
-                <DataTable
-                  columns={columns}
-                  data={R.filter((el: Asset) => el.category !== "liquidity")(
-                    assets
-                  )}
-                />
-              </TabsContent>
-              <TabsContent value="cryptocurrencies">
-                <DataTable
-                  columns={columns}
-                  data={R.filter((el: Asset) => el.category === "crypto")(
-                    assets
-                  )}
-                />
-              </TabsContent>
-              <TabsContent value="etf">
-                <DataTable
-                  columns={columns}
-                  data={R.filter((el: Asset) => el.category === "etf")(assets)}
-                />
-              </TabsContent>
-            </Card>
-          </Tabs>
+          <Card
+            className="xl:block hidden"
+            title={"dashboard.table.title"}
+            description="dashboard.table.description"
+            action={
+              <Button
+                variant="default"
+                onClick={() => setIsManageAssetModalOpen(true)}
+                className="mr-4"
+              >
+                {t("dashboard.add_investment")}
+              </Button>
+            }
+          >
+            <div className="pt-4">
+              <DataTable
+                columns={columns}
+                data={R.filter((el: Asset) => el.category !== "liquidity")(
+                  assets
+                )}
+              />
+            </div>
+          </Card>
 
           {/* Mobile */}
           <Tabs defaultValue="all" className="xl:hidden">

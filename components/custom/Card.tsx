@@ -2,6 +2,7 @@ import { LucideIcon } from "lucide-react";
 import { ReactNode } from "react";
 import * as R from "ramda";
 import { useTranslations } from "next-intl";
+import clsx from "clsx";
 
 const CustomCard = ({
   title,
@@ -9,16 +10,23 @@ const CustomCard = ({
   description,
   action,
   children,
+  className,
 }: {
   title?: string;
   icon?: LucideIcon;
   description?: string;
   action?: ReactNode;
   children: ReactNode;
+  className?: string;
 }) => {
   const t = useTranslations("");
   return (
-    <div className="w-full bg-card text-card-foreground rounded-xl border sm:p-6 p-4 shadow-sm">
+    <div
+      className={clsx(
+        "w-full bg-card text-card-foreground rounded-xl border sm:p-6 p-4 shadow-sm",
+        className
+      )}
+    >
       {/* title */}
       {R.isNotNil(title) && (
         <div className="flex justify-between">
