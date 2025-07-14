@@ -65,7 +65,8 @@
         "price": "Price",
         "quantity": "Quantity",
         "value": "Value",
-        "percentage": "Percentage"
+        "percentage": "Percentage",
+        "actions": "Actions"
       }
     },
     "manage_asset_modal": {
@@ -84,6 +85,10 @@
           "placeholder": "Enter the quantity"
         }
       }
+    },
+    "confirm_delete_asset_modal": {
+      "title": "Are you sure you want to delete this asset?",
+      "message": "This action is permanent and cannot be undone."
     }
   },
   "settings": {

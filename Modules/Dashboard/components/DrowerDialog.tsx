@@ -78,7 +78,15 @@ const DrawerDialog = ({
       </DrawerContent>
     </Drawer>
   ) : (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(open) => {
+        setOpen(open);
+        if (!open) {
+          setClickedAsset({ label: "", quantity: 0 });
+        }
+      }}
+    >
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>

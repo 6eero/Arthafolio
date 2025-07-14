@@ -22,31 +22,30 @@ import Linee from "./components/Charts/Line";
 import AssetItem from "./components/AssetItem";
 import Button from "@/components/custom/Button";
 import DrawerDialog from "@/Modules/Dashboard/components/DrowerDialog";
+import DangerModal from "@/components/modals/DangerModal";
 
 const Dashboard = () => {
   const context = useDashboardSearchContext();
-  const { onLoad } = useDashboardSearchActions();
+  const { onLoad, onRemoveHolding } = useDashboardSearchActions();
   const t = useTranslations("");
   const [isManageAssetModalOpen, setIsManageAssetModalOpen] = useState(false);
+  const [isDangerModalOpen, setIsDangerModalOpen] = useState(false);
   const [clickedAsset, setClickedAsset] = useState({ label: "", quantity: 0 });
 
-  const columns = useAssetColumns();
+  const columns = useAssetColumns(
+    (asset) => {
+      setClickedAsset({ label: asset.label, quantity: asset.quantity });
+      setIsManageAssetModalOpen(true);
+    },
+    (asset) => {
+      setClickedAsset({ label: asset.label, quantity: asset.quantity });
+      setIsDangerModalOpen(true);
+    }
+  );
 
   const totals = R.pathOr<Totals>({ total: 0 }, ["data", "totals"])(context);
   const history = R.pathOr([], ["data", "history"])(context);
-  const assets = R.pathOr<Asset[]>(
-    [
-      {
-        label: "",
-        quantity: 0,
-        price: 0,
-        value: 0,
-        category: "",
-        percentage: 0,
-      },
-    ],
-    ["data", "assets"]
-  )(context);
+  const assets = R.pathOr<Asset[]>([], ["data", "assets"])(context);
 
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
@@ -55,6 +54,13 @@ const Dashboard = () => {
         setOpen={setIsManageAssetModalOpen}
         setClickedAsset={setClickedAsset}
         initialValues={clickedAsset}
+      />
+      <DangerModal
+        title={"dashboard.confirm_delete_asset_modal.title"}
+        message={"dashboard.confirm_delete_asset_modal.message"}
+        open={isDangerModalOpen}
+        setOpen={setIsDangerModalOpen}
+        onSubmitClick={() => onRemoveHolding(clickedAsset.label)}
       />
       <div className="w-full flex flex-col">
         <Header title={t("dashboard.title")} />

@@ -57,7 +57,7 @@
     },
     "table": {
       "title": "Portafoglio Investimenti",
-      "description": "Panoramica degli asset attualmente allocati nel tuo portafoglio d’investimento."
+      "description": "Panoramica degli asset attualmente allocati nel tuo portafoglio d'investimento."
     },
     "header": {
       "label": "Erichettaa",
@@ -65,7 +65,8 @@
       "price": "Prezzo",
       "quantity": "Quantità",
       "value": "Valore",
-      "percentage": "Percentale"
+      "percentage": "Percentale",
+      "actions": "Azioni"
     },
     "manage_asset_modal": {
       "add": "Aggiungi un investimento",
@@ -82,6 +83,10 @@
           "placeholder": "Inserisci la quantità"
         }
       }
+    },
+    "confirm_delete_asset_modal": {
+      "title": "Sei sicuro di voler eliminare questo asset?",
+      "message": "Questa operazione è definitiva e non può essere annullata."
     }
   },
   "settings": {
