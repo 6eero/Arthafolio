@@ -22,6 +22,7 @@ import Linee from "./components/Charts/Line";
 import AssetItem from "./components/AssetItem";
 import Button from "@/components/custom/Button";
 import DrawerDialog from "@/Modules/Dashboard/components/DrowerDialog";
+import { logger } from "@/lib/logger";
 
 const Dashboard = () => {
   const context = useDashboardSearchContext();
@@ -47,6 +48,9 @@ const Dashboard = () => {
     ],
     ["data", "assets"]
   )(context);
+
+  console.log("process.env.NODE_ENV - clg", process.env.NODE_ENV);
+  logger.log("process.env.NODE_ENV - logger", process.env.NODE_ENV);
 
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
