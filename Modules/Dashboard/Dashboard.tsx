@@ -14,7 +14,7 @@ import { useState } from "react";
 import { DataTable } from "./components/DataTable";
 import { useAssetColumns } from "@/Models/Dashboard/table";
 import { Asset, Totals } from "@/app/types/dashboard";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs } from "@/components/ui/tabs";
 import Card from "@/components/custom/Card";
 import { useTranslations } from "next-intl";
 import Pie from "./components/Charts/Pie";
