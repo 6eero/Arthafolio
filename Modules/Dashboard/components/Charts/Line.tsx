@@ -13,12 +13,15 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { useDashboardSearchActions } from "@/api/Holdings/tasks";
 import { TimeframeKey } from "@/Utils/types/timeframes";
 import { useDashboardSearchContext } from "@/Context/Dashboard";
+import * as R from "ramda";
 
 const Linee = ({ data }: { data: Asset[] }) => {
   const t = useTranslations("dashboard.charts.linechart");
   const isMobile = useIsMobile();
   const { onLoad } = useDashboardSearchActions();
-  const { timeframe } = useDashboardSearchContext();
+  const context = useDashboardSearchContext();
+
+  const timeframe = R.pathOr<string>("", ["data", "timeframe"])(context);
 
   const chartConfig = {
     total_value: {

@@ -1,6 +1,7 @@
 "use client";
 import { Dispatch, createContext, useContext, useReducer } from "react";
 import reducer from "@/Modules/Dashboard/reducer";
+import { BaseProvider, DashboardAction, DashboardState } from "./Contexts";
 
 const initState: DashboardState = {
   search: {
@@ -8,6 +9,7 @@ const initState: DashboardState = {
     error: false,
     errorModal: false,
     data: [],
+    timeframe: "D",
   },
 };
 

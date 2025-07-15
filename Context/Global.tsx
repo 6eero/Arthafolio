@@ -2,6 +2,7 @@
 import reducer from "@/Modules/App/reducer";
 import { Dispatch, createContext, useContext } from "react";
 import { useReducer } from "react";
+import { BaseProvider, DashboardAction, GlobalState } from "./Contexts";
 
 const initState: GlobalState = {
   loading: false,
