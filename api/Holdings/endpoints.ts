@@ -1,7 +1,10 @@
 import { makeApiRequest } from "@/Configs/api/makeApiRequest";
+import { TimeframeKey } from "@/Utils/types/timeframes";
 
-export const searchDashboard = async () => {
-  const { data, headers } = await makeApiRequest(`/api/holdings`, "GET");
+export const searchDashboard = async (timeframe: TimeframeKey = "D") => {
+  const { data, headers } = await makeApiRequest(`/api/holdings`, "GET", {
+    queryParams: { timeframe },
+  });
   return { data, headers };
 };
 

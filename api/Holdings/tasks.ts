@@ -1,17 +1,18 @@
 import { useDashboardDispatchContext } from "@/Context/Dashboard";
 import * as APIDashboard from "./endpoints";
 import actions from "@/Modules/Dashboard/actions";
+import { TimeframeKey } from "@/Utils/types/timeframes";
 
 export const useDashboardSearchActions = () => {
   const dispatch = useDashboardDispatchContext();
 
   return {
-    // Triggered when the /dashboard page loads.
-    onLoad: async () => {
-      dispatch(actions.search.load({}));
+    // Triggered when the /dashboard page loads and on the press of one of the toggle item in the line chart.
+    onLoad: async (timeframe: TimeframeKey = "D") => {
+      dispatch(actions.search.load({ timeframe }));
 
       try {
-        const { data } = await APIDashboard.searchDashboard();
+        const { data } = await APIDashboard.searchDashboard(timeframe);
 
         dispatch(actions.search.loadSuccess({ data }));
       } catch (error) {

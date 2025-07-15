@@ -1,3 +1,4 @@
+import { TimeframeKey } from "@/Utils/types/timeframes";
 interface BaseProvider {
   detail?: any;
   search?: any;
@@ -24,5 +25,6 @@ type DashboardState = {
     error: boolean;
     errorModal: boolean;
     data: any[];
+    timeframe: TimeframeKey;
   };
 };

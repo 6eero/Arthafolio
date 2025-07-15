@@ -8,13 +8,21 @@ const reducer = produce(
         return;
       }
 
-      case actions.search.LOAD:
       case actions.search.ADD_HOLDING:
       case actions.search.EDIT_HOLDING:
       case actions.search.REMOVE_HOLDING: {
         state.search.loading = true;
         state.search.error = false;
         state.search.errorModal = false;
+
+        return;
+      }
+
+      case actions.search.LOAD: {
+        state.search.loading = true;
+        state.search.error = false;
+        state.search.errorModal = false;
+        state.search.timeframe = action.payload?.timeframe ?? "D";
 
         return;
       }
@@ -43,7 +51,7 @@ const reducer = produce(
       }
 
       default: {
-        console.log("Unknown action:", { action, actions });
+        console.error("Unknown action:", { action, actions });
       }
     }
   }

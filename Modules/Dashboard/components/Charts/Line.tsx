@@ -10,16 +10,28 @@ import { Asset } from "@/app/types/dashboard";
 import { useTranslations } from "next-intl";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { useDashboardSearchActions } from "@/api/Holdings/tasks";
+import { TimeframeKey } from "@/Utils/types/timeframes";
+import { useDashboardSearchContext } from "@/Context/Dashboard";
 
 const Linee = ({ data }: { data: Asset[] }) => {
   const t = useTranslations("dashboard.charts.linechart");
   const isMobile = useIsMobile();
+  const { onLoad } = useDashboardSearchActions();
+  const { timeframe } = useDashboardSearchContext();
+
   const chartConfig = {
     total_value: {
       label: "Desktop",
       color: "var(--chart-5)",
     },
   } satisfies ChartConfig;
+
+  const handleTimeframeChange = (value: TimeframeKey) => {
+    if (!value) return;
+
+    onLoad(value);
+  };
 
   return (
     <div className="w-full xl:h-[450px]  bg-card text-card-foreground rounded-xl border sm:p-6 p-4 shadow-sm xl:w-5/8 flex flex-col">
@@ -32,15 +44,13 @@ const Linee = ({ data }: { data: Asset[] }) => {
           type="single"
           size="sm"
           variant="outline"
-          defaultValue="day"
-          onValueChange={(e) => {
-            console.log(e);
-          }}
+          defaultValue={timeframe}
+          onValueChange={handleTimeframeChange}
         >
-          <ToggleGroupItem value="hour">H</ToggleGroupItem>
-          <ToggleGroupItem value="day">D</ToggleGroupItem>
-          <ToggleGroupItem value="week">W</ToggleGroupItem>
-          <ToggleGroupItem value="month">M</ToggleGroupItem>
+          <ToggleGroupItem value="H">H</ToggleGroupItem>
+          <ToggleGroupItem value="D">D</ToggleGroupItem>
+          <ToggleGroupItem value="W">W</ToggleGroupItem>
+          <ToggleGroupItem value="M">M</ToggleGroupItem>
         </ToggleGroup>
       </div>
 
