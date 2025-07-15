@@ -9,6 +9,7 @@ import {
 import { Asset } from "@/app/types/dashboard";
 import { useTranslations } from "next-intl";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 const Linee = ({ data }: { data: Asset[] }) => {
   const t = useTranslations("dashboard.charts.linechart");
@@ -22,8 +23,26 @@ const Linee = ({ data }: { data: Asset[] }) => {
 
   return (
     <div className="w-full xl:h-[450px]  bg-card text-card-foreground rounded-xl border sm:p-6 p-4 shadow-sm xl:w-5/8 flex flex-col">
-      <p className="leading-none font-semibold pb-2">{t("title")}</p>
-      <p className="text-muted-foreground text-sm">{t("description")}</p>
+      <div className="flex justify-between items-start">
+        <div>
+          <p className="leading-none font-semibold pb-2">{t("title")}</p>
+          <p className="text-muted-foreground text-sm">{t("description")}</p>
+        </div>
+        <ToggleGroup
+          type="single"
+          size="sm"
+          variant="outline"
+          defaultValue="day"
+          onValueChange={(e) => {
+            console.log(e);
+          }}
+        >
+          <ToggleGroupItem value="hour">H</ToggleGroupItem>
+          <ToggleGroupItem value="day">D</ToggleGroupItem>
+          <ToggleGroupItem value="week">W</ToggleGroupItem>
+          <ToggleGroupItem value="month">M</ToggleGroupItem>
+        </ToggleGroup>
+      </div>
 
       <div className="flex-1 min-h-0 w-full">
         <ChartContainer config={chartConfig} className="h-full w-full">
