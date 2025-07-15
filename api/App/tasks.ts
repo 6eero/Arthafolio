@@ -8,7 +8,10 @@ export const useAppActions = () => {
   const dispatch = useGlobalDispatchContext();
   const router = useRouter();
   return {
-    onLogin: async (values: { email: string; password: string }) => {
+    onLogin: async (values: {
+      username_or_email: string;
+      password: string;
+    }) => {
       try {
         dispatch(actions.login({}));
         const { data } = await APIGlobal.login(values);

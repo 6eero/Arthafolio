@@ -25,10 +25,8 @@ const LoginMain = () => {
 
   return (
     <Formik
-      initialValues={{ email: "", password: "" }}
-      onSubmit={(values: { email: string; password: string }) => {
-        // const email = "test@example.com";
-        // const password = "password123";
+      initialValues={{ username_or_email: "", password: "" }}
+      onSubmit={(values: { username_or_email: string; password: string }) => {
         onLogin(values);
       }}
     >
@@ -44,9 +42,9 @@ const LoginMain = () => {
               <div className="flex flex-col gap-10">
                 <div className="grid gap-3">
                   <FormikInput
-                    name="email"
-                    label={"login.fields.email.label"}
-                    placeholder={"login.fields.email.placeholder"}
+                    name="username_or_email"
+                    label={"login.fields.username_or_email.label"}
+                    placeholder={"login.fields.username_or_email.placeholder"}
                     formik={formik}
                   />
                 </div>
@@ -72,21 +70,9 @@ const LoginMain = () => {
             </CardContent>
           </Card>
 
-          {/* --- Sezione Mobile (MODIFICATA) --- */}
-          {/*
-            MODIFICA 1:
-            - Usiamo `min-h-dvh` invece di `h-dvh` per garantire che il contenitore occupi almeno
-              l'intera altezza del viewport visibile, ma possa crescere se il contenuto è più lungo.
-            - Rimuoviamo `justify-between` per permettere al layout di fluire naturalmente.
-          */}
           <div className="sm:hidden w-screen min-h-dvh p-6 flex flex-col">
             {error && <Alert className="mb-4 flex-shrink-0" error={error} />}
 
-            {/*
-              MODIFICA 2:
-              - Aggiungiamo `flex-grow` a questo contenitore per farlo espandere e occupare
-                tutto lo spazio verticale disponibile, spingendo il pulsante in basso.
-            */}
             <div className="flex flex-col gap-8 pt-16 flex-grow">
               <div className="flex flex-col items-center gap-4 pb-6">
                 <Logo bgColor="var(--color-card-2)" className="w-20 h-20" />
@@ -95,9 +81,9 @@ const LoginMain = () => {
                 </p>
               </div>
               <FormikInput
-                name="email"
-                label={"login.fields.email.label"}
-                placeholder={"login.fields.email.placeholder"}
+                name="username_or_email"
+                label={"login.fields.username_or_email.label"}
+                placeholder={"login.fields.username_or_email.placeholder"}
                 formik={formik}
               />
               <FormikInput

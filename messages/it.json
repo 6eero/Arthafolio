@@ -20,13 +20,13 @@
     "dont_have_account": "Don't have an account?",
     "sing_up": "Sing up",
     "fields": {
-      "email": {
-        "label": "Email",
-        "placeholder": "account@email.com"
+      "username_or_email": {
+        "label": "Nome utente o Email",
+        "placeholder": "Inserisci il tuo nome utente o email"
       },
       "password": {
         "label": "Password",
-        "placeholder": "Insert your password"
+        "placeholder": "Inserisci la tua password"
       }
     }
   },

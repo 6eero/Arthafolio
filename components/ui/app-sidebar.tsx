@@ -1,7 +1,6 @@
 "use client";
 import {
   LayoutDashboard,
-  CircleDollarSign,
   Settings2,
   LucideIcon,
   ChevronUp,
@@ -39,11 +38,7 @@ import { usePathname } from "next/navigation";
 // Menu items.
 const items = [
   { titleKey: "dashboard", url: "/dashboard", icon: LayoutDashboard },
-  {
-    titleKey: "cryptocurrency",
-    url: "/cryptocurrency",
-    icon: CircleDollarSign,
-  },
+
   { titleKey: "settings", url: "/settings", icon: Settings2 },
 ];
 
@@ -63,7 +58,7 @@ const AppSidebar = ({
   const { onLogout } = useAppActions();
   const pathname = usePathname();
 
-  const user = R.pathOr("Arthafolio user", ["data", "email"], context);
+  const user = R.pathOr("Arthafolio user", ["data", "username"], context);
 
   return (
     <Sidebar variant={variant}>
@@ -86,7 +81,7 @@ const AppSidebar = ({
                       <a
                         href={item.url}
                         className={`
-            flex gap-4 rounded-lg
+            flex gap-2 rounded-lg
             text-[16px] font-semibold transition-colors
             ${
               isActive
@@ -112,7 +107,8 @@ const AppSidebar = ({
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  <User2 /> {user}
+                  <User2 />
+                  <p className="text-[16px] font-semibold">{user}</p>
                   <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>

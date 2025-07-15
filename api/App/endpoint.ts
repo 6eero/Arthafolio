@@ -6,14 +6,14 @@ export const whoAmI = async () => {
   return { data, headers };
 };
 export const login = async ({
-  email,
+  username_or_email,
   password,
 }: {
-  email: string;
+  username_or_email: string;
   password: string;
 }) => {
   const options = {
-    body: { email, password },
+    body: { username_or_email, password },
     apiName: "public",
   };
 
