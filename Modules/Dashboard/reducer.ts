@@ -14,7 +14,7 @@ const reducer = produce(
         state.search.loading = true;
         state.search.error = false;
         state.search.errorModal = false;
-
+        state.search.timeframe = "D";
         return;
       }
 
@@ -23,9 +23,9 @@ const reducer = produce(
         state.search.error = false;
         state.search.errorModal = false;
         state.search.timeframe = action.payload?.timeframe ?? "D";
-
         return;
       }
+
       case actions.search.LOAD_SUCCESS:
       case actions.search.ADD_HOLDING_SUCCESS:
       case actions.search.EDIT_HOLDING_SUCCESS:
@@ -35,9 +35,9 @@ const reducer = produce(
         state.search.data = data;
         state.search.error = false;
         state.search.errorModal = false;
-
         return;
       }
+
       case actions.search.LOAD_FAIL:
       case actions.search.ADD_HOLDING_FAIL:
       case actions.search.EDIT_HOLDING_FAIL:
@@ -46,7 +46,6 @@ const reducer = produce(
         state.search.loading = false;
         state.search.error = error;
         state.search.errorModal = false;
-
         return;
       }
 
