@@ -47,6 +47,8 @@ const Dashboard = () => {
   const history = R.pathOr([], ["data", "history"])(context);
   const assets = R.pathOr<Asset[]>([], ["data", "assets"])(context);
 
+  console.log(context);
+
   return (
     <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
       <DrawerDialog

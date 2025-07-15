@@ -8,8 +8,10 @@ export const useDashboardSearchActions = () => {
 
   return {
     // Triggered when the /dashboard page loads and on the press of one of the toggle item in the line chart.
-    onLoad: async (timeframe: TimeframeKey = "D") => {
-      dispatch(actions.search.load({ timeframe }));
+    onLoad: async () => {
+      dispatch(actions.search.load({}));
+
+      const timeframe = "D";
 
       try {
         const { data } = await APIDashboard.searchDashboard(timeframe);
@@ -17,6 +19,19 @@ export const useDashboardSearchActions = () => {
         dispatch(actions.search.loadSuccess({ data }));
       } catch (error) {
         dispatch(actions.search.loadFail({ error }));
+      }
+    },
+
+    onChangeTimeframe: async (timeframe: TimeframeKey = "D") => {
+      console.log(timeframe);
+      dispatch(actions.search.changeTimeframe({ timeframe }));
+
+      try {
+        const { data } = await APIDashboard.searchDashboard(timeframe);
+
+        dispatch(actions.search.changeTimeframeSuccess({ data }));
+      } catch (error) {
+        dispatch(actions.search.changeTimeframeFail({ error }));
       }
     },
 

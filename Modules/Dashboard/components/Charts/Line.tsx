@@ -18,10 +18,11 @@ import * as R from "ramda";
 const Linee = ({ data }: { data: Asset[] }) => {
   const t = useTranslations("dashboard.charts.linechart");
   const isMobile = useIsMobile();
-  const { onLoad } = useDashboardSearchActions();
+  const { onChangeTimeframe } = useDashboardSearchActions();
   const context = useDashboardSearchContext();
 
   const timeframe = R.propOr("", "timeframe")(context) as string;
+  //const componentLoading = R.propOr("", "componentLoading")(context) as string;
 
   const chartConfig = {
     total_value: {
@@ -32,8 +33,7 @@ const Linee = ({ data }: { data: Asset[] }) => {
 
   const handleTimeframeChange = (value: TimeframeKey) => {
     if (!value) return;
-
-    onLoad(value);
+    onChangeTimeframe(value);
   };
 
   return (
