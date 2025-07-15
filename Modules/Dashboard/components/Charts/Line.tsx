@@ -21,7 +21,7 @@ const Linee = ({ data }: { data: Asset[] }) => {
   const { onLoad } = useDashboardSearchActions();
   const context = useDashboardSearchContext();
 
-  const timeframe = R.pathOr<string>("", ["data", "timeframe"])(context);
+  const timeframe = R.propOr("", "timeframe")(context) as string;
 
   const chartConfig = {
     total_value: {
