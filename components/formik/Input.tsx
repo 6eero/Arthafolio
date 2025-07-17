@@ -21,6 +21,7 @@ const FormikInput = ({
     <div className="grid gap-3">
       <Label>{t(label)}</Label>
       <Input
+        className="h-[40px]"
         type={type}
         name={name}
         placeholder={t(placeholder)}

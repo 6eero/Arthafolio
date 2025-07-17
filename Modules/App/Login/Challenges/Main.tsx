@@ -93,16 +93,11 @@ const LoginMain = () => {
                 placeholder={"login.fields.password.placeholder"}
                 formik={formik}
               />
-            </div>
-
-            {/*
-              MODIFICA 3:
-              - Rimuoviamo `position: sticky` e `bg-background` perché non più necessari.
-              - `flex-shrink-0` previene che questo div si restringa.
-              - `pt-4` aggiunge un po' di spazio sopra il pulsante.
-            */}
-            <div className="flex-shrink-0 pt-4">
-              <CustomButton loading={loading} type="submit" className="w-full">
+              <CustomButton
+                loading={loading}
+                type="submit"
+                className="w-full mt-8"
+              >
                 {t("login")}
               </CustomButton>
             </div>
