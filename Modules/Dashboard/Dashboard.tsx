@@ -91,12 +91,18 @@ const Dashboard = () => {
           <div className="h-full hidden xl:flex gap-4">
             <SummaryCard
               itemKey={`dashboard.totals.total`}
-              icon={Banknote}
+              icon={<Banknote color="var(--accent)" />}
               value={totals.total}
             />
             <SummaryCard
-              itemKey={`dashboard.totals.profit_and_loss`}
-              icon={profitAndLossValue >= 0 ? TrendingUp : TrendingDown}
+              itemKey={`dashboard.totals.profit_and_loss_last_day`}
+              icon={
+                profitAndLossValue >= 0 ? (
+                  <TrendingUp color="var(--accent)" />
+                ) : (
+                  <TrendingDown color="var(--destructive)" />
+                )
+              }
               value={profitAndLossValue}
               percentage={profitAndLossPercent}
             />
@@ -108,14 +114,20 @@ const Dashboard = () => {
                 <CarouselItem>
                   <SummaryCard
                     itemKey={`dashboard.totals.total`}
-                    icon={Banknote}
+                    icon={<Banknote color="var(--accent)" />}
                     value={totals.total}
                   />
                 </CarouselItem>
                 <CarouselItem>
                   <SummaryCard
-                    itemKey={`dashboard.totals.profit_and_loss`}
-                    icon={profitAndLossValue >= 0 ? TrendingUp : TrendingDown}
+                    itemKey={`dashboard.totals.profit_and_loss_last_day`}
+                    icon={
+                      profitAndLossValue >= 0 ? (
+                        <TrendingUp color="var(--accent)" />
+                      ) : (
+                        <TrendingDown color="var(--destructive)" />
+                      )
+                    }
                     value={profitAndLossValue}
                     percentage={profitAndLossPercent}
                   />

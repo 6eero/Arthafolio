@@ -1,6 +1,6 @@
 import Card from "@/components/custom/Card";
-import { LucideIcon } from "lucide-react";
 import * as R from "ramda";
+import { ReactNode } from "react";
 
 const SummaryCard = ({
   itemKey,
@@ -9,7 +9,7 @@ const SummaryCard = ({
   percentage,
 }: {
   itemKey: string;
-  icon: LucideIcon;
+  icon: ReactNode;
   value: number;
   percentage?: number;
 }) => {
