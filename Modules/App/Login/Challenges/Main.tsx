@@ -21,7 +21,9 @@ import Logo from "@/components/icons/Logo";
 const LoginMain = () => {
   const { onLogin } = useAppActions();
   const { error, loading } = useGlobalContext();
-  const t = useTranslations("login");
+  const t = useTranslations("");
+
+  const appVersion = process.env.NEXT_PUBLIC_APP_VERSION;
 
   return (
     <Formik
@@ -34,8 +36,8 @@ const LoginMain = () => {
         <form className="" onSubmit={formik.handleSubmit}>
           <Card className="w-[450px] hidden sm:block">
             <CardHeader className="mb-6">
-              <CardTitle>{t("title")}</CardTitle>
-              <CardDescription>{t("description")}</CardDescription>
+              <CardTitle>{t("login.title")}</CardTitle>
+              <CardDescription>{t("login.description")}</CardDescription>
             </CardHeader>
             {error && <Alert className="mx-6" error={error} />}
             <CardContent className="mt-6">
@@ -63,7 +65,7 @@ const LoginMain = () => {
                     type="submit"
                     className="w-full"
                   >
-                    {t("login")}
+                    {t("login.login")}
                   </CustomButton>
                 </div>
               </div>
@@ -77,7 +79,7 @@ const LoginMain = () => {
               <div className="flex flex-col items-center gap-4 pb-6">
                 <Logo bgColor="var(--color-card-2)" className="w-20 h-20" />
                 <p className="text-xl leading-none font-semibold">
-                  {t("title")}
+                  {t("login.title")}
                 </p>
               </div>
               <FormikInput
@@ -98,8 +100,14 @@ const LoginMain = () => {
                 type="submit"
                 className="w-full mt-8"
               >
-                {t("login")}
+                {t("login.login")}
               </CustomButton>
+            </div>
+
+            <div className="flex-shrink-0 pt-4 flex justify-center">
+              <p className="text-md text-muted">
+                {t("app_name")} v{appVersion}
+              </p>
             </div>
           </div>
         </form>
