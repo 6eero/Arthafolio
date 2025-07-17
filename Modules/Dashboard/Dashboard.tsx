@@ -9,8 +9,14 @@ import { useDashboardSearchActions } from "@/api/Holdings/tasks";
 import * as R from "ramda";
 import Header from "@/components/layout/Header";
 import SummaryCard from "./components/SummaryCard";
-import { Banknote } from "lucide-react";
-import { useState } from "react";
+import { Banknote, TrendingUp, TrendingDown } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { useRef, useState } from "react";
 import { DataTable } from "./components/DataTable";
 import { useAssetColumns } from "@/Models/Dashboard/table";
 import { Asset, Totals } from "@/app/types/dashboard";
@@ -27,6 +33,7 @@ import DangerModal from "@/components/modals/DangerModal";
 const Dashboard = () => {
   const context = useDashboardSearchContext();
   const { onLoad, onRemoveHolding } = useDashboardSearchActions();
+  const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
   const t = useTranslations("");
   const [isManageAssetModalOpen, setIsManageAssetModalOpen] = useState(false);
   const [isDangerModalOpen, setIsDangerModalOpen] = useState(false);
@@ -44,6 +51,19 @@ const Dashboard = () => {
   );
 
   const totals = R.pathOr<Totals>({ total: 0 }, ["data", "totals"])(context);
+  const profitAndLossValue = R.pathOr(0, [
+    "data",
+    "totals",
+    "profit_loss",
+    "value",
+  ])(context);
+  const profitAndLossPercent = R.pathOr(0, [
+    "data",
+    "totals",
+    "profit_loss",
+    "percent",
+  ])(context);
+
   const history = R.pathOr([], ["data", "history"])(context);
   const assets = R.pathOr<Asset[]>([], ["data", "assets"])(context);
 
@@ -69,25 +89,39 @@ const Dashboard = () => {
         <div className="flex-1 flex flex-col gap-4 sm:m-4 mt-4 ">
           {/* Desktop */}
           <div className="h-full hidden xl:flex gap-4">
-            {R.map(
-              ([key, value]) => (
-                <SummaryCard
-                  key={key}
-                  itemKey={`dashboard.totals.${key}`}
-                  icon={Banknote}
-                  value={value}
-                />
-              ),
-              R.toPairs(totals)
-            )}
-          </div>
-          {/* Mobile */}
-          <div className="xl:hidden w-full">
             <SummaryCard
               itemKey={`dashboard.totals.total`}
               icon={Banknote}
               value={totals.total}
             />
+            <SummaryCard
+              itemKey={`dashboard.totals.profit_and_loss`}
+              icon={profitAndLossValue >= 0 ? TrendingUp : TrendingDown}
+              value={profitAndLossValue}
+              percentage={profitAndLossPercent}
+            />
+          </div>
+          {/* Mobile */}
+          <div className="xl:hidden w-full">
+            <Carousel plugins={[plugin.current]}>
+              <CarouselContent>
+                <CarouselItem>
+                  <SummaryCard
+                    itemKey={`dashboard.totals.total`}
+                    icon={Banknote}
+                    value={totals.total}
+                  />
+                </CarouselItem>
+                <CarouselItem>
+                  <SummaryCard
+                    itemKey={`dashboard.totals.profit_and_loss`}
+                    icon={profitAndLossValue >= 0 ? TrendingUp : TrendingDown}
+                    value={profitAndLossValue}
+                    percentage={profitAndLossPercent}
+                  />
+                </CarouselItem>
+              </CarouselContent>
+            </Carousel>
           </div>
 
           {(R.isNotEmpty(history) || R.isNotEmpty(assets)) && (
@@ -98,7 +132,6 @@ const Dashboard = () => {
           )}
 
           {/* Desktop */}
-
           <Card
             className="xl:block hidden"
             title={"dashboard.table.title"}

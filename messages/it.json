@@ -41,9 +41,7 @@
     "add_investment": "Aggiungi investimento",
     "totals": {
       "total": "Totale",
-      "liquidity": "Liquidità",
-      "cryptocurrency": "Criptovalute",
-      "etf": "ETF"
+      "profit_and_loss": "Profitto/Perdita"
     },
     "charts": {
       "linechart": {
