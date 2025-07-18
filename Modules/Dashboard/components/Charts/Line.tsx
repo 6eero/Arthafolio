@@ -1,5 +1,12 @@
 "use client";
-import { CartesianGrid, LabelList, Line, LineChart, YAxis } from "recharts";
+import {
+  CartesianGrid,
+  LabelList,
+  Line,
+  LineChart,
+  XAxis,
+  YAxis,
+} from "recharts";
 import {
   ChartConfig,
   ChartContainer,
@@ -21,12 +28,14 @@ const Linee = ({ data }: { data: Asset[] }) => {
   const { onChangeTimeframe } = useDashboardSearchActions();
   const context = useDashboardSearchContext();
 
+  console.log(data);
+
   const timeframe = R.propOr("", "timeframe")(context) as string;
   //const componentLoading = R.propOr("", "componentLoading")(context) as string;
 
   const chartConfig = {
     total_value: {
-      label: "Desktop",
+      label: t("value"),
       color: "var(--chart-5)",
     },
   } satisfies ChartConfig;
@@ -68,9 +77,31 @@ const Linee = ({ data }: { data: Asset[] }) => {
               right: 25,
             }}
           >
-            <CartesianGrid vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" />
 
-            <YAxis domain={["dataMin - 5", "dataMax + 5"]} hide />
+            <YAxis domain={["dataMin - 10", "dataMax + 10"]} hide />
+            <XAxis
+              tick={{ stroke: "var(--muted)" }}
+              tickLine={{ stroke: "var(--muted)" }}
+              axisLine={false}
+              dataKey="taken_at"
+              tickFormatter={(value: string) => {
+                const date = new Date(value);
+                if (timeframe === "H") {
+                  // Se timeframe è "D", mostra solo l'ora (es. 14:30)
+                  return date.toLocaleTimeString(undefined, {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  });
+                } else {
+                  // Altrimenti mostra giorno/mese (es. 13/07)
+                  return date.toLocaleDateString(undefined, {
+                    day: "2-digit",
+                    month: "2-digit",
+                  });
+                }
+              }}
+            />
 
             <ChartTooltip
               cursor={false}

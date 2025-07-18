@@ -50,7 +50,8 @@
     "charts": {
       "linechart": {
         "title": "Investment History",
-        "description": "Portfolio changes over time"
+        "description": "Portfolio changes over time",
+        "value": "Value"
       },
       "piechart": {
         "title": "Investment Allocation",

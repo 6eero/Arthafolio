@@ -49,7 +49,8 @@
     "charts": {
       "linechart": {
         "title": "Andamento degli Investimenti",
-        "description": "Variazioni del portafoglio nel tempo"
+        "description": "Variazioni del portafoglio nel tempo",
+        "value": "Valore"
       },
       "piechart": {
         "title": "Allocazione degli Investimenti",
