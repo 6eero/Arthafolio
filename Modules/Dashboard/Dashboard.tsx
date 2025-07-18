@@ -51,17 +51,24 @@ const Dashboard = () => {
   );
 
   const totals = R.pathOr<Totals>({ total: 0 }, ["data", "totals"])(context);
-  const profitAndLossValue = R.pathOr(0, [
+
+  const profitLossDay = R.pathOr({ value: 0, percent: 0 }, [
     "data",
     "totals",
     "profit_loss",
-    "value",
+    "day",
   ])(context);
-  const profitAndLossPercent = R.pathOr(0, [
+  const profitLossWeek = R.pathOr({ value: 0, percent: 0 }, [
     "data",
     "totals",
     "profit_loss",
-    "percent",
+    "week",
+  ])(context);
+  const profitLossMonth = R.pathOr({ value: 0, percent: 0 }, [
+    "data",
+    "totals",
+    "profit_loss",
+    "month",
   ])(context);
 
   const history = R.pathOr([], ["data", "history"])(context);
@@ -88,6 +95,7 @@ const Dashboard = () => {
         <Header title={t("dashboard.title")} />
         <div className="flex-1 flex flex-col gap-4 sm:m-4 mt-4 ">
           {/* Desktop */}
+
           <div className="h-full hidden xl:flex gap-4">
             <SummaryCard
               itemKey={`dashboard.totals.total`}
@@ -97,14 +105,38 @@ const Dashboard = () => {
             <SummaryCard
               itemKey={`dashboard.totals.profit_and_loss_last_day`}
               icon={
-                profitAndLossValue >= 0 ? (
+                profitLossDay.value >= 0 ? (
                   <TrendingUp color="var(--accent)" />
                 ) : (
                   <TrendingDown color="var(--destructive)" />
                 )
               }
-              value={profitAndLossValue}
-              percentage={profitAndLossPercent}
+              value={profitLossDay.value}
+              percentage={profitLossDay.percent}
+            />
+            <SummaryCard
+              itemKey={`dashboard.totals.profit_and_loss_last_week`}
+              icon={
+                profitLossWeek.value >= 0 ? (
+                  <TrendingUp color="var(--accent)" />
+                ) : (
+                  <TrendingDown color="var(--destructive)" />
+                )
+              }
+              value={profitLossWeek.value}
+              percentage={profitLossWeek.percent}
+            />
+            <SummaryCard
+              itemKey={`dashboard.totals.profit_and_loss_last_month`}
+              icon={
+                profitLossMonth.value >= 0 ? (
+                  <TrendingUp color="var(--accent)" />
+                ) : (
+                  <TrendingDown color="var(--destructive)" />
+                )
+              }
+              value={profitLossMonth.value}
+              percentage={profitLossMonth.percent}
             />
           </div>
           {/* Mobile */}
@@ -122,14 +154,42 @@ const Dashboard = () => {
                   <SummaryCard
                     itemKey={`dashboard.totals.profit_and_loss_last_day`}
                     icon={
-                      profitAndLossValue >= 0 ? (
+                      profitLossDay.value >= 0 ? (
                         <TrendingUp color="var(--accent)" />
                       ) : (
                         <TrendingDown color="var(--destructive)" />
                       )
                     }
-                    value={profitAndLossValue}
-                    percentage={profitAndLossPercent}
+                    value={profitLossDay.value}
+                    percentage={profitLossDay.percent}
+                  />
+                </CarouselItem>
+                <CarouselItem>
+                  <SummaryCard
+                    itemKey={`dashboard.totals.profit_and_loss_last_week`}
+                    icon={
+                      profitLossWeek.value >= 0 ? (
+                        <TrendingUp color="var(--accent)" />
+                      ) : (
+                        <TrendingDown color="var(--destructive)" />
+                      )
+                    }
+                    value={profitLossWeek.value}
+                    percentage={profitLossWeek.percent}
+                  />
+                </CarouselItem>
+                <CarouselItem>
+                  <SummaryCard
+                    itemKey={`dashboard.totals.profit_and_loss_last_month`}
+                    icon={
+                      profitLossMonth.value >= 0 ? (
+                        <TrendingUp color="var(--accent)" />
+                      ) : (
+                        <TrendingDown color="var(--destructive)" />
+                      )
+                    }
+                    value={profitLossMonth.value}
+                    percentage={profitLossMonth.percent}
                   />
                 </CarouselItem>
               </CarouselContent>

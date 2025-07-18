@@ -42,7 +42,9 @@
     "add_investment": "Aggiungi investimento",
     "totals": {
       "total": "Totale",
-      "profit_and_loss_last_day": "Profitto/Perdita 24h"
+      "profit_and_loss_last_day": "Profitto/Perdita ultimo giorno",
+      "profit_and_loss_last_week": "Profitto/Perdita ultima settimana",
+      "profit_and_loss_last_month": "Profitto/Perdita ultimo mese"
     },
     "charts": {
       "linechart": {
