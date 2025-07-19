@@ -98,7 +98,7 @@ const LoginMain = () => {
               <CustomButton
                 loading={loading}
                 type="submit"
-                className="w-full mt-8"
+                className="w-full mt-8 "
               >
                 {t("login.login")}
               </CustomButton>
