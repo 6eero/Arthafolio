@@ -7,7 +7,8 @@
       "delete": "Delete",
       "remove": "Remove",
       "cancel": "Cancel",
-      "close": "Close"
+      "close": "Close",
+      "save": "Save"
     },
     "categories": {
       "all": "All",
@@ -94,6 +95,15 @@
     }
   },
   "settings": {
-    "title": "Settings"
+    "title": "Settings",
+    "change_theme": "Application Theme",
+    "theme_description": "Choose between light, dark, or system theme.",
+    "change_default_currency": "Default Currency",
+    "currency_description": "Select the main currency for the app.",
+    "select_currency": "Select currency",
+    "currency": "Currencies",
+    "hide_values": "Privacy Mode",
+    "hide_values_description": "Hide all sensitive amounts in the interface.",
+    "app_version": "Application version"
   }
 }

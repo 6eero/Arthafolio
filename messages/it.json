@@ -7,7 +7,8 @@
       "delete": "Elimina",
       "remove": "Rimuovi",
       "cancel": "Cancella",
-      "close": "Chiudi"
+      "close": "Chiudi",
+      "save": "Salva"
     },
     "categories": {
       "crypto": "Criptovalute",
@@ -91,7 +92,17 @@
       "message": "Questa operazione è definitiva e non può essere annullata."
     }
   },
+
   "settings": {
-    "title": "Impostazioni"
+    "title": "Impostazioni",
+    "change_theme": "Tema dell'applicazione",
+    "theme_description": "Scegli tra tema chiaro, scuro o di sistema.",
+    "change_default_currency": "Valuta predefinita",
+    "currency_description": "Seleziona la valuta principale per l'app.",
+    "select_currency": "Seleziona valuta",
+    "currency": "Valute",
+    "hide_values": "Modalità privacy",
+    "hide_values_description": "Nascondi tutti gli importi sensibili nell'interfaccia.",
+    "app_version": "Versione applicazione"
   }
 }
