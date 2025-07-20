@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
+import Switch from "@/components/formik/Switch";
 import { Formik } from "formik";
 
 import { useTranslations } from "next-intl";
@@ -95,7 +95,7 @@ const Settings = () => {
                           {t("settings.hide_values_description")}
                         </p>
                       </div>
-                      <Switch id="hide_values" />
+                      <Switch name={"hide_holdings"} formik={formik} />
                     </div>
 
                     {/* Riga 4: Versione App */}
@@ -114,7 +114,7 @@ const Settings = () => {
                 <CustomButton
                   className="self-end"
                   type="submit"
-                  disabled={formik.isSubmitting}
+                  // disabled={formik.isSubmitting}
                 >
                   {t("generic.actions.save")}
                 </CustomButton>
