@@ -3,6 +3,7 @@ import actions from "@/Modules/App/actions";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import * as APIGlobal from "./endpoint";
+import { toast } from "sonner";
 
 export const useAppActions = () => {
   const dispatch = useGlobalDispatchContext();
@@ -52,6 +53,21 @@ export const useAppActions = () => {
         dispatch(actions.logoutSuccess({}));
       } catch (error) {
         dispatch(actions.logoutFail({ error }));
+      }
+    },
+
+    onUpdatePreferences: async (values: {
+      preferred_currency: string;
+      hide_holdings: boolean;
+    }) => {
+      dispatch(actions.updatePreferences({}));
+      try {
+        const { data } = await APIGlobal.updatePreferences(values);
+
+        toast.success("Preferenze aggiornate ✅");
+        dispatch(actions.updatePreferencesSuccess({ data }));
+      } catch (error) {
+        dispatch(actions.updatePreferencesFail({ error }));
       }
     },
   };

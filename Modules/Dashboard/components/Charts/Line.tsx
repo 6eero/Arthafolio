@@ -28,8 +28,6 @@ const Linee = ({ data }: { data: Asset[] }) => {
   const { onChangeTimeframe } = useDashboardSearchActions();
   const context = useDashboardSearchContext();
 
-  console.log(data);
-
   const timeframe = R.propOr("", "timeframe")(context) as string;
   //const componentLoading = R.propOr("", "componentLoading")(context) as string;
 

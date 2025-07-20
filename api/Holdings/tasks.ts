@@ -23,7 +23,6 @@ export const useDashboardSearchActions = () => {
     },
 
     onChangeTimeframe: async (timeframe: TimeframeKey = "D") => {
-      console.log(timeframe);
       dispatch(actions.search.changeTimeframe({ timeframe }));
 
       try {

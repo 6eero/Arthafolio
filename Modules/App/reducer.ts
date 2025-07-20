@@ -14,10 +14,17 @@ const reducer = produce(
         return;
       }
 
+      case actions.UPDATE_PREFERENCES: {
+        state.loading = true;
+        state.error = false;
+        return;
+      }
+
       // SUCCESS
       case actions.LOGIN_SUCCESS:
       case actions.WHO_AM_I_SUCCESS:
-      case actions.LOGOUT_SUCCESS: {
+      case actions.LOGOUT_SUCCESS:
+      case actions.UPDATE_PREFERENCES_SUCCESS: {
         const { data } = action.payload;
         state.loading = false;
         state.data = data;
@@ -28,7 +35,8 @@ const reducer = produce(
       // FAIL
       case actions.LOGIN_FAIL:
       case actions.WHO_AM_I_FAIL:
-      case actions.LOGOUT_FAIL: {
+      case actions.LOGOUT_FAIL:
+      case actions.UPDATE_PREFERENCES_FAIL: {
         const { error } = action.payload;
         state.loading = false;
         state.error = error;

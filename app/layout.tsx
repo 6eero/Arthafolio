@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
 import { GlobalContextProvider } from "@/Context/Global";
+import ClientToaster from "@/components/messages/ClientToaster";
 
 export const metadata: Metadata = {
   title: "Arthafolio",
@@ -31,7 +32,10 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <NextIntlClientProvider>{children}</NextIntlClientProvider>
+            <NextIntlClientProvider>
+              {children}
+              <ClientToaster />
+            </NextIntlClientProvider>
           </ThemeProvider>
         </GlobalContextProvider>
       </body>

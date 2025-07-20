@@ -27,3 +27,22 @@ export const logout = async () => {
 
   return { data, headers };
 };
+
+export const updatePreferences = async ({
+  preferred_currency,
+  hide_holdings,
+}: {
+  preferred_currency: string;
+  hide_holdings: boolean;
+}) => {
+  const options = {
+    body: { preferred_currency, hide_holdings },
+    apiName: "public",
+  };
+  const { data, headers } = await makeApiRequest(
+    "/api/user/update_preferences",
+    "PATCH",
+    options
+  );
+  return { data, headers };
+};
