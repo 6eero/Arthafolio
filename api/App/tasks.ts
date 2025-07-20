@@ -63,7 +63,6 @@ export const useAppActions = () => {
       dispatch(actions.updatePreferences({}));
       try {
         const { data } = await APIGlobal.updatePreferences(values);
-
         toast.success("Preferenze aggiornate ✅");
         dispatch(actions.updatePreferencesSuccess({ data }));
       } catch (error) {

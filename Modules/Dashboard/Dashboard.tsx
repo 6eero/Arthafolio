@@ -58,6 +58,8 @@ const Dashboard = () => {
     currency
   );
 
+  console.log("currency", currency);
+
   const totals = R.pathOr<Totals>({ total: 0 }, ["data", "totals"])(context);
 
   const profitLossDay = R.pathOr({ value: 0, percent: 0 }, [
@@ -258,6 +260,7 @@ const Dashboard = () => {
                     quantity={asset.quantity}
                     price={asset.price}
                     value={asset.value}
+                    currency={currency}
                     percentage={asset.percentage}
                     category={asset.category}
                     setIsManageAssetModalOpen={setIsManageAssetModalOpen}
