@@ -36,7 +36,7 @@ export const ResourceLoader = ({
   }
 
   if (error) {
-    return <ErrorBlock error={error} />;
+    return <ErrorBlock error={error.response.data.error} />;
   }
 
   return children;
