@@ -29,15 +29,22 @@ import AssetItem from "./components/AssetItem";
 import Button from "@/components/custom/Button";
 import DrawerDialog from "@/Modules/Dashboard/components/DrowerDialog";
 import DangerModal from "@/components/modals/DangerModal";
+import { useGlobalContext } from "@/Context/Global";
 
 const Dashboard = () => {
   const context = useDashboardSearchContext();
+  const userContext = useGlobalContext();
   const { onLoad, onRemoveHolding } = useDashboardSearchActions();
   const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
   const t = useTranslations("");
   const [isManageAssetModalOpen, setIsManageAssetModalOpen] = useState(false);
   const [isDangerModalOpen, setIsDangerModalOpen] = useState(false);
   const [clickedAsset, setClickedAsset] = useState({ label: "", quantity: 0 });
+
+  const currency =
+    R.pathOr("eur", ["data", "preferred_currency"], userContext) === "eur"
+      ? "€"
+      : "$";
 
   const columns = useAssetColumns(
     (asset) => {
@@ -47,8 +54,11 @@ const Dashboard = () => {
     (asset) => {
       setClickedAsset({ label: asset.label, quantity: asset.quantity });
       setIsDangerModalOpen(true);
-    }
+    },
+    currency
   );
+
+  console.log(currency);
 
   const totals = R.pathOr<Totals>({ total: 0 }, ["data", "totals"])(context);
 
@@ -96,11 +106,13 @@ const Dashboard = () => {
 
           <div className="h-full hidden xl:flex gap-4">
             <SummaryCard
+              currency={currency}
               itemKey={`dashboard.totals.total`}
               icon={<Banknote color="var(--accent)" />}
               value={totals.total}
             />
             <SummaryCard
+              currency={currency}
               itemKey={`dashboard.totals.profit_and_loss_last_day`}
               icon={
                 profitLossDay.value >= 0 ? (
@@ -113,6 +125,7 @@ const Dashboard = () => {
               percentage={profitLossDay.percent}
             />
             <SummaryCard
+              currency={currency}
               itemKey={`dashboard.totals.profit_and_loss_last_week`}
               icon={
                 profitLossWeek.value >= 0 ? (
@@ -125,6 +138,7 @@ const Dashboard = () => {
               percentage={profitLossWeek.percent}
             />
             <SummaryCard
+              currency={currency}
               itemKey={`dashboard.totals.profit_and_loss_last_month`}
               icon={
                 profitLossMonth.value >= 0 ? (
@@ -143,6 +157,7 @@ const Dashboard = () => {
               <CarouselContent>
                 <CarouselItem>
                   <SummaryCard
+                    currency={currency}
                     itemKey={`dashboard.totals.total`}
                     icon={<Banknote color="var(--accent)" />}
                     value={totals.total}
@@ -150,6 +165,7 @@ const Dashboard = () => {
                 </CarouselItem>
                 <CarouselItem>
                   <SummaryCard
+                    currency={currency}
                     itemKey={`dashboard.totals.profit_and_loss_last_day`}
                     icon={
                       profitLossDay.value >= 0 ? (
@@ -164,6 +180,7 @@ const Dashboard = () => {
                 </CarouselItem>
                 <CarouselItem>
                   <SummaryCard
+                    currency={currency}
                     itemKey={`dashboard.totals.profit_and_loss_last_week`}
                     icon={
                       profitLossWeek.value >= 0 ? (
@@ -178,6 +195,7 @@ const Dashboard = () => {
                 </CarouselItem>
                 <CarouselItem>
                   <SummaryCard
+                    currency={currency}
                     itemKey={`dashboard.totals.profit_and_loss_last_month`}
                     icon={
                       profitLossMonth.value >= 0 ? (

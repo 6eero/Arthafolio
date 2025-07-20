@@ -9,7 +9,8 @@ import { useTranslations } from "next-intl";
 
 export function useAssetColumns(
   onEdit: (asset: Asset) => void,
-  onDelete?: (asset: Asset) => void
+  onDelete?: (asset: Asset) => void,
+  currency?: string
 ): ColumnDef<Asset>[] {
   const t = useTranslations("");
 
@@ -37,7 +38,7 @@ export function useAssetColumns(
       header: t("dashboard.table.header.price"),
       cell: ({ row }) => {
         const price: number = row.getValue<number>("price");
-        return <p>{`${price} €`}</p>;
+        return <p>{`${price} ${currency}`}</p>;
       },
     },
     {
@@ -49,7 +50,7 @@ export function useAssetColumns(
       header: t("dashboard.table.header.value"),
       cell: ({ row }) => {
         const value: number = row.getValue<number>("value");
-        return <p>{`${value} €`}</p>;
+        return <p>{`${value} ${currency}`}</p>;
       },
     },
     {
