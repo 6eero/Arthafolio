@@ -5,15 +5,7 @@ import Header from "@/components/layout/Header";
 import { ResourceLoader } from "@/components/layout/ResourceLoader";
 import ThemeSwitcher from "@/components/layout/ThemeSwitcher";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import Select from "@/components/formik/Select";
 import Switch from "@/components/formik/Switch";
 import { Formik } from "formik";
 
@@ -27,7 +19,7 @@ const Settings = () => {
   return (
     <ResourceLoader>
       <Formik
-        initialValues={{ preferred_currency: "EUR", hide_holdings: false }}
+        initialValues={{ preferred_currency: "eur", hide_holdings: false }}
         onSubmit={(values) => {
           // Ora 'values' conterrà i dati aggiornati dalla UI!
           console.log("sumbit", values);
@@ -66,20 +58,15 @@ const Settings = () => {
                           {t("settings.currency_description")}
                         </p>
                       </div>
-                      <Select>
-                        <SelectTrigger className="w-[180px]">
-                          <SelectValue
-                            placeholder={t("settings.select_currency")}
-                          />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectLabel>{t("settings.currency")}</SelectLabel>
-                            <SelectItem value="usd">USD</SelectItem>
-                            <SelectItem value="eur">EUR</SelectItem>
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
+                      <Select
+                        name={"preferred_currency"}
+                        formik={formik}
+                        options={[
+                          { key: "eur", value: "EUR" },
+                          { key: "usd", value: "USD" },
+                        ]}
+                        className="w-[120px]"
+                      />
                     </div>
 
                     {/* Riga 3: Nascondi Valori */}
