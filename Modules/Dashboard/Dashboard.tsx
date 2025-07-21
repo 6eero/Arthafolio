@@ -226,8 +226,8 @@ const Dashboard = () => {
 
           {(R.isNotEmpty(history) || R.isNotEmpty(assets)) && (
             <div className="w-full flex gap-4 xl:flex-row  flex-col">
-              <Linee data={history} />
-              <Pie data={assets} />
+              <Linee data={history} hideHoldings={hideHoldings} />
+              <Pie data={assets} hideHoldings={hideHoldings} />
             </div>
           )}
 

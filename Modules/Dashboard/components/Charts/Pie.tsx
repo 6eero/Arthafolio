@@ -20,7 +20,13 @@ const chartColors = [
   "var(--chart-6)",
 ];
 
-const Piee = ({ data }: { data: Asset[] }) => {
+const Piee = ({
+  data,
+  hideHoldings,
+}: {
+  data: Asset[];
+  hideHoldings: boolean;
+}) => {
   const t = useTranslations("dashboard.charts.piechart");
   const { chartData, chartConfig } = useMemo(() => {
     const config: Record<string, { label: string; color: string }> = {};
@@ -48,10 +54,12 @@ const Piee = ({ data }: { data: Asset[] }) => {
       <div className="flex-1 min-h-0 w-full pt-5">
         <ChartContainer config={chartConfig} className="h-full w-full">
           <PieChart>
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
+            {!hideHoldings && (
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent hideLabel />}
+              />
+            )}
             <Pie
               data={chartData}
               dataKey="value"

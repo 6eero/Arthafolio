@@ -22,7 +22,13 @@ import { TimeframeKey } from "@/Utils/types/timeframes";
 import { useDashboardSearchContext } from "@/Context/Dashboard";
 import * as R from "ramda";
 
-const Linee = ({ data }: { data: Asset[] }) => {
+const Linee = ({
+  data,
+  hideHoldings,
+}: {
+  data: Asset[];
+  hideHoldings: boolean;
+}) => {
   const t = useTranslations("dashboard.charts.linechart");
   const isMobile = useIsMobile();
   const { onChangeTimeframe } = useDashboardSearchActions();
@@ -101,10 +107,12 @@ const Linee = ({ data }: { data: Asset[] }) => {
               }}
             />
 
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="line" />}
-            />
+            {!hideHoldings && (
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent indicator="line" />}
+              />
+            )}
             <Line
               dataKey="total_value"
               type="natural"
@@ -117,7 +125,7 @@ const Linee = ({ data }: { data: Asset[] }) => {
                 r: 6,
               }}
             >
-              {!isMobile && (
+              {!isMobile && !hideHoldings && (
                 <LabelList
                   position="top"
                   offset={12}
