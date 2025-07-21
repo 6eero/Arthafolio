@@ -77,7 +77,7 @@ const Linee = ({ data }: { data: Asset[] }) => {
           >
             <CartesianGrid strokeDasharray="3 3" />
 
-            <YAxis domain={["dataMin - 100", "dataMax + 100"]} hide />
+            <YAxis domain={["dataMin - 10", "dataMax + 10"]} hide />
             <XAxis
               tick={{ stroke: "var(--muted)" }}
               tickLine={{ stroke: "var(--muted)" }}
