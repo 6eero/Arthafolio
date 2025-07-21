@@ -45,10 +45,6 @@ export function useAssetColumns(
     {
       accessorKey: "quantity",
       header: t("dashboard.table.header.quantity"),
-    },
-    {
-      accessorKey: "quantity",
-      header: t("dashboard.table.header.quantity"),
       cell: ({ row }) => {
         const quantity: number = row.getValue<number>("quantity");
         return <p>{hideHoldings ? `****` : `${quantity}`}</p>;
