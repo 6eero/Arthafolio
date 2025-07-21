@@ -7,12 +7,14 @@ const AssetItem = ({
   value,
   percentage,
   currency,
+  hideHoldings,
   setIsManageAssetModalOpen,
   setClickedAsset,
 }: Asset & {
   setIsManageAssetModalOpen: (value: boolean) => void;
   setClickedAsset: (value: { label: string; quantity: number }) => void;
   currency: string;
+  hideHoldings: boolean;
 }) => {
   const handleAssetClick = () => {
     setIsManageAssetModalOpen(true);
@@ -26,7 +28,9 @@ const AssetItem = ({
       <div className="flex justify-between items-center text-sm">
         <div className="w-1/3">
           <p className="text-left font-semibold">{label}</p>
-          <p className="text-left text-muted-foreground">{quantity}</p>
+          <p className="text-left text-muted-foreground">
+            {hideHoldings ? "****" : quantity}
+          </p>
         </div>
 
         <div className="w-1/3 text-center">
@@ -37,7 +41,7 @@ const AssetItem = ({
 
         <div className="w-1/3 text-right">
           <p className="font-medium">
-            {value} {currency}
+            {hideHoldings ? `**** ${currency}` : `${value} ${currency}`}
           </p>
           <p className="text-muted-foreground">{percentage} %</p>
         </div>
