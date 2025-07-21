@@ -25,7 +25,7 @@ const FormikInput = ({
         type={type}
         name={name}
         placeholder={t(placeholder)}
-        value={formik.values[name] === 0 ? "" : formik.values[name]}
+        value={formik.values[name]}
         onChange={formik.handleChange}
       />
     </div>

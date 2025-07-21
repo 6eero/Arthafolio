@@ -103,6 +103,7 @@
     "currency": "Valute",
     "hide_values": "Modalità privacy",
     "hide_values_description": "Nascondi tutti gli importi sensibili nell'interfaccia.",
-    "app_version": "Versione applicazione"
+    "app_version": "Versione applicazione",
+    "preferences_updated": "Impostazioni aggiornate"
   }
 }

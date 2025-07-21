@@ -4,10 +4,12 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import * as APIGlobal from "./endpoint";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 export const useAppActions = () => {
   const dispatch = useGlobalDispatchContext();
   const router = useRouter();
+  const t = useTranslations("");
   return {
     onLogin: async (values: {
       username_or_email: string;
@@ -63,7 +65,7 @@ export const useAppActions = () => {
       dispatch(actions.updatePreferences({}));
       try {
         const { data } = await APIGlobal.updatePreferences(values);
-        toast.success("Preferenze aggiornate ✅");
+        toast.success(t("settings.preferences_updated"));
         dispatch(actions.updatePreferencesSuccess({ data }));
       } catch (error) {
         dispatch(actions.updatePreferencesFail({ error }));
