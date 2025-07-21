@@ -33,14 +33,24 @@ const DrawerDialog = ({
   setOpen,
   setClickedAsset,
   initialValues,
+  assetsLabel,
 }: {
   open: boolean;
   setOpen: (value: boolean) => void;
   setClickedAsset: (value: { label: string; quantity: number }) => void;
   initialValues: { label: string; quantity: number };
+  assetsLabel: string[];
 }) => {
   const isMobile = useIsMobile();
   const t = useTranslations("");
+
+  console.log({
+    cryptoLabels,
+    assetsLabel,
+    dif: R.difference(cryptoLabels, assetsLabel),
+  });
+
+  const availableCryptoLabels = R.difference(cryptoLabels, assetsLabel);
 
   if (isMobile === undefined) return null;
   const isEdit = R.isNotEmpty(initialValues.label);
@@ -69,6 +79,7 @@ const DrawerDialog = ({
           setOpen={setOpen}
           setClickedAsset={setClickedAsset}
           isEdit={isEdit}
+          availableCryptoLabels={availableCryptoLabels}
         />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
@@ -105,6 +116,7 @@ const DrawerDialog = ({
           setOpen={setOpen}
           setClickedAsset={setClickedAsset}
           isEdit={isEdit}
+          availableCryptoLabels={availableCryptoLabels}
         />
       </DialogContent>
     </Dialog>
@@ -116,11 +128,13 @@ const ProfileForm = ({
   initialValues,
   setClickedAsset,
   isEdit,
+  availableCryptoLabels,
 }: {
   setOpen: (value: boolean) => void;
   initialValues: any;
   setClickedAsset: (value: { label: string; quantity: number }) => void;
   isEdit: boolean;
+  availableCryptoLabels: string[];
 }) => {
   const t = useTranslations("");
   const { onAddHolding, onRemoveHolding, onEditHolding } =
@@ -142,6 +156,7 @@ const ProfileForm = ({
           onAddHolding(values);
         }
         setOpen(false);
+        setClickedAsset({ label: "", quantity: 0 });
       }}
     >
       {(formik) => (
@@ -154,7 +169,7 @@ const ProfileForm = ({
                 placeholder={
                   "dashboard.manage_asset_modal.fields.label.placeholder"
                 }
-                domain={cryptoLabels}
+                domain={availableCryptoLabels}
                 formik={formik}
                 disabled={isEdit}
               />

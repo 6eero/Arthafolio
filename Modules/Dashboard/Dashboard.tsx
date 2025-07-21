@@ -94,6 +94,7 @@ const Dashboard = () => {
         setOpen={setIsManageAssetModalOpen}
         setClickedAsset={setClickedAsset}
         initialValues={clickedAsset}
+        assetsLabel={R.pluck("label", assets)}
       />
       <DangerModal
         title={"dashboard.confirm_delete_asset_modal.title"}
