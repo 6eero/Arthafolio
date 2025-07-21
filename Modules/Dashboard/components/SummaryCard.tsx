@@ -8,12 +8,14 @@ const SummaryCard = ({
   value,
   percentage,
   currency,
+  hideHoldings,
 }: {
   itemKey: string;
   icon: ReactNode;
   value: number;
   percentage?: number;
   currency: string;
+  hideHoldings: boolean;
 }) => {
   return (
     <Card title={itemKey} icon={icon}>
@@ -21,7 +23,11 @@ const SummaryCard = ({
         <div className="flex gap-2 items-end pt-3">
           <p className="font-semibold text-xl">
             {value >= 0 && R.isNotNil(percentage)
-              ? `+${value} ${currency}`
+              ? hideHoldings
+                ? `**** ${currency}`
+                : `+${value} ${currency}`
+              : hideHoldings
+              ? `**** ${currency}`
               : `${value} ${currency}`}
           </p>
           {R.isNotNil(percentage) && (

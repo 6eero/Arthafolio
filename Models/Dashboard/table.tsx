@@ -10,7 +10,8 @@ import { useTranslations } from "next-intl";
 export function useAssetColumns(
   onEdit: (asset: Asset) => void,
   onDelete?: (asset: Asset) => void,
-  currency?: string
+  currency?: string,
+  hideHoldings?: boolean
 ): ColumnDef<Asset>[] {
   const t = useTranslations("");
 
@@ -44,13 +45,19 @@ export function useAssetColumns(
     {
       accessorKey: "quantity",
       header: t("dashboard.table.header.quantity"),
+      cell: ({ row }) => {
+        const quantity: number = row.getValue<number>("quantity");
+        return <p>{hideHoldings ? `****` : `${quantity}`}</p>;
+      },
     },
     {
       accessorKey: "value",
       header: t("dashboard.table.header.value"),
       cell: ({ row }) => {
         const value: number = row.getValue<number>("value");
-        return <p>{`${value} ${currency}`}</p>;
+        return (
+          <p>{hideHoldings ? `**** ${currency}` : `${value} ${currency}`}</p>
+        );
       },
     },
     {

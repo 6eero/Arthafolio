@@ -46,6 +46,8 @@ const Dashboard = () => {
       ? "€"
       : "$";
 
+  const hideHoldings = R.pathOr(false, ["data", "hide_holdings"], userContext);
+
   const columns = useAssetColumns(
     (asset) => {
       setClickedAsset({ label: asset.label, quantity: asset.quantity });
@@ -55,10 +57,11 @@ const Dashboard = () => {
       setClickedAsset({ label: asset.label, quantity: asset.quantity });
       setIsDangerModalOpen(true);
     },
-    currency
+    currency,
+    hideHoldings
   );
 
-  console.log("currency", currency);
+  console.log("hideHoldings", hideHoldings);
 
   const totals = R.pathOr<Totals>({ total: 0 }, ["data", "totals"])(context);
 
@@ -107,12 +110,14 @@ const Dashboard = () => {
           <div className="h-full hidden xl:flex gap-4">
             <SummaryCard
               currency={currency}
+              hideHoldings={hideHoldings}
               itemKey={`dashboard.totals.total`}
               icon={<Banknote color="var(--accent)" />}
               value={totals.total}
             />
             <SummaryCard
               currency={currency}
+              hideHoldings={hideHoldings}
               itemKey={`dashboard.totals.profit_and_loss_last_day`}
               icon={
                 profitLossDay.value >= 0 ? (
@@ -126,6 +131,7 @@ const Dashboard = () => {
             />
             <SummaryCard
               currency={currency}
+              hideHoldings={hideHoldings}
               itemKey={`dashboard.totals.profit_and_loss_last_week`}
               icon={
                 profitLossWeek.value >= 0 ? (
@@ -139,6 +145,7 @@ const Dashboard = () => {
             />
             <SummaryCard
               currency={currency}
+              hideHoldings={hideHoldings}
               itemKey={`dashboard.totals.profit_and_loss_last_month`}
               icon={
                 profitLossMonth.value >= 0 ? (
@@ -158,6 +165,7 @@ const Dashboard = () => {
                 <CarouselItem>
                   <SummaryCard
                     currency={currency}
+                    hideHoldings={hideHoldings}
                     itemKey={`dashboard.totals.total`}
                     icon={<Banknote color="var(--accent)" />}
                     value={totals.total}
@@ -166,6 +174,7 @@ const Dashboard = () => {
                 <CarouselItem>
                   <SummaryCard
                     currency={currency}
+                    hideHoldings={hideHoldings}
                     itemKey={`dashboard.totals.profit_and_loss_last_day`}
                     icon={
                       profitLossDay.value >= 0 ? (
@@ -181,6 +190,7 @@ const Dashboard = () => {
                 <CarouselItem>
                   <SummaryCard
                     currency={currency}
+                    hideHoldings={hideHoldings}
                     itemKey={`dashboard.totals.profit_and_loss_last_week`}
                     icon={
                       profitLossWeek.value >= 0 ? (
@@ -196,6 +206,7 @@ const Dashboard = () => {
                 <CarouselItem>
                   <SummaryCard
                     currency={currency}
+                    hideHoldings={hideHoldings}
                     itemKey={`dashboard.totals.profit_and_loss_last_month`}
                     icon={
                       profitLossMonth.value >= 0 ? (
@@ -261,6 +272,7 @@ const Dashboard = () => {
                     price={asset.price}
                     value={asset.value}
                     currency={currency}
+                    hideHoldings={hideHoldings}
                     percentage={asset.percentage}
                     category={asset.category}
                     setIsManageAssetModalOpen={setIsManageAssetModalOpen}
