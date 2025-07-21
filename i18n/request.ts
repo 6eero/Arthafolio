@@ -5,8 +5,13 @@ export default getRequestConfig(async () => {
   // read from `cookies()`, `headers()`, etc.
   const locale = "en";
 
+  const messages = {
+    ...(await import(`@/messages/${locale}/common.json`)).default,
+    ...(await import(`@/messages/${locale}/errors.json`)).default,
+  };
+
   return {
     locale,
-    messages: (await import(`@//messages/${locale}.json`)).default,
+    messages,
   };
 });

@@ -44,7 +44,7 @@ const Linee = ({ data }: { data: Asset[] }) => {
   };
 
   return (
-    <div className="w-full xl:h-[450px]  bg-card text-card-foreground rounded-xl border sm:p-6 p-4 shadow-sm xl:w-5/8 flex flex-col">
+    <div className="w-full xl:h-[450px] bg-card text-card-foreground rounded-xl border sm:p-6 p-4 shadow-sm xl:w-5/8 flex flex-col">
       <div className="flex justify-between items-start">
         <div>
           <p className="leading-none font-semibold pb-2">{t("title")}</p>

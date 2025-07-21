@@ -1,7 +1,17 @@
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 import * as R from "ramda";
 
-const Alert = ({ error, className }: { error: any; className: string }) => {
+const Alert = ({ error, className }: { error: any; className?: string }) => {
+  const t = useTranslations("");
+  const error_message = R.pathOr("Errore generico", [
+    "response",
+    "data",
+    "message",
+  ])(error);
+
+  console.log(error_message);
+
   return (
     <div
       className={cn(
@@ -9,7 +19,7 @@ const Alert = ({ error, className }: { error: any; className: string }) => {
         className
       )}
     >
-      {R.pathOr("Errore generico", ["response", "data", "message"])(error)}
+      {`❌ ${t(error_message)}`}
     </div>
   );
 };
