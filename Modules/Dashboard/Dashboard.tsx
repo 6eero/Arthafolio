@@ -57,7 +57,8 @@ const Dashboard = () => {
       setClickedAsset({ label: asset.label, quantity: asset.quantity });
       setIsDangerModalOpen(true);
     },
-    currency
+    currency,
+    hideHoldings
   );
 
   console.log("hideHoldings", hideHoldings);
