@@ -10,8 +10,6 @@ const Alert = ({ error, className }: { error: any; className?: string }) => {
     "message",
   ])(error);
 
-  console.log(error_message);
-
   return (
     <div
       className={cn(

@@ -61,8 +61,6 @@ const Dashboard = () => {
     hideHoldings
   );
 
-  console.log("hideHoldings", hideHoldings);
-
   const totals = R.pathOr<Totals>({ total: 0 }, ["data", "totals"])(context);
 
   const profitLossDay = R.pathOr({ value: 0, percent: 0 }, [

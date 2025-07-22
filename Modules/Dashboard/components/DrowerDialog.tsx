@@ -44,12 +44,6 @@ const DrawerDialog = ({
   const isMobile = useIsMobile();
   const t = useTranslations("");
 
-  console.log({
-    cryptoLabels,
-    assetsLabel,
-    dif: R.difference(cryptoLabels, assetsLabel),
-  });
-
   const availableCryptoLabels = R.difference(cryptoLabels, assetsLabel);
 
   if (isMobile === undefined) return null;
