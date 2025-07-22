@@ -6,6 +6,7 @@ import {
   ChevronUp,
   User2,
   LogOut,
+  Sparkles,
 } from "lucide-react";
 
 import {
@@ -38,7 +39,7 @@ import { usePathname } from "next/navigation";
 // Menu items.
 const items = [
   { titleKey: "dashboard", url: "/dashboard", icon: LayoutDashboard },
-
+  { titleKey: "ai-tools", url: "/ai-tools", icon: Sparkles },
   { titleKey: "settings", url: "/settings", icon: Settings2 },
 ];
 
