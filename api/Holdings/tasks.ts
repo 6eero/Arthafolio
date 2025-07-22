@@ -3,34 +3,34 @@ import * as APIDashboard from "./endpoints";
 import actions from "@/Modules/Dashboard/actions";
 import { TimeframeKey } from "@/Utils/types/timeframes";
 
-export const useDashboardSearchActions = () => {
+export const useDashboardActions = () => {
   const dispatch = useDashboardDispatchContext();
 
   return {
     // Triggered when the /dashboard page loads and on the press of one of the toggle item in the line chart.
     onLoad: async () => {
-      dispatch(actions.search.load({}));
+      dispatch(actions.load({}));
 
       const timeframe = "D";
 
       try {
         const { data } = await APIDashboard.searchDashboard(timeframe);
 
-        dispatch(actions.search.loadSuccess({ data }));
+        dispatch(actions.loadSuccess({ data }));
       } catch (error) {
-        dispatch(actions.search.loadFail({ error }));
+        dispatch(actions.loadFail({ error }));
       }
     },
 
     onChangeTimeframe: async (timeframe: TimeframeKey = "D") => {
-      dispatch(actions.search.changeTimeframe({ timeframe }));
+      dispatch(actions.changeTimeframe({ timeframe }));
 
       try {
         const { data } = await APIDashboard.searchDashboard(timeframe);
 
-        dispatch(actions.search.changeTimeframeSuccess({ data }));
+        dispatch(actions.changeTimeframeSuccess({ data }));
       } catch (error) {
-        dispatch(actions.search.changeTimeframeFail({ error }));
+        dispatch(actions.changeTimeframeFail({ error }));
       }
     },
 
@@ -41,7 +41,7 @@ export const useDashboardSearchActions = () => {
       label: string;
       quantity: number;
     }) => {
-      dispatch(actions.search.addHolding({}));
+      dispatch(actions.addHolding({}));
 
       try {
         const { data } = await APIDashboard.addHolding({
@@ -49,9 +49,9 @@ export const useDashboardSearchActions = () => {
           quantity,
         });
 
-        dispatch(actions.search.addHoldingSuccess({ data }));
+        dispatch(actions.addHoldingSuccess({ data }));
       } catch (error) {
-        dispatch(actions.search.addHoldingFail({ error }));
+        dispatch(actions.addHoldingFail({ error }));
       }
     },
 
@@ -62,7 +62,7 @@ export const useDashboardSearchActions = () => {
       label: string;
       quantity: number;
     }) => {
-      dispatch(actions.search.editHolding({}));
+      dispatch(actions.editHolding({}));
 
       try {
         const { data } = await APIDashboard.editHolding({
@@ -70,21 +70,21 @@ export const useDashboardSearchActions = () => {
           quantity,
         });
 
-        dispatch(actions.search.editHoldingSuccess({ data }));
+        dispatch(actions.editHoldingSuccess({ data }));
       } catch (error) {
-        dispatch(actions.search.editHoldingFail({ error }));
+        dispatch(actions.editHoldingFail({ error }));
       }
     },
 
     onRemoveHolding: async (label: string) => {
-      dispatch(actions.search.removeHolding({}));
+      dispatch(actions.removeHolding({}));
 
       try {
         const { data } = await APIDashboard.removeHolding(label);
 
-        dispatch(actions.search.removeHoldingSuccess({ data }));
+        dispatch(actions.removeHoldingSuccess({ data }));
       } catch (error) {
-        dispatch(actions.search.removeHoldingFail({ error }));
+        dispatch(actions.removeHoldingFail({ error }));
       }
     },
   };

@@ -7,9 +7,7 @@ import {
 import * as R from "ramda";
 
 const PREFIX = "DASHBOARD";
-const PREFIX_SEARCH = "SEARCH";
 const types = [
-  "LOAD",
   "ADD_HOLDING",
   "REMOVE_HOLDING",
   "EDIT_HOLDING",
@@ -17,17 +15,13 @@ const types = [
 ];
 
 const actions: any = {
-  search: {
-    ...getStartUpActions(`${PREFIX}_${PREFIX_SEARCH}`),
-    ...getAsyncActions(`${PREFIX}_${PREFIX_SEARCH}`, types),
-  },
+  ...getStartUpActions(`${PREFIX}`),
+  ...getAsyncActions(`${PREFIX}`, types),
 };
 
 const actionsFunctions: any = {
-  search: {
-    ...getStartUpActionsFunctions(actions.search),
-    ...getAsyncActionsFunctions(actions.search, types),
-  },
+  ...getStartUpActionsFunctions(actions),
+  ...getAsyncActionsFunctions(actions, types),
 };
 
 const aa = R.mergeDeepLeft(actions, actionsFunctions);

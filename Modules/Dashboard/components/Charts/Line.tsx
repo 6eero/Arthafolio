@@ -17,9 +17,9 @@ import { Asset } from "@/app/types/dashboard";
 import { useTranslations } from "next-intl";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { useDashboardSearchActions } from "@/api/Holdings/tasks";
+import { useDashboardActions } from "@/api/Holdings/tasks";
 import { TimeframeKey } from "@/Utils/types/timeframes";
-import { useDashboardSearchContext } from "@/Context/Dashboard";
+import { useDashboardContext } from "@/Context/Dashboard";
 import * as R from "ramda";
 
 const Linee = ({
@@ -31,8 +31,8 @@ const Linee = ({
 }) => {
   const t = useTranslations("dashboard.charts.linechart");
   const isMobile = useIsMobile();
-  const { onChangeTimeframe } = useDashboardSearchActions();
-  const context = useDashboardSearchContext();
+  const { onChangeTimeframe } = useDashboardActions();
+  const context = useDashboardContext();
 
   const timeframe = R.propOr("", "timeframe")(context) as string;
   //const componentLoading = R.propOr("", "componentLoading")(context) as string;

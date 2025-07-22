@@ -33,10 +33,7 @@ export const useAIDispatchContext = () => {
 export const AIContextProvider = ({ children }: BaseProvider) => {
   const [state, dispatch] = useReducer(reducer, {
     ...initState,
-    search: {
-      ...initState,
-      data: [],
-    },
+    data: [],
   });
 
   return (

@@ -4,23 +4,17 @@ import reducer from "@/Modules/Dashboard/reducer";
 import { BaseProvider, DashboardAction, DashboardState } from "./Contexts";
 
 const initState: DashboardState = {
-  search: {
-    loading: true,
-    error: false,
-    errorModal: false,
-    data: [],
-    timeframe: "D",
-  },
+  loading: true,
+  error: false,
+  data: [],
+  timeframe: "D",
 };
 
 export const DashboardDispatchContext =
   createContext<Dispatch<DashboardAction> | null>(null);
-export const DashboardSearchContext = createContext<
-  DashboardState["search"] | null
->(null);
+export const DashboardContext = createContext<DashboardState | null>(null);
 
-export const useDashboardSearchContext = () =>
-  useContext(DashboardSearchContext);
+export const useDashboardContext = () => useContext(DashboardContext);
 
 export const useDashboardDispatchContext = () => {
   const context = useContext(DashboardDispatchContext);
@@ -35,17 +29,14 @@ export const useDashboardDispatchContext = () => {
 export const DashboardContextProvider = ({ children }: BaseProvider) => {
   const [state, dispatch] = useReducer(reducer, {
     ...initState,
-    search: {
-      ...initState.search,
-      data: [],
-    },
+    data: [],
   });
 
   return (
-    <DashboardSearchContext.Provider value={{ ...state.search }}>
+    <DashboardContext.Provider value={{ ...state }}>
       <DashboardDispatchContext.Provider value={dispatch}>
         {children}
       </DashboardDispatchContext.Provider>
-    </DashboardSearchContext.Provider>
+    </DashboardContext.Provider>
   );
 };

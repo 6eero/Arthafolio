@@ -26,7 +26,7 @@ import FormikInput from "../../../components/formik/Input";
 import SelectWithSearch from "../../../components/formik/SelectWithSearch";
 import { cryptoLabels } from "@/lib/crypto";
 import * as R from "ramda";
-import { useDashboardSearchActions } from "@/api/Holdings/tasks";
+import { useDashboardActions } from "@/api/Holdings/tasks";
 
 const DrawerDialog = ({
   open,
@@ -132,7 +132,7 @@ const ProfileForm = ({
 }) => {
   const t = useTranslations("");
   const { onAddHolding, onRemoveHolding, onEditHolding } =
-    useDashboardSearchActions();
+    useDashboardActions();
 
   const handleRemove = () => {
     onRemoveHolding(initialValues.label);

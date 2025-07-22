@@ -1,12 +1,12 @@
 "use client";
 
 import { AIContext, useAIContext } from "@/Context/AI";
-import { useAISearchActions } from "@/api/AI/tasks";
+import { useAIActions } from "@/api/AI/tasks";
 import { ResourceLoader } from "@/components/layout/ResourceLoader";
 
 const AI = () => {
   const { loading } = useAIContext();
-  const { onLoad } = useAISearchActions();
+  const { onLoad } = useAIActions();
 
   return (
     <ResourceLoader onLoad={onLoad} context={AIContext}>

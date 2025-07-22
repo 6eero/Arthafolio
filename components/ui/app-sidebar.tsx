@@ -1,4 +1,5 @@
 "use client";
+
 import {
   LayoutDashboard,
   Settings2,
@@ -39,7 +40,7 @@ import { usePathname } from "next/navigation";
 // Menu items.
 const items = [
   { titleKey: "dashboard", url: "/dashboard", icon: LayoutDashboard },
-  { titleKey: "ai-tools", url: "/ai-tools", icon: Sparkles },
+  { titleKey: "ai-tools", url: "/ai", icon: Sparkles },
   { titleKey: "settings", url: "/settings", icon: Settings2 },
 ];
 

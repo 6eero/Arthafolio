@@ -4,54 +4,50 @@ import { produce } from "immer";
 const reducer = produce(
   (state: any, action: { type: string; payload?: any }) => {
     switch (action.type) {
-      case actions.search.ROUTE: {
+      case actions.ROUTE: {
         return;
       }
 
-      case actions.search.LOAD:
-      case actions.search.ADD_HOLDING:
-      case actions.search.EDIT_HOLDING:
-      case actions.search.REMOVE_HOLDING: {
-        state.search.loading = true;
-        state.search.error = false;
-        state.search.errorModal = false;
-        state.search.timeframe = "D";
+      case actions.LOAD:
+      case actions.ADD_HOLDING:
+      case actions.EDIT_HOLDING:
+      case actions.REMOVE_HOLDING: {
+        state.loading = true;
+        state.error = false;
+        state.timeframe = "D";
         return;
       }
 
-      case actions.search.CHANGE_TIMEFRAME: {
-        state.search.loading = false;
-        state.search.componentLoading = true;
-        state.search.error = false;
-        state.search.errorModal = false;
-        state.search.timeframe = action.payload?.timeframe ?? "D";
+      case actions.CHANGE_TIMEFRAME: {
+        state.loading = false;
+        state.componentLoading = true;
+        state.error = false;
+        state.timeframe = action.payload?.timeframe ?? "D";
         return;
       }
 
-      case actions.search.LOAD_SUCCESS:
-      case actions.search.ADD_HOLDING_SUCCESS:
-      case actions.search.EDIT_HOLDING_SUCCESS:
-      case actions.search.REMOVE_HOLDING_SUCCESS:
-      case actions.search.CHANGE_TIMEFRAME_SUCCESS: {
+      case actions.LOAD_SUCCESS:
+      case actions.ADD_HOLDING_SUCCESS:
+      case actions.EDIT_HOLDING_SUCCESS:
+      case actions.REMOVE_HOLDING_SUCCESS:
+      case actions.CHANGE_TIMEFRAME_SUCCESS: {
         const { data } = action.payload;
-        state.search.loading = false;
-        state.search.componentLoading = false;
-        state.search.data = data;
-        state.search.error = false;
-        state.search.errorModal = false;
+        state.loading = false;
+        state.componentLoading = false;
+        state.data = data;
+        state.error = false;
         return;
       }
 
-      case actions.search.LOAD_FAIL:
-      case actions.search.ADD_HOLDING_FAIL:
-      case actions.search.EDIT_HOLDING_FAIL:
-      case actions.search.REMOVE_HOLDING_FAIL:
-      case actions.search.CHANGE_TIMEFRAME_FAIL: {
+      case actions.LOAD_FAIL:
+      case actions.ADD_HOLDING_FAIL:
+      case actions.EDIT_HOLDING_FAIL:
+      case actions.REMOVE_HOLDING_FAIL:
+      case actions.CHANGE_TIMEFRAME_FAIL: {
         const { error } = action.payload;
-        state.search.loading = false;
-        state.search.componentLoading = false;
-        state.search.error = error;
-        state.search.errorModal = false;
+        state.loading = false;
+        state.componentLoading = false;
+        state.error = error;
         return;
       }
 

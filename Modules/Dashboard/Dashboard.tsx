@@ -1,11 +1,8 @@
 "use client";
 
-import {
-  DashboardSearchContext,
-  useDashboardSearchContext,
-} from "@/Context/Dashboard";
+import { DashboardContext, useDashboardContext } from "@/Context/Dashboard";
 import { ResourceLoader } from "@/components/layout/ResourceLoader";
-import { useDashboardSearchActions } from "@/api/Holdings/tasks";
+import { useDashboardActions } from "@/api/Holdings/tasks";
 import * as R from "ramda";
 import Header from "@/components/layout/Header";
 import SummaryCard from "./components/SummaryCard";
@@ -32,9 +29,9 @@ import DangerModal from "@/components/modals/DangerModal";
 import { useGlobalContext } from "@/Context/Global";
 
 const Dashboard = () => {
-  const context = useDashboardSearchContext();
+  const context = useDashboardContext();
   const userContext = useGlobalContext();
-  const { onLoad, onRemoveHolding } = useDashboardSearchActions();
+  const { onLoad, onRemoveHolding } = useDashboardActions();
   const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
   const t = useTranslations("");
   const [isManageAssetModalOpen, setIsManageAssetModalOpen] = useState(false);
@@ -86,7 +83,7 @@ const Dashboard = () => {
   const assets = R.pathOr<Asset[]>([], ["data", "assets"])(context);
 
   return (
-    <ResourceLoader onLoad={onLoad} context={DashboardSearchContext}>
+    <ResourceLoader onLoad={onLoad} context={DashboardContext}>
       <DrawerDialog
         open={isManageAssetModalOpen}
         setOpen={setIsManageAssetModalOpen}

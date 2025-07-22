@@ -1,8 +1,8 @@
 import { useAIDispatchContext } from "@/Context/AI";
-import * as APIAI from "./endpoints";
+//import * as APIAI from "./endpoints";
 import actions from "@/Modules/AI/actions";
 
-export const useAISearchActions = () => {
+export const useAIActions = () => {
   const dispatch = useAIDispatchContext();
 
   return {

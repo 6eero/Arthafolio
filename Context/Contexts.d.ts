@@ -20,13 +20,10 @@ type DashboardAction = {
 };
 
 type DashboardState = {
-  search: {
-    loading: boolean;
-    error: boolean;
-    errorModal: boolean;
-    data: any[];
-    timeframe: TimeframeKey;
-  };
+  loading: boolean;
+  error: boolean;
+  data: any[];
+  timeframe: TimeframeKey;
 };
 
 type AIAction = {
