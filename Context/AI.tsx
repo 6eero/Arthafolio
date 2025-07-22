@@ -6,14 +6,19 @@ import { BaseProvider, AIAction, AIState } from "./Contexts";
 const initState: AIState = {
   loading: true,
   error: false,
-  errorModal: false,
   data: [],
 };
 
 export const AIDispatchContext = createContext<Dispatch<AIAction> | null>(null);
-export const AISearchContext = createContext<AIState["search"] | null>(null);
+export const AIContext = createContext<AIState | null>(null);
 
-export const useAISearchContext = () => useContext(AISearchContext);
+export const useAIContext = () => {
+  const context = useContext(AIContext);
+  if (!context) {
+    throw new Error("useAIContext must be used within AIContextProvider");
+  }
+  return context;
+};
 
 export const useAIDispatchContext = () => {
   const context = useContext(AIDispatchContext);
@@ -29,16 +34,16 @@ export const AIContextProvider = ({ children }: BaseProvider) => {
   const [state, dispatch] = useReducer(reducer, {
     ...initState,
     search: {
-      ...initState.search,
+      ...initState,
       data: [],
     },
   });
 
   return (
-    <AISearchContext.Provider value={{ ...state.search }}>
+    <AIContext.Provider value={{ ...state }}>
       <AIDispatchContext.Provider value={dispatch}>
         {children}
       </AIDispatchContext.Provider>
-    </AISearchContext.Provider>
+    </AIContext.Provider>
   );
 };

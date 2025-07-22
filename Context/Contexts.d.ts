@@ -37,6 +37,5 @@ type AIAction = {
 type AIState = {
   loading: boolean;
   error: boolean;
-  errorModal: boolean;
   data: any[];
 };

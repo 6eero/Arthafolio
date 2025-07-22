@@ -5,8 +5,6 @@ export const getStartUpActions = (
   prefix: string
 ): { [key: string]: string } => {
   return {
-    LOADING: `${prefix}_LOADING`,
-
     LOAD: `${prefix}_LOAD`,
     LOAD_SUCCESS: `${prefix}_LOAD_SUCCESS`,
     LOAD_FAIL: `${prefix}_LOAD_FAIL`,
@@ -30,10 +28,6 @@ export const getStartUpActionsFunctions = (
   actions: any
 ): { [key: string]: any } => {
   return {
-    loading: (payload?: any) => ({
-      type: actions.LOADING,
-      payload: payload ?? {},
-    }),
     load: (payload?: any) => ({
       type: actions.LOAD,
       payload: payload ?? {},
