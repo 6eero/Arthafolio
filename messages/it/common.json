@@ -92,7 +92,9 @@
       "message": "Questa operazione è definitiva e non può essere annullata."
     }
   },
-
+  "ai": {
+    "title": "Strumenti AI"
+  },
   "settings": {
     "title": "Impostazioni",
     "change_theme": "Tema dell'applicazione",

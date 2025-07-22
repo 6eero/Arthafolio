@@ -94,6 +94,9 @@
       "message": "This action is permanent and cannot be undone."
     }
   },
+  "ai": {
+    "title": "AI Tools"
+  },
   "settings": {
     "title": "Settings",
     "change_theme": "Application Theme",
