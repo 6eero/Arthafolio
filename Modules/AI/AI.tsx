@@ -21,10 +21,7 @@ const AI = () => {
   const rawMessage = R.pathOr("", ["data", "choices", 0, "message", "content"])(
     context
   );
-  const message = rawMessage
-    .replace(/^```(?:markdown|text)?\n/, "")
-    .replace(/```$/, "")
-    .replace(/([^\n])\n(?=[^\n])/g, "$1\n\n");
+  const message = rawMessage;
 
   console.log({ context, message });
 
@@ -39,7 +36,7 @@ const AI = () => {
         <Button onClick={handleClick}>
           Ottieni valutazione sul portafolgio
         </Button>
-        <div className="prose prose-lg max-w-none mt-4">
+        <div className="prose prose-lg max-w-none mt-4 dark:prose-invert">
           <ReactMarkdown>{message}</ReactMarkdown>
         </div>
       </div>
