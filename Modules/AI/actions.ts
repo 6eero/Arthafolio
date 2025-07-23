@@ -7,7 +7,7 @@ import {
 import * as R from "ramda";
 
 const PREFIX = "AI";
-const types = ["LOAD"];
+const types = ["SEND_TO_DEEPSEEK"];
 
 const actions: any = {
   ...getStartUpActions(`${PREFIX}`),
@@ -20,4 +20,6 @@ const actionsFunctions: any = {
 };
 
 const aa = R.mergeDeepLeft(actions, actionsFunctions);
+
+console.log(aa);
 export default aa;
