@@ -12,7 +12,7 @@ import ReactMarkdown from "react-markdown";
 
 const AI = () => {
   //const { data } = useAIContext();
-  const { onLoad, onSendToDeepSeek } = useAIActions();
+  const { onLoad, onGetPortfolioValutation } = useAIActions();
   const context = useAIContext();
   const t = useTranslations("");
 
@@ -26,7 +26,7 @@ const AI = () => {
   console.log({ context, message });
 
   const handleClick = () => {
-    onSendToDeepSeek({ message: "aaaaaa" });
+    onGetPortfolioValutation();
   };
 
   return (

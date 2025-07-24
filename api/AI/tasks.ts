@@ -15,10 +15,10 @@ export const useAIActions = () => {
         dispatch(actions.loadFail({ error }));
       }
     },
-    onSendToDeepSeek: async ({ message }: { message: string }) => {
+    onGetPortfolioValutation: async () => {
       dispatch(actions.sendToDeepseek({}));
       try {
-        const { data } = await APIAI.sendToDeepseek(message);
+        const { data } = await APIAI.getPortfolioValutation();
         dispatch(actions.sendToDeepseekSuccess({ data }));
       } catch (error) {
         dispatch(actions.sendToDeepseekFail({ error }));
