@@ -26,6 +26,18 @@ const reducer = produce(
         break;
       }
 
+      case actions.UPDATE_REASONING: {
+        state.loading = false;
+        state.reasoning += action.payload.fullText;
+        break;
+      }
+
+      case actions.UPDATE_CURRENT_MESSAGE: {
+        state.loading = false;
+        state.currentMessage += action.payload.fullText;
+        break;
+      }
+
       default: {
         console.error("Unknown action:", { action, actions });
       }

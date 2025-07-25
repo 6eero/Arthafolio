@@ -11,31 +11,34 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 
 const AI = () => {
-  //const { data } = useAIContext();
   const { onLoad, onGetPortfolioValutation } = useAIActions();
   const context = useAIContext();
   const t = useTranslations("");
 
-  console.log("context", context);
+  const message = R.propOr("", "currentMessage", context) as string;
+  const reasoning = R.propOr("", "reasoning", context) as string;
 
-  const rawMessage = R.pathOr("", ["data", "choices", 0, "message", "content"])(
-    context
-  );
-  const message = rawMessage;
-
-  console.log({ context, message });
+  console.log("🔵 Reasoning and message:", { reasoning, message });
 
   const handleClick = () => {
     onGetPortfolioValutation();
   };
 
   return (
-    <div className="m-4">
-      <Button onClick={handleClick}>Ottieni valutazione sul portafolgio</Button>
-      <div className="prose prose-lg max-w-none mt-4 dark:prose-invert">
-        {message}
+    <ResourceLoader onLoad={onLoad} context={AIContext}>
+      <Header title={t("ai.title")} />
+      <div className="m-4">
+        <Button onClick={handleClick}>
+          Ottieni valutazione sul portafolgio
+        </Button>
+        <div className="prose prose-lg max-w-none mt-4 dark:prose-invert">
+          <ReactMarkdown>{reasoning}</ReactMarkdown>
+        </div>
+        <div className="prose prose-lg max-w-none mt-4 dark:prose-invert">
+          <ReactMarkdown>{message}</ReactMarkdown>
+        </div>
       </div>
-    </div>
+    </ResourceLoader>
   );
 };
 

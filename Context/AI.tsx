@@ -7,6 +7,8 @@ const initState: AIState = {
   loading: true,
   error: false,
   data: [],
+  currentMessage: "",
+  reasoning: "",
 };
 
 export const AIDispatchContext = createContext<Dispatch<AIAction> | null>(null);

@@ -16,16 +16,26 @@ export const useAIActions = () => {
       }
     },
     onGetPortfolioValutation: async () => {
-      let fullText = "";
+      dispatch(actions.sendToDeepseek({}));
 
-      await APIAI.getPortfolioValutation((chunk) => {
-        fullText += chunk;
-        console.log("➡️ fullText:", fullText);
-      });
-
-      dispatch(actions.sendToDeepseekSuccess({ fullText }));
-
-      console.log("✅ Messaggio AI completo:", fullText);
+      try {
+        await APIAI.getPortfolioValutation(
+          (reasoningChunk) => {
+            dispatch({
+              type: actions.UPDATE_REASONING,
+              payload: { fullText: reasoningChunk },
+            });
+          },
+          (textChunk) => {
+            dispatch({
+              type: actions.UPDATE_CURRENT_MESSAGE,
+              payload: { fullText: textChunk },
+            });
+          }
+        );
+      } catch (error) {
+        dispatch(actions.sendToDeepseekFail({ error }));
+      }
     },
   };
 };

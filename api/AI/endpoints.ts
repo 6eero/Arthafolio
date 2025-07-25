@@ -1,7 +1,8 @@
 import Cookies from "js-cookie";
 
 export const getPortfolioValutation = async (
-  onChunk: (chunk: string) => void
+  onReasoning: (reasoning: string) => void,
+  onText: (text: string) => void
 ) => {
   const accessToken = Cookies.get("access_token");
 
@@ -20,7 +21,6 @@ export const getPortfolioValutation = async (
   const decoder = new TextDecoder("utf-8");
 
   let buffer = "";
-  let fullMessage = "";
 
   while (true) {
     const { done, value } = await reader.read();
@@ -32,27 +32,25 @@ export const getPortfolioValutation = async (
     const lines = buffer.split("\n");
 
     for (const line of lines) {
-      if (line.startsWith("data: ")) {
-        const content = line.replace("data: ", "").trim();
+      if (!line.startsWith("data: ")) continue;
 
-        if (content && content !== "[DONE]") {
-          try {
-            const json = JSON.parse(content);
-            const delta = json.choices?.[0]?.delta?.content;
+      const jsonStr = line.replace("data: ", "").trim();
+      if (!jsonStr || jsonStr === "[DONE]") continue;
 
-            if (delta) {
-              fullMessage += delta;
-              onChunk(delta); // opzionale: mostra live
-            }
-          } catch (err) {
-            console.warn("[STREAM] Errore parsing JSON:", err);
-          }
+      try {
+        const json = JSON.parse(jsonStr);
+        const { type, message } = json;
+
+        if (type === "REASONING") {
+          onReasoning(message);
+        } else if (type === "TEXT") {
+          onText(message);
         }
+      } catch (err) {
+        console.warn("[STREAM] Errore parsing JSON:", err);
       }
     }
 
-    buffer = lines[lines.length - 1];
+    buffer = lines[lines.length - 1]; // keep incomplete line
   }
-
-  console.log("✅ Messaggio AI completo:", fullMessage);
 };

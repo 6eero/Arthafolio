@@ -35,4 +35,6 @@ type AIState = {
   loading: boolean;
   error: boolean;
   data: any[];
+  currentMessage: string;
+  reasoning: string;
 };
