@@ -30,17 +30,12 @@ const AI = () => {
   };
 
   return (
-    <ResourceLoader onLoad={onLoad} context={AIContext}>
-      <Header title={t("ai.title")} />
-      <div className="m-4">
-        <Button onClick={handleClick}>
-          Ottieni valutazione sul portafolgio
-        </Button>
-        <div className="prose prose-lg max-w-none mt-4 dark:prose-invert">
-          <ReactMarkdown>{message}</ReactMarkdown>
-        </div>
+    <div className="m-4">
+      <Button onClick={handleClick}>Ottieni valutazione sul portafolgio</Button>
+      <div className="prose prose-lg max-w-none mt-4 dark:prose-invert">
+        {message}
       </div>
-    </ResourceLoader>
+    </div>
   );
 };
 
