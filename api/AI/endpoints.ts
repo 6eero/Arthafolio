@@ -6,7 +6,12 @@ export const getPortfolioValutation = async (
 ) => {
   const accessToken = Cookies.get("access_token");
 
-  const response = await fetch("http://localhost:3001/api/ai/chat", {
+  const basePath =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3001"
+      : "https://arthafolio-be.onrender.com";
+
+  const response = await fetch(`${basePath}/api/ai/chat`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${accessToken}`,
