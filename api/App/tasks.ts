@@ -1,10 +1,10 @@
 import { useGlobalDispatchContext } from "@/Context/Global";
 import actions from "@/Modules/App/actions";
-import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import * as APIGlobal from "./endpoint";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
+import { clearTokens, setTokens } from "@/Utils/tokens";
 
 export const useAppActions = () => {
   const dispatch = useGlobalDispatchContext();
@@ -20,8 +20,7 @@ export const useAppActions = () => {
         const { data } = await APIGlobal.login(values);
         const { access_token, user, refresh_token } = data;
 
-        Cookies.set("access_token", access_token);
-        Cookies.set("refresh_token", refresh_token);
+        setTokens(access_token, refresh_token);
 
         router.push("/dashboard");
 
@@ -47,10 +46,7 @@ export const useAppActions = () => {
         dispatch(actions.logout({}));
         await APIGlobal.logout();
 
-        Cookies.remove("access_token");
-        Cookies.remove("refresh_token");
-
-        router.push("/login");
+        clearTokens();
 
         dispatch(actions.logoutSuccess({}));
       } catch (error) {

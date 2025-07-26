@@ -6,7 +6,8 @@ export const getPortfolioValutation = async (
   onText: (text: string) => void,
   onError?: () => void
 ) => {
-  const accessToken = Cookies.get("access_token");
+  const accessToken =
+    Cookies.get("access_token") || localStorage.getItem("access_token");
   const basePath =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3001"
