@@ -6,7 +6,7 @@ import { useDashboardActions } from "@/api/Holdings/tasks";
 import * as R from "ramda";
 import Header from "@/components/layout/Header";
 import SummaryCard from "./components/SummaryCard";
-import { Banknote, TrendingUp, TrendingDown } from "lucide-react";
+import { Banknote, TrendingUp, TrendingDown, Sparkles } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -287,6 +287,7 @@ const Dashboard = () => {
                 {t("dashboard.add_investment")}
               </Button>
               <Button
+                icon={<Sparkles />}
                 variant={"outline"}
                 onClick={() => setIsSideSheetOpen(true)}
                 className="xl:hidden w-full mt-3"
