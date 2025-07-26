@@ -18,7 +18,7 @@ const AI = () => {
   const message = R.propOr("", "currentMessage", context) as string;
   const reasoning = R.propOr("", "reasoning", context) as string;
 
-  console.log("🔵 Reasoning and message:", { reasoning, message });
+  console.log(message);
 
   const handleClick = () => {
     onGetPortfolioValutation();

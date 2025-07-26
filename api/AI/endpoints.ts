@@ -1,49 +1,32 @@
 import Cookies from "js-cookie";
+import { fetchEventSource } from "@microsoft/fetch-event-source";
 
 export const getPortfolioValutation = async (
   onReasoning: (reasoning: string) => void,
   onText: (text: string) => void
 ) => {
   const accessToken = Cookies.get("access_token");
-
   const basePath =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3001"
       : "https://arthafolio-be.onrender.com";
 
-  const response = await fetch(`${basePath}/api/ai/chat`, {
+  await fetchEventSource(`${basePath}/api/ai/chat`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${accessToken}`,
+      Accept: "text/event-stream",
     },
-  });
 
-  if (!response.body) {
-    throw new Error("No stream available");
-  }
-
-  const reader = response.body.getReader();
-  const decoder = new TextDecoder("utf-8");
-
-  let buffer = "";
-
-  while (true) {
-    const { done, value } = await reader.read();
-    if (done) break;
-
-    const chunkText = decoder.decode(value, { stream: true });
-    buffer += chunkText;
-
-    const lines = buffer.split("\n");
-
-    for (const line of lines) {
-      if (!line.startsWith("data: ")) continue;
-
-      const jsonStr = line.replace("data: ", "").trim();
-      if (!jsonStr || jsonStr === "[DONE]") continue;
+    // La funzione onmessage viene chiamata per ogni evento "data:"
+    onmessage(event) {
+      if (event.event === "close" || event.data === "[DONE]") {
+        // Puoi gestire qui la fine dello stream se il backend la segnala
+        return;
+      }
 
       try {
-        const json = JSON.parse(jsonStr);
+        const json = JSON.parse(event.data);
         const { type, message } = json;
 
         if (type === "REASONING") {
@@ -54,8 +37,13 @@ export const getPortfolioValutation = async (
       } catch (err) {
         console.warn("[STREAM] Errore parsing JSON:", err);
       }
-    }
+    },
 
-    buffer = lines[lines.length - 1]; // keep incomplete line
-  }
+    // Gestione degli errori di connessione
+    onerror(err) {
+      console.error("[STREAM] Errore di connessione:", err);
+      // Devi lanciare l'errore per farlo propagare e catturare nel tuo `catch`
+      throw err;
+    },
+  });
 };
