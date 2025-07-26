@@ -42,6 +42,7 @@
   "dashboard": {
     "title": "Holdings",
     "add_investment": "Add investment",
+    "analize_portfolio": "Analize portfolio",
     "totals": {
       "total": "Total",
       "profit_and_loss_last_day": "Profit/Loss last day",

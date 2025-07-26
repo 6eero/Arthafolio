@@ -26,6 +26,7 @@ import AssetItem from "./components/AssetItem";
 import Button from "@/components/custom/Button";
 import DrawerDialog from "@/Modules/Dashboard/components/DrowerDialog";
 import DangerModal from "@/components/modals/DangerModal";
+import AISheet from "@/Modules/Dashboard/components/AISheet";
 import { useGlobalContext } from "@/Context/Global";
 
 const Dashboard = () => {
@@ -91,6 +92,7 @@ const Dashboard = () => {
         initialValues={clickedAsset}
         assetsLabel={R.pluck("label", assets)}
       />
+      <AISheet />
       <DangerModal
         title={"dashboard.confirm_delete_asset_modal.title"}
         message={"dashboard.confirm_delete_asset_modal.message"}
@@ -282,6 +284,13 @@ const Dashboard = () => {
                 className="xl:hidden w-full mt-4"
               >
                 {t("dashboard.add_investment")}
+              </Button>
+              <Button
+                variant={"outline"}
+                onClick={() => setIsManageAssetModalOpen(true)}
+                className="xl:hidden w-full mt-3"
+              >
+                {t("dashboard.analize_portfolio")}
               </Button>
             </Card>
           </Tabs>

@@ -41,6 +41,7 @@
   "dashboard": {
     "title": "Detenzioni",
     "add_investment": "Aggiungi investimento",
+    "analize_portfolio": "Analizza il portafoglio",
     "totals": {
       "total": "Totale",
       "profit_and_loss_last_day": "Profitto/Perdita ultimo giorno",
