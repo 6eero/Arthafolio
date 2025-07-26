@@ -33,7 +33,7 @@ const initState: AIState = {
 2. **Add stablecoins** (USDC, USDT) 
 - Allocate 5-10% for stability buffer
 3. **Increase BTC/ETH weighting** 
-- These provide the strongest risk-adjusted returns`,
+- These provide the strongest risk-adjusted return`,
   reasoning: "",
 };
 
