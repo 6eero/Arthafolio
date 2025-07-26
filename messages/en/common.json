@@ -93,6 +93,9 @@
     "confirm_delete_asset_modal": {
       "title": "Are you sure you want to delete this asset?",
       "message": "This action is permanent and cannot be undone."
+    },
+    "ai_sheet": {
+      "title": "Portfolio Analysis Report"
     }
   },
   "ai": {

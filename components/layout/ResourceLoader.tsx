@@ -12,12 +12,14 @@ type ResourceLoaderProps = {
   onLoad?: () => void | Promise<void>;
   context?: React.Context<any>;
   children: React.ReactNode;
+  noWhoAmI?: boolean;
 };
 
 export const ResourceLoader = ({
   onLoad,
   children,
   context,
+  noWhoAmI,
 }: ResourceLoaderProps) => {
   const state = useContext(context || DummyContext);
   const { onWhoAmI } = useAppActions();
@@ -27,7 +29,10 @@ export const ResourceLoader = ({
     if (!R.isNil(onLoad)) {
       onLoad();
     }
-    onWhoAmI();
+    if (!noWhoAmI) {
+      onWhoAmI();
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

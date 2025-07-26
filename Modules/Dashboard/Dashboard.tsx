@@ -36,6 +36,7 @@ const Dashboard = () => {
   const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
   const t = useTranslations("");
   const [isManageAssetModalOpen, setIsManageAssetModalOpen] = useState(false);
+  const [isSideSheetOpen, setIsSideSheetOpen] = useState(false);
   const [isDangerModalOpen, setIsDangerModalOpen] = useState(false);
   const [clickedAsset, setClickedAsset] = useState({ label: "", quantity: 0 });
 
@@ -92,7 +93,7 @@ const Dashboard = () => {
         initialValues={clickedAsset}
         assetsLabel={R.pluck("label", assets)}
       />
-      <AISheet />
+      <AISheet open={isSideSheetOpen} setOpen={setIsSideSheetOpen} />
       <DangerModal
         title={"dashboard.confirm_delete_asset_modal.title"}
         message={"dashboard.confirm_delete_asset_modal.message"}
@@ -287,7 +288,7 @@ const Dashboard = () => {
               </Button>
               <Button
                 variant={"outline"}
-                onClick={() => setIsManageAssetModalOpen(true)}
+                onClick={() => setIsSideSheetOpen(true)}
                 className="xl:hidden w-full mt-3"
               >
                 {t("dashboard.analize_portfolio")}

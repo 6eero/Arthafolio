@@ -91,6 +91,9 @@
     "confirm_delete_asset_modal": {
       "title": "Sei sicuro di voler eliminare questo asset?",
       "message": "Questa operazione è definitiva e non può essere annullata."
+    },
+    "ai_sheet": {
+      "title": "Analisi del tuo Portafoglio"
     }
   },
   "ai": {

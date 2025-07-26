@@ -4,10 +4,36 @@ import reducer from "@/Modules/AI/reducer";
 import { BaseProvider, AIAction, AIState } from "./Contexts";
 
 const initState: AIState = {
-  loading: true,
+  loading: false,
   error: false,
   data: [],
-  currentMessage: "",
+  currentMessage: `## Portfolio Analysis
+  
+**Overall Assessment**: Moderate portfolio with significant concentration risks
+
+ ### Strengths✅
+ - **Strong core holdings**: Excellent exposure to Bitcoin (27%) and Ethereum (16%) the two most established cryptocurrencies
+ - **High liquidity**: All held assets are highly liquid and easily tradable on major exchanges
+ - **Multi-ecosystem exposure**: Covers Ethereum (ETH), Binance (BNB), and independent chains (DOGE)
+
+### Major Concerns⚠️
+1. Extreme DOGE Concentration (54%) 
+- DOGE represents over half your portfolio despite being a memecoin with limited fundamentals
+- This creates massive volatility risk and speculative exposure- While DOGE has shown remarkable performance, it lacks the institutional backing and use cases of blue-chip crypto**
+2. Missing Stablecoins
+- No stablecoin allocation for downside protection and portfolio stability
+- Lack of capital preservation mechanism during market downturns
+3. Limited Diversification**
+- Over-reliance on meme/retail-driven assets (DOGE dominance)
+- Missing key sectors: DeFi, Layer2s, Infrastructure tokens
+
+### Recommendations📋
+1. **Reduce DOGE exposure** 
+- Consider reallocating 30-40% to more fundamental assets
+2. **Add stablecoins** (USDC, USDT) 
+- Allocate 5-10% for stability buffer
+3. **Increase BTC/ETH weighting** 
+- These provide the strongest risk-adjusted returns`,
   reasoning: "",
 };
 

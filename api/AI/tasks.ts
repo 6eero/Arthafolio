@@ -1,25 +1,22 @@
-import { useAIDispatchContext } from "@/Context/AI";
+import { useAIContext, useAIDispatchContext } from "@/Context/AI";
 import * as APIAI from "./endpoints";
 import actions from "@/Modules/AI/actions";
 
 export const useAIActions = () => {
   const dispatch = useAIDispatchContext();
+  const context = useAIContext();
 
   return {
-    // Triggered when the /ai page loads
     onLoad: async () => {
-      dispatch(actions.load({}));
-      try {
-        dispatch(actions.loadSuccess({}));
-      } catch (error) {
-        dispatch(actions.loadFail({ error }));
-      }
-    },
-    onGetPortfolioValutation: async () => {
+      const hasData =
+        context.reasoning?.length > 0 || context.currentMessage?.length > 0;
+
+      if (hasData) return;
+
       dispatch(actions.sendToDeepseek({}));
 
       try {
-        await APIAI.getPortfolioValutation(
+        const data = await APIAI.getPortfolioValutation(
           (reasoningChunk) => {
             dispatch({
               type: actions.UPDATE_REASONING,
@@ -31,10 +28,14 @@ export const useAIActions = () => {
               type: actions.UPDATE_CURRENT_MESSAGE,
               payload: { fullText: textChunk },
             });
+          },
+          () => {
+            dispatch(actions.sendToDeepseekFail({ error: true }));
           }
         );
+        dispatch(actions.sendToDeepseekSuccess({ data }));
       } catch (error) {
-        dispatch(actions.sendToDeepseekFail({ error }));
+        dispatch(actions.sendToDeepseekFail({ error: error }));
       }
     },
   };

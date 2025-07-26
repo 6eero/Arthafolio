@@ -3,7 +3,8 @@ import { fetchEventSource } from "@microsoft/fetch-event-source";
 
 export const getPortfolioValutation = async (
   onReasoning: (reasoning: string) => void,
-  onText: (text: string) => void
+  onText: (text: string) => void,
+  onError?: () => void
 ) => {
   const accessToken = Cookies.get("access_token");
   const basePath =
@@ -33,17 +34,20 @@ export const getPortfolioValutation = async (
           onReasoning(message);
         } else if (type === "TEXT") {
           onText(message);
+        } else if (type === "ERROR") {
+          console.warn("[STREAM] Errore ricevuto:", message);
+          if (onError) onError(); // ✅ chiamiamo callback per gestione errori
         }
       } catch (err) {
         console.warn("[STREAM] Errore parsing JSON:", err);
+        if (onError) onError();
       }
     },
 
     // Gestione degli errori di connessione
     onerror(err) {
       console.error("[STREAM] Errore di connessione:", err);
-      // Devi lanciare l'errore per farlo propagare e catturare nel tuo `catch`
-      throw err;
+      if (onError) onError();
     },
   });
 };

@@ -1,23 +1,33 @@
+import AI from "@/Modules/AI/AI";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { useTranslations } from "next-intl";
 import React from "react";
 
-const AISheet = () => {
+const AISheet = ({
+  open,
+  setOpen,
+}: {
+  open: boolean;
+  setOpen: (value: boolean) => void;
+}) => {
+  const t = useTranslations("");
   return (
-    <Sheet open={true}>
-      <SheetContent side="right">
-        <SheetHeader>
-          <SheetTitle>Are you absolutely sure?</SheetTitle>
-          <SheetDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </SheetDescription>
-        </SheetHeader>
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetContent side="right" className="!w-full sm:!w-3/4">
+        <VisuallyHidden>
+          <SheetHeader>
+            <SheetTitle>{t("dashboard.ai_sheet.title")}</SheetTitle>
+          </SheetHeader>
+        </VisuallyHidden>
+        <div className="h-full overflow-y-auto px-4 py-6">
+          <AI />
+        </div>
       </SheetContent>
     </Sheet>
   );
