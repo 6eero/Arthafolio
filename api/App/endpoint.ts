@@ -14,7 +14,6 @@ export const login = async ({
 }) => {
   const options = {
     body: { username_or_email, password },
-    apiName: "public",
   };
 
   const { data, headers } = await makeApiRequest("/api/login", "POST", options);
@@ -37,7 +36,6 @@ export const updatePreferences = async ({
 }) => {
   const options = {
     body: { preferred_currency, hide_holdings },
-    apiName: "public",
   };
   const { data, headers } = await makeApiRequest(
     "/api/user/update_preferences",

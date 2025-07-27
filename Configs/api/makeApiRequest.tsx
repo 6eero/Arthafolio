@@ -14,6 +14,11 @@ const notApplyInterceptorEndpoint = [
   "/api/users/create_new_password",
 ];
 
+const API_BASE_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3001"
+    : "https://arthafolio-be.onrender.com";
+
 // Utility to check if the access token is expired or about to expire
 const isTokenExpired = (token: any) => {
   if (!token) return true;
@@ -33,11 +38,10 @@ const refreshAccessToken = async () => {
   }
 
   try {
-    const response = await axios.post(
-      `http://${getBaseUrl("public")}/api/refresh`,
-      { refresh_token, access_token },
-      { withCredentials: true }
-    );
+    const response = await axios.post(`${API_BASE_URL}/api/refresh`, {
+      refresh_token,
+      access_token,
+    });
     const { access_token: newAccessToken, refresh_token: newRefreshToken } =
       response.data;
 
@@ -48,14 +52,6 @@ const refreshAccessToken = async () => {
     clearTokens();
     return Promise.reject(refreshError);
   }
-};
-
-const getBaseUrl = (apiName: string) => {
-  let basePath = "localhost:3001";
-
-  basePath += apiName === "public" ? "" : "/private";
-
-  return basePath;
 };
 
 export const api = axios.create({});
@@ -108,11 +104,6 @@ export const makeApiRequest = async (
     apiName?: string;
   }
 ) => {
-  const basePath =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3001"
-      : "https://arthafolio-be.onrender.com";
-
   const service = "execute-api"; // Adjust based on your service type
 
   let stringifiedQueryParams = "";
@@ -135,7 +126,7 @@ export const makeApiRequest = async (
 
   const opts = {
     service: service,
-    path: basePath + endpoint + stringifiedQueryParams,
+    path: API_BASE_URL + endpoint + stringifiedQueryParams,
     method: R.toUpper(method),
     params: options?.queryParams,
     headers: newHeaders,
@@ -145,7 +136,7 @@ export const makeApiRequest = async (
   } as any;
 
   return await api({
-    url: `${basePath}${endpoint}`,
+    url: `${API_BASE_URL}${endpoint}`,
     ...(opts as any),
   });
 };
