@@ -1,33 +1,19 @@
 import axios from "axios";
 import * as R from "ramda";
-import { jwtDecode } from "jwt-decode";
 import {
   clearTokens,
   getAccessToken,
   getRefreshToken,
+  isTokenExpired,
   setTokens,
 } from "@/Utils/tokens";
 
-const notApplyInterceptorEndpoint = [
-  "/login",
-  "/api/users/reset_password",
-  "/api/users/create_new_password",
-];
+const notApplyInterceptorEndpoint = ["/login"];
 
 const API_BASE_URL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3001"
     : "https://arthafolio-be.onrender.com";
-
-// Utility to check if the access token is expired or about to expire
-const isTokenExpired = (token: any) => {
-  if (!token) return true;
-
-  const decodedToken: any = jwtDecode(token);
-  const currentTime = Date.now() / 1000; // Get current time in seconds
-
-  return decodedToken.exp < currentTime;
-};
 
 const refreshAccessToken = async () => {
   const access_token = getAccessToken();
