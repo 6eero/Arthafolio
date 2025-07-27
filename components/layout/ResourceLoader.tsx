@@ -27,6 +27,7 @@ export const ResourceLoader = ({
 
   useEffect(() => {
     if (!R.isNil(onLoad)) {
+      console.log("useEffect");
       onLoad();
     }
     if (!noWhoAmI) {

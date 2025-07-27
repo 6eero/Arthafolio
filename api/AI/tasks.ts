@@ -8,6 +8,7 @@ export const useAIActions = () => {
 
   return {
     onLoad: async () => {
+      console.log("onLoad");
       const hasData =
         context.reasoning?.length > 0 || context.currentMessage?.length > 0;
 
