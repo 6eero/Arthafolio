@@ -38,6 +38,7 @@ const reducer = produce(
         if (fullText !== undefined) {
           state.currentMessage = fullText; // Override of the partial text with the full one
         }
+        break;
       }
 
       default: {
