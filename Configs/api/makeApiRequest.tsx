@@ -35,7 +35,8 @@ const refreshAccessToken = async () => {
   try {
     const response = await axios.post(
       `http://${getBaseUrl("public")}/api/refresh`,
-      { refresh_token, access_token }
+      { refresh_token, access_token },
+      { withCredentials: true }
     );
     const { access_token: newAccessToken, refresh_token: newRefreshToken } =
       response.data;
