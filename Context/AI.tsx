@@ -6,9 +6,7 @@ import { BaseProvider, AIAction, AIState } from "./Contexts";
 const initState: AIState = {
   loading: false,
   error: false,
-  data: [],
   currentMessage: "",
-  reasoning: "",
 };
 
 export const AIDispatchContext = createContext<Dispatch<AIAction> | null>(null);

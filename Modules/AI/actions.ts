@@ -7,42 +7,21 @@ import {
 import * as R from "ramda";
 
 const PREFIX = "AI";
-const types = ["SEND_TO_DEEPSEEK"];
-
-const customActions = {
-  UPDATE_CURRENT_MESSAGE: "AI_UPDATE_CURRENT_MESSAGE",
-  UPDATE_REASONING: "AI_UPDATE_REASONING",
-};
-
-const customActionFunctions = {
-  updateCurrentMessage: (payload: { fullText: string }) => ({
-    type: customActions.UPDATE_CURRENT_MESSAGE,
-    payload,
-  }),
-  updateReasoning: (payload: { fullText: string }) => ({
-    type: customActions.UPDATE_REASONING,
-    payload,
-  }),
-};
+//const types = [];
+const types_with_update = ["GET_PORTFOLIO_VALUATION"];
+const update = true;
 
 const actions: any = {
   ...getStartUpActions(`${PREFIX}`),
-  ...getAsyncActions(`${PREFIX}`, types),
+  ...getAsyncActions(`${PREFIX}`, types_with_update, update),
 };
 
 const actionsFunctions: any = {
   ...getStartUpActionsFunctions(actions),
-  ...getAsyncActionsFunctions(actions, types),
+  ...getAsyncActionsFunctions(actions, types_with_update, update),
 };
 
-const aa = R.mergeDeepLeft(
-  actions,
-  R.mergeDeepLeft(actionsFunctions, {
-    ...customActionFunctions,
-  })
-);
+const aa = R.mergeDeepLeft(actions, actionsFunctions);
 
-export default {
-  ...aa,
-  ...customActions,
-};
+console.log(aa);
+export default aa;

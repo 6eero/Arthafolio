@@ -11,19 +11,6 @@ export const getStartUpActions = (
   };
 };
 
-export const getAsyncActions = (prefix: string, actions: string[]) => {
-  return R.reduce(
-    (acc: any, action: string) => ({
-      ...acc,
-      [action]: `${prefix}_${action}`,
-      [`${action}_SUCCESS`]: `${prefix}_${action}_SUCCESS`,
-      [`${action}_FAIL`]: `${prefix}_${action}_FAIL`,
-    }),
-    {},
-    actions
-  );
-};
-
 export const getStartUpActionsFunctions = (
   actions: any
 ): { [key: string]: any } => {
@@ -43,13 +30,33 @@ export const getStartUpActionsFunctions = (
   };
 };
 
+export const getAsyncActions = (
+  prefix: string,
+  actions: string[],
+  update?: boolean
+) => {
+  return R.reduce(
+    (acc: any, action: string) => ({
+      ...acc,
+      [action]: `${prefix}_${action}`,
+      [`${action}_SUCCESS`]: `${prefix}_${action}_SUCCESS`,
+      [`${action}_FAIL`]: `${prefix}_${action}_FAIL`,
+      ...(update ? { [`${action}_UPDATE`]: `${prefix}_${action}_UPDATE` } : {}),
+    }),
+    {},
+    actions
+  );
+};
+
 export const getAsyncActionsFunctions = (
   actions: any,
-  types: string[]
+  types: string[],
+  update?: boolean
 ): { [key: string]: any } => {
   return R.reduce(
     (acc: any, type: string) => {
       const camelCaseBaseAction = _.camelCase(type);
+
       return {
         ...acc,
         [camelCaseBaseAction]: (payload?: any) => ({
@@ -64,6 +71,14 @@ export const getAsyncActionsFunctions = (
           type: `${actions[type]}_FAIL`,
           payload: payload ?? {},
         }),
+        ...(update
+          ? {
+              [`${camelCaseBaseAction}Update`]: (payload?: any) => ({
+                type: `${actions[type]}_UPDATE`,
+                payload: payload ?? {},
+              }),
+            }
+          : {}),
       };
     },
     {},

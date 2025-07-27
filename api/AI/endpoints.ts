@@ -1,9 +1,9 @@
 import Cookies from "js-cookie";
 import { fetchEventSource } from "@microsoft/fetch-event-source";
 
-export const getPortfolioValutation = async (
-  onReasoning: (reasoning: string) => void,
+export const getPortfolioValuation = async (
   onText: (text: string) => void,
+  onComplete: (text: string) => void,
   onError?: () => void
 ) => {
   const accessToken =
@@ -31,10 +31,10 @@ export const getPortfolioValutation = async (
         const json = JSON.parse(event.data);
         const { type, message } = json;
 
-        if (type === "REASONING") {
-          onReasoning(message);
-        } else if (type === "TEXT") {
+        if (type === "TEXT") {
           onText(message);
+        } else if (type === "COMPLETE") {
+          onComplete(message);
         } else if (type === "ERROR") {
           console.warn("[STREAM] Errore ricevuto:", message);
           if (onError) onError(); // ✅ chiamiamo callback per gestione errori

@@ -9,34 +9,30 @@ export const useAIActions = () => {
   return {
     onLoad: async () => {
       console.log("onLoad");
-      const hasData =
-        context.reasoning?.length > 0 || context.currentMessage?.length > 0;
+      const hasData = context.currentMessage?.length > 0;
 
       if (hasData) return;
 
-      dispatch(actions.sendToDeepseek({}));
+      dispatch(actions.getPortfolioValuation({}));
 
       try {
-        const data = await APIAI.getPortfolioValutation(
-          (reasoningChunk) => {
-            dispatch({
-              type: actions.UPDATE_REASONING,
-              payload: { fullText: reasoningChunk },
-            });
+        await APIAI.getPortfolioValuation(
+          (textChunk: string) => {
+            dispatch(
+              actions.getPortfolioValuationUpdate({ fullText: textChunk })
+            );
           },
-          (textChunk) => {
-            dispatch({
-              type: actions.UPDATE_CURRENT_MESSAGE,
-              payload: { fullText: textChunk },
-            });
+          (fullMessage: string) => {
+            dispatch(
+              actions.getPortfolioValuationSuccess({ fullText: fullMessage })
+            );
           },
           () => {
-            dispatch(actions.sendToDeepseekFail({ error: true }));
+            dispatch(actions.getPortfolioValuationFail({ error: true }));
           }
         );
-        dispatch(actions.sendToDeepseekSuccess({ data }));
       } catch (error) {
-        dispatch(actions.sendToDeepseekFail({ error: error }));
+        dispatch(actions.getPortfolioValuationFail({ error: error }));
       }
     },
   };

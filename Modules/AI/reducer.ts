@@ -5,13 +5,12 @@ const reducer = produce(
   (state: any, action: { type: string; payload?: any }) => {
     switch (action.type) {
       case actions.LOAD:
-      case actions.SEND_TO_DEEPSEEK: {
+      case actions.GET_PORTFOLIO_VALUATION: {
         state.loading = true;
         state.error = false;
         break;
       }
-      case actions.LOAD_SUCCESS:
-      case actions.SEND_TO_DEEPSEEK_SUCCESS: {
+      case actions.LOAD_SUCCESS: {
         const { data } = action.payload;
         state.loading = false;
         state.error = false;
@@ -19,23 +18,26 @@ const reducer = produce(
         break;
       }
       case actions.LOAD_FAIL:
-      case actions.SEND_TO_DEEPSEEK_FAIL: {
+      case actions.GET_PORTFOLIO_VALUATION_FAIL: {
         const { error } = action.payload;
         state.loading = false;
         state.error = error;
         break;
       }
 
-      case actions.UPDATE_REASONING: {
-        state.loading = false;
-        state.reasoning += action.payload.fullText;
-        break;
-      }
-
-      case actions.UPDATE_CURRENT_MESSAGE: {
+      case actions.GET_PORTFOLIO_VALUATION_UPDATE: {
         state.loading = false;
         state.currentMessage += action.payload.fullText;
         break;
+      }
+
+      case actions.GET_PORTFOLIO_VALUATION_SUCCESS: {
+        const { fullText } = action.payload;
+        state.loading = false;
+        state.error = false;
+        if (fullText !== undefined) {
+          state.currentMessage = fullText; // Override of the partial text with the full one
+        }
       }
 
       default: {
