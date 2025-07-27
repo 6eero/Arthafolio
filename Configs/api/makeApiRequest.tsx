@@ -40,40 +40,66 @@ const refreshAccessToken = async () => {
   }
 };
 
+let isRefreshing = false;
+let failedQueue: any[] = [];
+
+const processQueue = (error: any, token = null) => {
+  failedQueue.forEach((prom) => {
+    if (error) {
+      prom.reject(error);
+    } else {
+      prom.resolve(token);
+    }
+  });
+  failedQueue = [];
+};
+
 export const api = axios.create({});
 
-// Request Interceptor
 api.interceptors.request.use(
   async (config: any) => {
-    // Check if the request URL is in the list of endpoints to skip
     const isSkippingToken = notApplyInterceptorEndpoint.some((endpoint) =>
       config.url.includes(endpoint)
     );
-    // Skip adding the token for these endpoints
     if (isSkippingToken) {
       return config;
     }
 
-    // Proceed with the token logic for all other requests
-    let accessToken = getAccessToken();
+    const accessToken = getAccessToken();
 
-    // Check if the access token is expired
     if (isTokenExpired(accessToken)) {
-      try {
-        // If expired, refresh the access token
-        accessToken = await refreshAccessToken();
-      } catch (error) {
-        // Handle token refresh failure (e.g., redirect to login)
+      if (isRefreshing) {
+        // Se un refresh è già in corso, metti in coda la richiesta
+        return new Promise((resolve, reject) => {
+          failedQueue.push({ resolve, reject });
+        })
+          .then((token) => {
+            config.headers["Authorization"] = "Bearer " + token;
+            return config;
+          })
+          .catch((err) => {
+            return Promise.reject(err);
+          });
+      }
 
+      isRefreshing = true;
+
+      try {
+        const newAccessToken = await refreshAccessToken();
+        config.headers["Authorization"] = `Bearer ${newAccessToken}`;
+        processQueue(null, newAccessToken); // Processa la coda con successo
+        return config;
+      } catch (error) {
+        processQueue(error, null); // Processa la coda con errore
         return Promise.reject(error);
+      } finally {
+        isRefreshing = false;
       }
     }
 
-    // Add the Authorization header to the request
     if (accessToken) {
       config.headers["Authorization"] = `Bearer ${accessToken}`;
     }
-
     return config;
   },
   (error) => {
