@@ -1,7 +1,7 @@
 "use client";
 
 import * as R from "ramda";
-import React, { useContext, useEffect, createContext } from "react";
+import React, { useContext, useEffect, createContext, useRef } from "react";
 import Loading from "./Loading";
 import { ErrorBlock } from "../error/ErrorBlock";
 import { useAppActions } from "@/api/App/tasks";
@@ -24,15 +24,22 @@ export const ResourceLoader = ({
   const state = useContext(context || DummyContext);
   const { onWhoAmI } = useAppActions();
   const { loading, error } = state;
+  const effectRan = useRef(false);
 
   useEffect(() => {
-    if (!R.isNil(onLoad)) {
-      console.log("useEffect");
-      onLoad();
+    if (effectRan.current === false) {
+      if (!R.isNil(onLoad)) {
+        console.log("useEffect");
+        onLoad();
+      }
+      if (!noWhoAmI) {
+        onWhoAmI();
+      }
     }
-    if (!noWhoAmI) {
-      onWhoAmI();
-    }
+
+    return () => {
+      effectRan.current = true;
+    };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
