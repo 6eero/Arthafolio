@@ -1,7 +1,7 @@
-import LoginMain from "@/Modules/App/Login/Challenges/Main";
+import LoginChallenge from "@/Modules/App/Login/Challenges/Login";
 
 const Login = () => {
-  return <LoginMain />;
+  return <LoginChallenge />;
 };
 
 export default Login;

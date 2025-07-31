@@ -5,6 +5,7 @@ const reducer = produce(
   (state: any, action: { type: string; payload?: any }) => {
     switch (action.type) {
       // BASE
+      case actions.REGISTER:
       case actions.LOGIN:
       case actions.WHO_AM_I:
       case actions.LOGOUT: {
@@ -21,10 +22,19 @@ const reducer = produce(
       }
 
       // SUCCESS
+
+      case actions.REGISTER_SUCCESS: {
+        state.emailSent = true;
+        state.loading = false;
+        state.error = false;
+        return;
+      }
+
       case actions.LOGIN_SUCCESS:
       case actions.WHO_AM_I_SUCCESS:
       case actions.LOGOUT_SUCCESS:
       case actions.UPDATE_PREFERENCES_SUCCESS: {
+        state.emailSent = false;
         const { data } = action.payload;
         state.loading = false;
         state.data = data;
@@ -33,10 +43,12 @@ const reducer = produce(
       }
 
       // FAIL
+      case actions.REGISTER_FAIL:
       case actions.LOGIN_FAIL:
       case actions.WHO_AM_I_FAIL:
       case actions.LOGOUT_FAIL:
       case actions.UPDATE_PREFERENCES_FAIL: {
+        state.emailSent = false;
         const { error } = action.payload;
         state.loading = false;
         state.error = error;

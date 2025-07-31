@@ -54,6 +54,24 @@ export const useAppActions = () => {
       }
     },
 
+    onRegister: async (values: {
+      email: string;
+      username: string;
+      password: string;
+      password_confirmation: string;
+    }) => {
+      try {
+        dispatch(actions.register({}));
+        await APIGlobal.register(values);
+
+        router.push("/login");
+
+        dispatch(actions.registerSuccess({}));
+      } catch (error) {
+        dispatch(actions.registerFail({ error }));
+      }
+    },
+
     onUpdatePreferences: async (values: {
       preferred_currency: string;
       hide_holdings: boolean;

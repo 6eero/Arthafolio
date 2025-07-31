@@ -15,21 +15,40 @@
       "etf": "ETF"
     }
   },
-  "login": {
-    "title": "Login to your account",
-    "description": "Enter your email below to login to your account",
-    "login": "Login",
-    "dont_have_account": "Don't have an account?",
-    "sing_up": "Sing up",
+  "auth": {
     "fields": {
       "username_or_email": {
-        "label": "Nome utente o Email",
-        "placeholder": "Inserisci il tuo nome utente o email"
+        "label": "Username or Email",
+        "placeholder": "Insert your username or email"
+      },
+      "username": {
+        "label": "Username or Email",
+        "placeholder": "Insert your username"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Insert your email"
       },
       "password": {
         "label": "Password",
-        "placeholder": "Inserisci la tua password"
+        "placeholder": "Insert your password"
+      },
+      "password_confirmation": {
+        "label": "Repeat password",
+        "placeholder": "Insert your password on more time"
       }
+    },
+    "login": {
+      "title": "Login to your account",
+      "description": "Enter your email below to login to your account",
+      "proceed": "Login",
+      "switch": "Don't have an account?"
+    },
+    "register": {
+      "title": "Register your new account",
+      "description": "Enter your email and password below",
+      "proceed": "Register",
+      "switch": "Already have an account?"
     }
   },
   "sidebar": {

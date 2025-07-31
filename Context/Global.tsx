@@ -5,10 +5,11 @@ import { useReducer } from "react";
 import { BaseProvider, DashboardAction, GlobalState } from "./Contexts";
 
 const initState: GlobalState = {
-  loading: false,
   data: {},
+  loading: false,
   error: false,
   errorModal: false,
+  emailSent: false,
 };
 
 export const GlobalContext = createContext<GlobalState | null>(null);

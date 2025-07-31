@@ -27,6 +27,30 @@ export const logout = async () => {
   return { data, headers };
 };
 
+export const register = async ({
+  email,
+  username,
+  password,
+  password_confirmation,
+}: {
+  email: string;
+  username: string;
+  password: string;
+  password_confirmation: string;
+}) => {
+  const options = {
+    body: { email, username, password, password_confirmation },
+  };
+
+  const { data, headers } = await makeApiRequest(
+    "/api/register",
+    "POST",
+    options
+  );
+
+  return { data, headers };
+};
+
 export const updatePreferences = async ({
   preferred_currency,
   hide_holdings,

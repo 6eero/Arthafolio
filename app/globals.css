@@ -109,7 +109,7 @@
 
   /* Muted – Grigio scuro */
   --muted: oklch(0.35 0.01 240); /* #4f525c */
-  --muted-foreground: oklch(0.8 0.01 240); /* #bec2cf */
+  --muted-foreground: oklch(0.5 0.01 240); /* #bec2cf */
 
   /* Accent – Lime (uguale al primario) */
   --accent: var(--primary);
@@ -121,7 +121,7 @@
 
   /* UI Elements */
   --border: oklch(0.4 0.01 240 / 30%); /* #5c606b con trasparenza */
-  --input: oklch(0.2 0.01 240 / 35%); /* #282a31 con trasparenza */
+  --input: oklch(0.25 0.01 240 / 35%); /* #282a31 con trasparenza */
   --ring: var(--primary);
 
   /* Charts – Scala di grigi e un tocco di lime */

@@ -1,1 +1,1 @@
-export const publicUrls = ["/", "/login", "/change-password"];
+export const publicUrls = ["/", "/login", "/register"];

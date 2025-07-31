@@ -2,9 +2,15 @@ import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import * as R from "ramda";
 
-const Alert = ({ error, className }: { error: any; className?: string }) => {
+const ErrorAlert = ({
+  error,
+  className,
+}: {
+  error: any;
+  className?: string;
+}) => {
   const t = useTranslations("");
-  const error_message = R.pathOr("Errore generico", [
+  const error_message = R.pathOr("generic.error.generic", [
     "response",
     "data",
     "message",
@@ -22,4 +28,4 @@ const Alert = ({ error, className }: { error: any; className?: string }) => {
   );
 };
 
-export default Alert;
+export default ErrorAlert;
