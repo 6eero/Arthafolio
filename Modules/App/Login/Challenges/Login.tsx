@@ -4,7 +4,7 @@ import { useAppActions } from "@/api/App/tasks";
 import Main from "../Main";
 import { Formik } from "formik";
 
-const Login = ({ emailConfirmed }: { emailConfirmed: boolean }) => {
+const Login = ({ emailConfirmed }: { emailConfirmed?: boolean }) => {
   const { onLogin } = useAppActions();
   return (
     <Formik
