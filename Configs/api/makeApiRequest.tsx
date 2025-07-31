@@ -7,8 +7,9 @@ import {
   isTokenExpired,
   setTokens,
 } from "@/Utils/tokens";
+import { publicUrls } from "@/Models/App/constants";
 
-const notApplyInterceptorEndpoint = ["/login"];
+const notApplyInterceptorEndpoint = publicUrls;
 
 const API_BASE_URL =
   process.env.NODE_ENV === "development"

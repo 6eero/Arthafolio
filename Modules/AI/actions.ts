@@ -23,5 +23,4 @@ const actionsFunctions: any = {
 
 const aa = R.mergeDeepLeft(actions, actionsFunctions);
 
-console.log(aa);
 export default aa;

@@ -6,6 +6,7 @@ const reducer = produce(
     switch (action.type) {
       // BASE
       case actions.REGISTER:
+      case actions.CONFIRM_EMAIL:
       case actions.LOGIN:
       case actions.WHO_AM_I:
       case actions.LOGOUT: {
@@ -30,6 +31,13 @@ const reducer = produce(
         return;
       }
 
+      case actions.CONFIRM_EMAIL_SUCCESS: {
+        state.emailConfirmed = true;
+        state.loading = false;
+        state.error = false;
+        return;
+      }
+
       case actions.LOGIN_SUCCESS:
       case actions.WHO_AM_I_SUCCESS:
       case actions.LOGOUT_SUCCESS:
@@ -43,6 +51,7 @@ const reducer = produce(
       }
 
       // FAIL
+      case actions.CONFIRM_EMAIL_FAIL:
       case actions.REGISTER_FAIL:
       case actions.LOGIN_FAIL:
       case actions.WHO_AM_I_FAIL:

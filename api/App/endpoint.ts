@@ -39,7 +39,14 @@ export const register = async ({
   password_confirmation: string;
 }) => {
   const options = {
-    body: { email, username, password, password_confirmation },
+    body: {
+      user: {
+        email,
+        username,
+        password,
+        password_confirmation,
+      },
+    },
   };
 
   const { data, headers } = await makeApiRequest(
@@ -48,6 +55,13 @@ export const register = async ({
     options
   );
 
+  return { data, headers };
+};
+
+export const confirmEmail = async (token: string) => {
+  const { data, headers } = await makeApiRequest(`/api/confirm_email`, "GET", {
+    queryParams: { token },
+  });
   return { data, headers };
 };
 

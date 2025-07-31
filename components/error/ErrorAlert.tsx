@@ -23,7 +23,9 @@ const ErrorAlert = ({
         className
       )}
     >
-      {`❌ ${t(error_message)}`}
+      <p className="text-destructive/70 font-normal text-sm">{`❌ ${t(
+        error_message
+      )}`}</p>
     </div>
   );
 };

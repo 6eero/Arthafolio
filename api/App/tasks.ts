@@ -60,15 +60,24 @@ export const useAppActions = () => {
       password: string;
       password_confirmation: string;
     }) => {
+      dispatch(actions.register({}));
       try {
-        dispatch(actions.register({}));
         await APIGlobal.register(values);
-
-        router.push("/login");
 
         dispatch(actions.registerSuccess({}));
       } catch (error) {
         dispatch(actions.registerFail({ error }));
+      }
+    },
+
+    onConfirmEmail: async (token: string) => {
+      dispatch(actions.confirmEmail({}));
+      try {
+        await APIGlobal.confirmEmail(token);
+
+        dispatch(actions.confirmEmailSuccess({}));
+      } catch (error) {
+        dispatch(actions.confirmEmailFail({ error }));
       }
     },
 

@@ -10,6 +10,7 @@ const initState: GlobalState = {
   error: false,
   errorModal: false,
   emailSent: false,
+  emailConfirmed: false,
 };
 
 export const GlobalContext = createContext<GlobalState | null>(null);

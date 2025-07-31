@@ -54,7 +54,8 @@
       "description": "Enter your email and password below",
       "proceed": "Register",
       "switch": "Already have an account?",
-      "done": "You're all set! We've sent a confirmation email to your address."
+      "done": "You're all set! We've sent a confirmation email to your address.",
+      "email_confirmed": "Your email has been successfully confirmed. You can now log in."
     }
   },
 
