@@ -1,4 +1,13 @@
 {
   "invalid_email_or_password": "Invalid email or password",
-  "email_not_confirmed": "It looks like your email hasn't been confirmed yet. Check your inbox or sign up again."
+  "email_not_confirmed": "It looks like your email hasn't been confirmed yet. Check your inbox or sign up again.",
+  "fields": {
+    "auth": {
+      "required": "This field is required",
+      "username_min": "Username must be at least {min} characters long",
+      "password_min": "Password must be at least {min} characters long",
+      "invalid_email": "Invalid email address",
+      "password_match": "Passwords do not match"
+    }
+  }
 }

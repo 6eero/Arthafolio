@@ -2,6 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FormikProps } from "formik";
 import { useTranslations } from "next-intl";
+import { cn } from "@/lib/utils";
 
 const FormikInput = ({
   name,
@@ -17,17 +18,25 @@ const FormikInput = ({
   formik: FormikProps<any>;
 }) => {
   const t = useTranslations("");
+
+  const error = formik.errors[name];
+  const touched = formik.touched[name];
+  const showError = touched && error && typeof error === "string";
+
   return (
-    <div className="grid gap-3">
-      <Label>{t(label)}</Label>
+    <div className="grid">
+      <Label htmlFor={name}>{t(label)}</Label>
       <Input
-        className="h-[40px]"
+        className={cn("h-[40px] mt-3", showError && "border-red-500")}
         type={type}
         name={name}
+        id={name}
         placeholder={t(placeholder)}
         value={formik.values[name]}
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
       />
+      {showError && <span className="text-sm text-red-500 mt-1">{error}</span>}
     </div>
   );
 };
