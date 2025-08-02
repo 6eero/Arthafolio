@@ -4,9 +4,27 @@ class User < ApplicationRecord
   has_secure_password
 
   # Validazioni
-  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :password, length: { minimum: 6 }, if: -> { new_record? || !password.nil? }
-  validates :username, presence: true, uniqueness: { case_sensitive: false }
+  validates :email,
+            presence: true,
+            uniqueness: true,
+            format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  validates :password,
+            length: { minimum: 8 },
+            format: {
+              with: /\A(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).+\z/,
+              message: 'deve contenere almeno una lettera maiuscola, un numero e un carattere speciale'
+            },
+            if: -> { new_record? || !password.nil? }
+
+  validates :username,
+            presence: true,
+            uniqueness: { case_sensitive: false },
+            length: { maximum: 30 },
+            format: {
+              with: /\A[a-zA-Z0-9_]+\z/,
+              message: 'può contenere solo lettere, numeri e underscore'
+            }
 
   # Relazioni
   has_many :holdings, dependent: :destroy
