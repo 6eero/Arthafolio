@@ -39,7 +39,7 @@ const LoginMain = ({
 
   return (
     <>
-      <Card className="w-[450px] hidden sm:block">
+      <Card className="w-screen bg-transparent border-0 sm:bg-card sm:border sm:w-[450px]">
         <CardHeader className={`flex flex-col justify-center items-center`}>
           <Logo className="w-25" bgColor="var(--text-muted-foreground)" />
           <CardTitle className="mb-6">{t("title")}</CardTitle>

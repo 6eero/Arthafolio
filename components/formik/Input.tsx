@@ -25,9 +25,11 @@ const FormikInput = ({
 
   return (
     <div className="grid">
-      <Label htmlFor={name}>{t(label)}</Label>
+      <Label className="mb-3" htmlFor={name}>
+        {t(label)}
+      </Label>
       <Input
-        className={cn("h-[40px] mt-3", showError && "border-red-500")}
+        className={cn("", showError && "border-red-500")}
         type={type}
         name={name}
         id={name}
