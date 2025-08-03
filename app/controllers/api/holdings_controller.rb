@@ -81,7 +81,7 @@ module Api
 
     def render_portfolio(status: :ok)
       holdings = current_user.holdings.to_a
-      timeframe = params[:timeframe] || 'D'
+      timeframe = params[:timeframe]
       currency = (current_user.preferred_currency || 'eur').downcase
 
       portfolio = PortfolioCalculator.new(holdings, current_user, timeframe, currency)

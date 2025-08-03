@@ -33,30 +33,24 @@ class PortfolioCalculator
   end
 
   def history
-    snapshots = @user.portfolio_snapshots.order(taken_at: :desc)
+    limit = timeframe_limit(@timeframe)
+    step = sampling_step(@timeframe)
 
-    grouped = case @timeframe&.upcase
-              when 'H'
-                snapshots.group_by { |s| s.taken_at.beginning_of_hour }
-              when 'D', nil
-                snapshots.group_by { |s| s.taken_at.to_date }
-              when 'W'
-                snapshots.group_by { |s| s.taken_at.beginning_of_week(:monday).to_date }
-              when 'M'
-                snapshots.group_by { |s| s.taken_at.beginning_of_month.to_date }
-              else
-                snapshots.group_by { |s| s.taken_at.to_date }
-              end
+    snapshots = @user.portfolio_snapshots
+                     .order(taken_at: :desc)
+                     .limit(limit)
+                     .reverse
 
-    grouped.values.map(&:first)
-           .sort_by(&:taken_at)
-           .last(20)
-           .map do |snapshot|
-             {
-               total_value: (snapshot.total_value.to_f * @conversion_rate).round(2),
-               taken_at: snapshot.taken_at
-             }
-           end
+    sampled_snapshots = snapshots.each_with_index.select do |_snapshot, index|
+      index % step == 0
+    end.map(&:first)
+
+    sampled_snapshots.map do |snapshot|
+      {
+        total_value: (snapshot.total_value.to_f * @conversion_rate).round(2),
+        taken_at: snapshot.taken_at
+      }
+    end
   end
 
   def totals
@@ -133,5 +127,39 @@ class PortfolioCalculator
                     .first
 
     snapshot&.total_value.to_f.round(2) || 0
+  end
+
+  def timeframe_limit(tf)
+    case tf&.downcase
+    when '24h'
+      24
+    when '7d'
+      24 * 7
+    when '1m'
+      24 * 30
+    when '3m'
+      24 * 90
+    when '1y'
+      24 * 365
+    else
+      24 * 7
+    end
+  end
+
+  def sampling_step(tf)
+    case tf&.downcase
+    when '24h'
+      1   # ogni ora → 24 punti
+    when '7d'
+      2   # ogni 2 ore → ~84 punti (168/2)
+    when '1m'
+      4   # ogni 4 ore → ~180 punti (720/4)
+    when '3m'
+      11  # ogni 11 ore → ~196 punti (2160/11)
+    when '1y'
+      44  # ogni 44 ore (~2 giorni) → ~198 punti (8760/44)
+    else
+      2   # default
+    end
   end
 end
