@@ -233,7 +233,7 @@ const Dashboard = () => {
 
           {/* Desktop */}
           <Card
-            className="xl:block hidden"
+            className="sm:block hidden"
             title={"dashboard.table.title"}
             description="dashboard.table.description"
             action={
@@ -257,7 +257,7 @@ const Dashboard = () => {
           </Card>
 
           {/* Mobile */}
-          <Tabs defaultValue="all" className="xl:hidden">
+          <Tabs defaultValue="all" className="sm:hidden">
             <Card className="sm:bg-card bg-transparent sm:border border-0 !p-0">
               <div className="flex justify-between text-sm text-muted-foreground px-2">
                 <div className="w-1/3">Quantity</div>
