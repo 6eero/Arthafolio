@@ -51,7 +51,7 @@ const Linee = ({
   };
 
   return (
-    <div className="w-full h-[450px] sm:bg-card text-card-foreground rounded-xl sm:border sm:p-6 p-0 sm:shadow-sm xl:w-5/8 flex flex-col">
+    <div className="w-full h-[400px] xl:h-[450px] sm:bg-card text-card-foreground rounded-xl sm:border sm:p-6 p-0 sm:shadow-sm xl:w-5/8 flex flex-col">
       <div className="flex justify-between items-start pb-4">
         {!isMobile && (
           <div>
