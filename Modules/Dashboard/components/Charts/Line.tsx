@@ -50,23 +50,35 @@ const Linee = ({
   };
 
   return (
-    <div className="w-full xl:h-[450px] bg-card text-card-foreground rounded-xl border sm:p-6 p-4 shadow-sm xl:w-5/8 flex flex-col">
-      <div className="flex justify-between items-start">
-        <div>
-          <p className="leading-none font-semibold pb-2">{t("title")}</p>
-          <p className="text-muted-foreground text-sm">{t("description")}</p>
-        </div>
+    <div className="w-full xl:h-[450px] sm:bg-card text-card-foreground rounded-xl sm:border sm:p-6 p-0 shadow-sm xl:w-5/8 flex flex-col">
+      <div className="flex justify-between items-start pb-4">
+        {!isMobile && (
+          <div>
+            <p className="leading-none font-semibold pb-2">{t("title")}</p>
+            <p className="text-muted-foreground text-sm">{t("description")}</p>
+          </div>
+        )}
+
         <ToggleGroup
+          className={isMobile ? "w-full gap-2" : ""}
           type="single"
           size="sm"
-          variant="outline"
+          variant={isMobile ? "default" : "outline"}
           defaultValue={timeframe}
           onValueChange={handleTimeframeChange}
         >
-          <ToggleGroupItem value="H">H</ToggleGroupItem>
-          <ToggleGroupItem value="D">D</ToggleGroupItem>
-          <ToggleGroupItem value="W">W</ToggleGroupItem>
-          <ToggleGroupItem value="M">M</ToggleGroupItem>
+          <ToggleGroupItem className="bg-card sm:bg-transparent" value="H">
+            H
+          </ToggleGroupItem>
+          <ToggleGroupItem className="bg-card sm:bg-transparent" value="D">
+            D
+          </ToggleGroupItem>
+          <ToggleGroupItem className="bg-card sm:bg-transparent" value="W">
+            W
+          </ToggleGroupItem>
+          <ToggleGroupItem className="bg-card sm:bg-transparent" value="M">
+            M
+          </ToggleGroupItem>
         </ToggleGroup>
       </div>
 
@@ -76,15 +88,16 @@ const Linee = ({
             accessibilityLayer
             data={data}
             margin={{
-              top: 20,
-              left: 25,
-              right: 25,
+              top: isMobile ? 20 : 20,
+              left: isMobile ? 0 : 25,
+              right: isMobile ? 0 : 25,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
+            {!isMobile && <CartesianGrid strokeDasharray="3 3" />}
 
             <YAxis domain={["dataMin - 10", "dataMax + 10"]} hide />
             <XAxis
+              hide={isMobile}
               tick={{ stroke: "var(--muted)" }}
               tickLine={{ stroke: "var(--muted)" }}
               axisLine={false}
@@ -118,9 +131,13 @@ const Linee = ({
               type="natural"
               stroke="var(--foreground)"
               strokeWidth={1.5}
-              dot={{
-                fill: "var(--color-value)",
-              }}
+              dot={
+                isMobile
+                  ? false
+                  : {
+                      fill: "var(--color-value)",
+                    }
+              }
               activeDot={{
                 r: 6,
               }}

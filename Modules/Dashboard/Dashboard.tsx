@@ -28,6 +28,7 @@ import DrawerDialog from "@/Modules/Dashboard/components/DrowerDialog";
 import DangerModal from "@/components/modals/DangerModal";
 import AISheet from "@/Modules/Dashboard/components/AISheet";
 import { useGlobalContext } from "@/Context/Global";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Dashboard = () => {
   const context = useDashboardContext();
@@ -39,6 +40,7 @@ const Dashboard = () => {
   const [isSideSheetOpen, setIsSideSheetOpen] = useState(false);
   const [isDangerModalOpen, setIsDangerModalOpen] = useState(false);
   const [clickedAsset, setClickedAsset] = useState({ label: "", quantity: 0 });
+  const isMobile = useIsMobile();
 
   const currency =
     R.pathOr("eur", ["data", "preferred_currency"], userContext) === "eur"
@@ -225,7 +227,7 @@ const Dashboard = () => {
           {(R.isNotEmpty(history) || R.isNotEmpty(assets)) && (
             <div className="w-full flex gap-4 xl:flex-row  flex-col">
               <Linee data={history} hideHoldings={hideHoldings} />
-              <Pie data={assets} hideHoldings={hideHoldings} />
+              {!isMobile && <Pie data={assets} hideHoldings={hideHoldings} />}
             </div>
           )}
 
@@ -256,7 +258,7 @@ const Dashboard = () => {
 
           {/* Mobile */}
           <Tabs defaultValue="all" className="xl:hidden">
-            <Card>
+            <Card className="sm:bg-card bg-transparent sm:border border-0 !p-0">
               <div className="flex justify-between text-sm text-muted-foreground px-2">
                 <div className="w-1/3">Quantity</div>
                 <div className="w-1/3 text-center">Price</div>
