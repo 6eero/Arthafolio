@@ -51,7 +51,7 @@ const Linee = ({
   };
 
   return (
-    <div className="w-full xl:h-[450px] sm:bg-card text-card-foreground rounded-xl sm:border sm:p-6 p-0 sm:shadow-sm xl:w-5/8 flex flex-col">
+    <div className="w-full h-[450px] sm:bg-card text-card-foreground rounded-xl sm:border sm:p-6 p-0 sm:shadow-sm xl:w-5/8 flex flex-col">
       <div className="flex justify-between items-start pb-4">
         {!isMobile && (
           <div>
@@ -88,32 +88,7 @@ const Linee = ({
               bottom: 0,
             }}
           >
-            {!isMobile && <CartesianGrid strokeDasharray="3 3" />}
-
             <YAxis domain={["dataMin - 20", "dataMax + 20"]} hide />
-            <XAxis
-              hide={isMobile}
-              tick={{ stroke: "var(--muted)" }}
-              tickLine={{ stroke: "var(--muted)" }}
-              axisLine={false}
-              dataKey="taken_at"
-              tickFormatter={(value: string) => {
-                const date = new Date(value);
-                if (timeframe === "H") {
-                  // Se timeframe è "D", mostra solo l'ora (es. 14:30)
-                  return date.toLocaleTimeString(undefined, {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  });
-                } else {
-                  // Altrimenti mostra giorno/mese (es. 13/07)
-                  return date.toLocaleDateString(undefined, {
-                    day: "2-digit",
-                    month: "2-digit",
-                  });
-                }
-              }}
-            />
 
             {!hideHoldings && (
               <ChartTooltip
@@ -151,27 +126,12 @@ const Linee = ({
               dataKey="total_value"
               type="natural"
               stroke="var(--foreground)"
-              strokeWidth={isMobile ? 2 : 1.5}
-              dot={
-                isMobile
-                  ? false
-                  : {
-                      fill: "var(--color-value)",
-                    }
-              }
+              strokeWidth={2}
+              dot={false}
               activeDot={{
-                r: 6,
+                r: 5,
               }}
-            >
-              {!isMobile && !hideHoldings && (
-                <LabelList
-                  position="top"
-                  offset={12}
-                  className="fill-foreground"
-                  fontSize={12}
-                />
-              )}
-            </Line>
+            ></Line>
           </LineChart>
         </ChartContainer>
       </div>
