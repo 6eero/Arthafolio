@@ -47,8 +47,6 @@ const Dashboard = () => {
       ? "€"
       : "$";
 
-  console.log(currency);
-
   const hideHoldings = R.pathOr(false, ["data", "hide_holdings"], userContext);
 
   const columns = useAssetColumns(

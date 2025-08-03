@@ -11,7 +11,7 @@ export const useDashboardActions = () => {
     onLoad: async () => {
       dispatch(actions.load({}));
 
-      const timeframe = "D";
+      const timeframe = "7d";
 
       try {
         const { data } = await APIDashboard.searchDashboard(timeframe);
@@ -22,7 +22,7 @@ export const useDashboardActions = () => {
       }
     },
 
-    onChangeTimeframe: async (timeframe: TimeframeKey = "D") => {
+    onChangeTimeframe: async (timeframe: TimeframeKey = "7d") => {
       dispatch(actions.changeTimeframe({ timeframe }));
 
       try {

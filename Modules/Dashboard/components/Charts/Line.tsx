@@ -37,7 +37,6 @@ const Linee = ({
   const context = useDashboardContext();
 
   const timeframe = R.propOr("", "timeframe")(context) as string;
-  //const componentLoading = R.propOr("", "componentLoading")(context) as string;
 
   const chartConfig = {
     total_value: {
@@ -69,17 +68,20 @@ const Linee = ({
           defaultValue={timeframe}
           onValueChange={handleTimeframeChange}
         >
-          <ToggleGroupItem className="bg-card sm:bg-transparent" value="H">
-            H
+          <ToggleGroupItem className="bg-card sm:bg-transparent" value="24h">
+            24h
           </ToggleGroupItem>
-          <ToggleGroupItem className="bg-card sm:bg-transparent" value="D">
-            D
+          <ToggleGroupItem className="bg-card sm:bg-transparent" value="7d">
+            7d
           </ToggleGroupItem>
-          <ToggleGroupItem className="bg-card sm:bg-transparent" value="W">
-            W
+          <ToggleGroupItem className="bg-card sm:bg-transparent" value="1m">
+            1m
           </ToggleGroupItem>
-          <ToggleGroupItem className="bg-card sm:bg-transparent" value="M">
-            M
+          <ToggleGroupItem className="bg-card sm:bg-transparent" value="3m">
+            3m
+          </ToggleGroupItem>
+          <ToggleGroupItem className="bg-card sm:bg-transparent" value="1y">
+            1y
           </ToggleGroupItem>
         </ToggleGroup>
       </div>

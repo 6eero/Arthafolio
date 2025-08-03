@@ -7,7 +7,7 @@ const initState: DashboardState = {
   loading: true,
   error: false,
   data: [],
-  timeframe: "D",
+  timeframe: "7d",
 };
 
 export const DashboardDispatchContext =

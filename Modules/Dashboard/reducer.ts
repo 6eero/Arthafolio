@@ -14,7 +14,7 @@ const reducer = produce(
       case actions.REMOVE_HOLDING: {
         state.loading = true;
         state.error = false;
-        state.timeframe = "D";
+        state.timeframe = "7d";
         return;
       }
 
@@ -22,7 +22,7 @@ const reducer = produce(
         state.loading = false;
         state.componentLoading = true;
         state.error = false;
-        state.timeframe = action.payload?.timeframe ?? "D";
+        state.timeframe = action.payload?.timeframe ?? "7d";
         return;
       }
 
