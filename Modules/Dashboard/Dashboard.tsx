@@ -47,6 +47,8 @@ const Dashboard = () => {
       ? "€"
       : "$";
 
+  console.log(currency);
+
   const hideHoldings = R.pathOr(false, ["data", "hide_holdings"], userContext);
 
   const columns = useAssetColumns(
@@ -226,7 +228,11 @@ const Dashboard = () => {
 
           {(R.isNotEmpty(history) || R.isNotEmpty(assets)) && (
             <div className="w-full flex gap-4 xl:flex-row  flex-col">
-              <Linee data={history} hideHoldings={hideHoldings} />
+              <Linee
+                data={history}
+                hideHoldings={hideHoldings}
+                currency={currency}
+              />
               {!isMobile && <Pie data={assets} hideHoldings={hideHoldings} />}
             </div>
           )}

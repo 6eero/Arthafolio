@@ -25,9 +25,11 @@ import * as R from "ramda";
 const Linee = ({
   data,
   hideHoldings,
+  currency,
 }: {
   data: Asset[];
   hideHoldings: boolean;
+  currency: "€" | "$";
 }) => {
   const t = useTranslations("dashboard.charts.linechart");
   const isMobile = useIsMobile();
@@ -123,7 +125,33 @@ const Linee = ({
             {!hideHoldings && (
               <ChartTooltip
                 cursor={false}
-                content={<ChartTooltipContent indicator="line" />}
+                content={
+                  <ChartTooltipContent
+                    indicator="line"
+                    formatter={(value, name, entry, index, payload: any) => {
+                      const date = new Date(payload?.taken_at);
+                      const formattedDate = date.toLocaleString(undefined, {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      });
+
+                      return (
+                        <>
+                          <div className="text-muted-foreground">
+                            {formattedDate}
+                          </div>
+                          -
+                          <div className="text-foreground font-mono font-medium">
+                            {`${value.toLocaleString()} ${currency}`}
+                          </div>
+                        </>
+                      );
+                    }}
+                  />
+                }
               />
             )}
             <Line

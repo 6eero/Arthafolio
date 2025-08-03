@@ -18,7 +18,7 @@ const SummaryCard = ({
   hideHoldings: boolean;
 }) => {
   return (
-    <Card className="border-0" title={itemKey} icon={icon}>
+    <Card className="border-0 sm:border" title={itemKey} icon={icon}>
       {R.isNotNil(itemKey) && (
         <div className="flex gap-2 items-end pt-3">
           <p className="font-semibold text-xl">
