@@ -25,7 +25,7 @@ const FormikInput = ({
 
   return (
     <div className="grid">
-      <Label className="mb-3" htmlFor={name}>
+      <Label className="mb-3 " htmlFor={name}>
         {t(label)}
       </Label>
       <Input
