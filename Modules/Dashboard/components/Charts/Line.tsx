@@ -92,7 +92,7 @@ const Linee = ({
             margin={{
               left: isMobile ? 0 : 25,
               right: isMobile ? 0 : 25,
-              top: isMobile ? 0 : 20,
+              top: 20,
               bottom: 0,
             }}
           >

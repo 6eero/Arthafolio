@@ -12,13 +12,16 @@ import { Formik } from "formik";
 import { useTranslations } from "next-intl";
 import { useAppActions } from "@/api/App/tasks";
 import { useGlobalContext } from "@/Context/Global";
+import { useRouter } from "next/navigation";
 
 import * as R from "ramda";
+import { ArrowLeft } from "lucide-react";
 
 const Settings = () => {
   const t = useTranslations("");
   const { onUpdatePreferences } = useAppActions();
   const { data, loading } = useGlobalContext();
+  const router = useRouter();
 
   const appVersion = process.env.NEXT_PUBLIC_APP_VERSION;
 
@@ -39,14 +42,35 @@ const Settings = () => {
       >
         {(formik) => {
           return (
-            <form className="" onSubmit={formik.handleSubmit}>
+            <form onSubmit={formik.handleSubmit}>
               <div className="w-full flex flex-col">
                 <Header title={t("settings.title")} />
+
                 <div className="flex flex-col md:m-4 mt-4 gap-4">
-                  <div className="rounded-xl border bg-card text-card-foreground shadow ">
+                  <div className="w-full flex justify-between">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        router.push("/dashboard");
+                      }}
+                    >
+                      <ArrowLeft size={28} />
+                    </button>
+
+                    <CustomButton
+                      className="self-end"
+                      type="submit"
+                      disabled={formik.isSubmitting || !formik.dirty}
+                      loading={loading}
+                    >
+                      {t("generic.actions.save")}
+                    </CustomButton>
+                  </div>
+
+                  <div className="rounded-xl border-0 sm:border bg-transparent sm:bg-card text-card-foreground shadow ">
                     <div className="divide-y divide-border">
                       {/* Riga 1: Tema */}
-                      <div className="flex items-center justify-between p-4">
+                      <div className="flex items-center justify-between py-4 sm:p-4">
                         <div>
                           <Label
                             htmlFor="theme-switcher"
@@ -62,7 +86,7 @@ const Settings = () => {
                       </div>
 
                       {/* Riga 2: Valuta */}
-                      <div className="flex items-center justify-between p-4">
+                      <div className="flex items-center justify-between py-4 sm:p-4">
                         <div>
                           <Label className="font-semibold pb-2">
                             {t("settings.change_default_currency")}
@@ -83,7 +107,7 @@ const Settings = () => {
                       </div>
 
                       {/* Riga 3: Nascondi Valori */}
-                      <div className="flex items-center justify-between p-4">
+                      <div className="flex items-center justify-between py-4 sm:p-4">
                         <div>
                           <Label
                             htmlFor="hide_values"
@@ -99,7 +123,7 @@ const Settings = () => {
                       </div>
 
                       {/* Riga 4: Versione App */}
-                      <div className="flex items-center justify-between p-4">
+                      <div className="flex items-center justify-between py-4 sm:p-4">
                         <div>
                           <p className="text-sm font-medium text-muted-foreground">
                             {t("settings.app_version")}
@@ -111,14 +135,6 @@ const Settings = () => {
                       </div>
                     </div>
                   </div>
-                  <CustomButton
-                    className="self-end"
-                    type="submit"
-                    disabled={formik.isSubmitting || !formik.dirty}
-                    loading={loading}
-                  >
-                    {t("generic.actions.save")}
-                  </CustomButton>
                 </div>
               </div>
             </form>
