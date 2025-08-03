@@ -34,7 +34,7 @@ const Dashboard = () => {
   const context = useDashboardContext();
   const userContext = useGlobalContext();
   const { onLoad, onRemoveHolding } = useDashboardActions();
-  const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
+  const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
   const t = useTranslations("");
   const [isManageAssetModalOpen, setIsManageAssetModalOpen] = useState(false);
   const [isSideSheetOpen, setIsSideSheetOpen] = useState(false);
