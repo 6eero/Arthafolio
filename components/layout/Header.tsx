@@ -26,7 +26,7 @@ const Header = ({ title }: { title: string }) => {
   return (
     <>
       <div className="flex items-center gap-3 p-2">
-        <SidebarTrigger />
+        <SidebarTrigger className="hidden sm:block" />
         <Separator orientation="vertical" className="!h-6 hidden sm:block" />
         <div className="w-full flex justify-between items-center">
           <p className="text-md font-semibold">{title}</p>

@@ -54,7 +54,7 @@ const Settings = () => {
                         router.push("/dashboard");
                       }}
                     >
-                      <ArrowLeft size={28} />
+                      <ArrowLeft size={20} />
                     </button>
 
                     <CustomButton
