@@ -22,7 +22,7 @@ const CustomCard = ({
   return (
     <div
       className={clsx(
-        "w-full bg-card text-card-foreground rounded-xl border sm:p-6 p-4 shadow-sm",
+        "w-full sm:bg-card text-card-foreground rounded-xl border sm:p-6 p-4 sm:shadow-sm",
         className
       )}
     >

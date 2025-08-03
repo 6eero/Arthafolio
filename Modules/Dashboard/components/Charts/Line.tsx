@@ -51,7 +51,7 @@ const Linee = ({
   };
 
   return (
-    <div className="w-full xl:h-[450px] sm:bg-card text-card-foreground rounded-xl sm:border sm:p-6 p-0 shadow-sm xl:w-5/8 flex flex-col">
+    <div className="w-full xl:h-[450px] sm:bg-card text-card-foreground rounded-xl sm:border sm:p-6 p-0 sm:shadow-sm xl:w-5/8 flex flex-col">
       <div className="flex justify-between items-start pb-4">
         {!isMobile && (
           <div>
@@ -68,21 +68,11 @@ const Linee = ({
           defaultValue={timeframe}
           onValueChange={handleTimeframeChange}
         >
-          <ToggleGroupItem className="bg-card sm:bg-transparent" value="24h">
-            24h
-          </ToggleGroupItem>
-          <ToggleGroupItem className="bg-card sm:bg-transparent" value="7d">
-            7d
-          </ToggleGroupItem>
-          <ToggleGroupItem className="bg-card sm:bg-transparent" value="1m">
-            1m
-          </ToggleGroupItem>
-          <ToggleGroupItem className="bg-card sm:bg-transparent" value="3m">
-            3m
-          </ToggleGroupItem>
-          <ToggleGroupItem className="bg-card sm:bg-transparent" value="1y">
-            1y
-          </ToggleGroupItem>
+          <ToggleGroupItem value="24h">24h</ToggleGroupItem>
+          <ToggleGroupItem value="7d">7d</ToggleGroupItem>
+          <ToggleGroupItem value="1m">1m</ToggleGroupItem>
+          <ToggleGroupItem value="3m">3m</ToggleGroupItem>
+          <ToggleGroupItem value="1y">1y</ToggleGroupItem>
         </ToggleGroup>
       </div>
 
