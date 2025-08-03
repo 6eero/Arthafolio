@@ -90,14 +90,13 @@ const Linee = ({
             accessibilityLayer
             data={data}
             margin={{
-              top: isMobile ? 20 : 20,
               left: isMobile ? 0 : 25,
               right: isMobile ? 0 : 25,
             }}
           >
             {!isMobile && <CartesianGrid strokeDasharray="3 3" />}
 
-            <YAxis domain={["dataMin - 10", "dataMax + 10"]} hide />
+            <YAxis domain={["dataMin - 20", "dataMax + 20"]} hide />
             <XAxis
               hide={isMobile}
               tick={{ stroke: "var(--muted)" }}
