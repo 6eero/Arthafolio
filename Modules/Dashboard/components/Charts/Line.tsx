@@ -92,6 +92,8 @@ const Linee = ({
             margin={{
               left: isMobile ? 0 : 25,
               right: isMobile ? 0 : 25,
+              top: isMobile ? 0 : 20,
+              bottom: 0,
             }}
           >
             {!isMobile && <CartesianGrid strokeDasharray="3 3" />}
@@ -157,7 +159,7 @@ const Linee = ({
               dataKey="total_value"
               type="natural"
               stroke="var(--foreground)"
-              strokeWidth={1.5}
+              strokeWidth={isMobile ? 2 : 1.5}
               dot={
                 isMobile
                   ? false
