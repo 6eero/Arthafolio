@@ -22,7 +22,7 @@ const DisplayCurrency = ({
     maximumFractionDigits: maximumFractionDigits,
   }).format(value);
 
-  const sign = value >= 0 ? "+" : "-";
+  const sign = value >= 0 ? "+" : "";
 
   return (
     <p className={className}>
