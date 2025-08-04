@@ -1,6 +1,7 @@
 import { Asset } from "@/app/types/dashboard";
 
-import DisplayCurrency from "@/components/custom/DisplayCurrency";
+import DisplayCurrency from "@/components/custom/Display/DisplayCurrency";
+import DisplayQuote from "@/components/custom/Display/DisplayQuote";
 
 const AssetItem = ({
   label,
@@ -26,7 +27,7 @@ const AssetItem = ({
       <div className="flex justify-between items-center text-sm">
         <div className="w-1/3">
           <p className="text-left font-semibold">{label}</p>
-          <DisplayCurrency
+          <DisplayQuote
             className="text-left text-muted-foreground"
             value={quantity}
           />

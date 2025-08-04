@@ -2,7 +2,7 @@ import { Asset } from "@/app/types/dashboard";
 import Card from "@/components/custom/Card";
 import { Tabs } from "@/components/ui/tabs";
 import AssetItem from "./AssetItem";
-import Button from "@/components/custom/Button";
+import Button from "@/components/custom/Buttons/Button";
 import { Sparkles } from "lucide-react";
 import { Suspense } from "react";
 import { DataTable } from "./DataTable";

@@ -1,7 +1,8 @@
 "use client";
 
 import { Asset } from "@/app/types/dashboard";
-import DisplayCurrency from "@/components/custom/DisplayCurrency";
+import DisplayCurrency from "@/components/custom/Display/DisplayCurrency";
+import DisplayQuote from "@/components/custom/Display/DisplayQuote";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { ColumnDef } from "@tanstack/react-table";
@@ -46,7 +47,7 @@ export function useAssetColumns(
       header: t("dashboard.table.header.quantity"),
       cell: ({ row }) => {
         const quantity: number = row.getValue<number>("quantity");
-        return <DisplayCurrency value={quantity} />;
+        return <DisplayQuote value={quantity} />;
       },
     },
     {

@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import CustomButton from "@/components/custom/Button";
+import CustomButton from "@/components/custom/Buttons/Button";
 
 import { useGlobalContext } from "@/Context/Global";
 

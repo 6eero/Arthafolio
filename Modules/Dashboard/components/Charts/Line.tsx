@@ -15,7 +15,7 @@ import { TimeframeKey } from "@/Utils/types/timeframes";
 import { useDashboardContext } from "@/Context/Dashboard";
 import * as R from "ramda";
 
-import DisplayCurrency from "@/components/custom/DisplayCurrency";
+import DisplayCurrency from "@/components/custom/Display/DisplayCurrency";
 
 const Linee = ({ data }: { data: History[] }) => {
   const t = useTranslations("dashboard.charts.linechart");

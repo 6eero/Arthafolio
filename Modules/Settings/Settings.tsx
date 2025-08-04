@@ -1,6 +1,6 @@
 "use client";
 
-import CustomButton from "@/components/custom/Button";
+import CustomButton from "@/components/custom/Buttons/Button";
 import Header from "@/components/layout/Header";
 import { ResourceLoader } from "@/components/layout/ResourceLoader";
 import ThemeSwitcher from "@/components/layout/ThemeSwitcher";

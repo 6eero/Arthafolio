@@ -6,7 +6,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import CustomButton from "../custom/Button";
+import CustomButton from "../custom/Buttons/Button";
 import { useTranslations } from "next-intl";
 
 const Modal = ({

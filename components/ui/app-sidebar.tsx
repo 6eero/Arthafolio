@@ -32,7 +32,7 @@ import Logo from "../icons/Logo";
 import { useTranslations } from "next-intl";
 import { useGlobalContext } from "@/Context/Global";
 import { useAppActions } from "@/api/App/tasks";
-import Button from "@/components/custom/Button";
+import Button from "@/components/custom/Buttons/Button";
 
 import { usePathname } from "next/navigation";
 

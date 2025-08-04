@@ -1,5 +1,5 @@
 import Card from "@/components/custom/Card";
-import DisplayCurrency from "@/components/custom/DisplayCurrency";
+import DisplayCurrency from "@/components/custom/Display/DisplayCurrency";
 import * as R from "ramda";
 import { ReactNode } from "react";
 

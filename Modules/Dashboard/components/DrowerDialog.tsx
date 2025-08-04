@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import Button from "@/components/custom/Button";
+import Button from "@/components/custom/Buttons/Button";
 import {
   Dialog,
   DialogContent,
