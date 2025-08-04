@@ -56,7 +56,7 @@ const DrawerDialog = ({
       onClose={() => setClickedAsset({ label: "", quantity: 0 })}
     >
       <DrawerContent>
-        <DrawerHeader className="text-left">
+        <DrawerHeader className="text-left pb-10 pt-8">
           <DrawerTitle>
             {isEdit
               ? t("dashboard.manage_asset_modal.edit")
@@ -156,7 +156,7 @@ const ProfileForm = ({
       {(formik) => (
         <form onSubmit={formik.handleSubmit}>
           <div className="sm:mx-0 mx-4">
-            <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-6 pb-6">
               <SelectWithSearch
                 name="label"
                 label={"dashboard.manage_asset_modal.fields.label.label"}
