@@ -1,20 +1,18 @@
 import { Asset } from "@/app/types/dashboard";
 
+import DisplayCurrency from "@/components/custom/DisplayCurrency";
+
 const AssetItem = ({
   label,
   quantity,
   price,
   value,
   percentage,
-  currency,
-  hideHoldings,
   setIsManageAssetModalOpen,
   setClickedAsset,
 }: Asset & {
   setIsManageAssetModalOpen: (value: boolean) => void;
   setClickedAsset: (value: { label: string; quantity: number }) => void;
-  currency: string;
-  hideHoldings: boolean;
 }) => {
   const handleAssetClick = () => {
     setIsManageAssetModalOpen(true);
@@ -28,21 +26,18 @@ const AssetItem = ({
       <div className="flex justify-between items-center text-sm">
         <div className="w-1/3">
           <p className="text-left font-semibold">{label}</p>
-          <p className="text-left text-muted-foreground">
-            {hideHoldings ? "****" : quantity}
-          </p>
+          <DisplayCurrency
+            className="text-left text-muted-foreground"
+            value={quantity}
+          />
         </div>
 
         <div className="w-1/3 text-center">
-          <p className="font-medium">
-            {price} {currency}
-          </p>
+          <DisplayCurrency className="font-medium" value={price} />
         </div>
 
         <div className="w-1/3 text-right">
-          <p className="font-medium">
-            {hideHoldings ? `**** ${currency}` : `${value} ${currency}`}
-          </p>
+          <DisplayCurrency className="font-medium" value={value} />
           <p className="text-muted-foreground">{percentage} %</p>
         </div>
       </div>

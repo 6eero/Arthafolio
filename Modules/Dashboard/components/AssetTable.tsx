@@ -10,10 +10,7 @@ import { ColumnDef } from "@tanstack/react-table";
 
 const MobileAssetList = ({
   assets,
-  currency,
-  hideHoldings,
   columns,
-  data,
   setIsManageAssetModalOpen,
   setClickedAsset,
   onAddInvestment,
@@ -21,10 +18,7 @@ const MobileAssetList = ({
   t,
 }: {
   assets: Asset[];
-  currency: string;
-  hideHoldings: boolean;
   columns: ColumnDef<any>[];
-  data: Asset[];
   setIsManageAssetModalOpen: (open: boolean) => void;
   setClickedAsset: (asset: any) => void;
   onAddInvestment: () => void;
@@ -45,7 +39,7 @@ const MobileAssetList = ({
     >
       <div className="pt-4">
         <Suspense>
-          <DataTable columns={columns} data={data} />
+          <DataTable columns={columns} data={assets} />
         </Suspense>
       </div>
     </Card>
@@ -65,8 +59,6 @@ const MobileAssetList = ({
             quantity={asset.quantity}
             price={asset.price}
             value={asset.value}
-            currency={currency}
-            hideHoldings={hideHoldings}
             percentage={asset.percentage}
             category={asset.category}
             setIsManageAssetModalOpen={setIsManageAssetModalOpen}

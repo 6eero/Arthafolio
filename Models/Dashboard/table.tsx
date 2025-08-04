@@ -1,6 +1,7 @@
 "use client";
 
 import { Asset } from "@/app/types/dashboard";
+import DisplayCurrency from "@/components/custom/DisplayCurrency";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { ColumnDef } from "@tanstack/react-table";
@@ -9,9 +10,7 @@ import { useTranslations } from "next-intl";
 
 export function useAssetColumns(
   onEdit: (asset: Asset) => void,
-  onDelete?: (asset: Asset) => void,
-  currency?: string,
-  hideHoldings?: boolean
+  onDelete?: (asset: Asset) => void
 ): ColumnDef<Asset>[] {
   const t = useTranslations("");
 
@@ -39,7 +38,7 @@ export function useAssetColumns(
       header: t("dashboard.table.header.price"),
       cell: ({ row }) => {
         const price: number = row.getValue<number>("price");
-        return <p>{`${price} ${currency}`}</p>;
+        return <DisplayCurrency value={price} />;
       },
     },
     {
@@ -47,7 +46,7 @@ export function useAssetColumns(
       header: t("dashboard.table.header.quantity"),
       cell: ({ row }) => {
         const quantity: number = row.getValue<number>("quantity");
-        return <p>{hideHoldings ? `****` : `${quantity}`}</p>;
+        return <DisplayCurrency value={quantity} />;
       },
     },
     {
@@ -55,9 +54,7 @@ export function useAssetColumns(
       header: t("dashboard.table.header.value"),
       cell: ({ row }) => {
         const value: number = row.getValue<number>("value");
-        return (
-          <p>{hideHoldings ? `**** ${currency}` : `${value} ${currency}`}</p>
-        );
+        return <DisplayCurrency value={value} />;
       },
     },
     {

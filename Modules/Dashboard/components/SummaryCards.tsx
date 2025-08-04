@@ -12,13 +12,9 @@ import SummaryCard from "./SummaryCard";
 const SummaryCards = ({
   totals,
   profitLoss,
-  currency,
-  hideHoldings,
 }: {
   totals: Totals;
   profitLoss: DashboardData["profitLoss"];
-  currency: string;
-  hideHoldings: boolean;
 }) => {
   const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
 
@@ -70,8 +66,6 @@ const SummaryCards = ({
         {summaryData.map((item) => (
           <SummaryCard
             key={item.key}
-            currency={currency}
-            hideHoldings={hideHoldings}
             itemKey={item.key}
             icon={item.icon}
             value={item.value}
@@ -87,8 +81,6 @@ const SummaryCards = ({
             {summaryData.map((item) => (
               <CarouselItem key={item.key}>
                 <SummaryCard
-                  currency={currency}
-                  hideHoldings={hideHoldings}
                   itemKey={item.key}
                   icon={item.icon}
                   value={item.value}

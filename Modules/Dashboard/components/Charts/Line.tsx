@@ -14,17 +14,10 @@ import { useDashboardActions } from "@/api/Holdings/tasks";
 import { TimeframeKey } from "@/Utils/types/timeframes";
 import { useDashboardContext } from "@/Context/Dashboard";
 import * as R from "ramda";
-import { Currency } from "@/app/types/user";
 
-const Linee = ({
-  data,
-  hideHoldings,
-  currency,
-}: {
-  data: History[];
-  hideHoldings: boolean;
-  currency: Currency;
-}) => {
+import DisplayCurrency from "@/components/custom/DisplayCurrency";
+
+const Linee = ({ data }: { data: History[] }) => {
   const t = useTranslations("dashboard.charts.linechart");
   const isMobile = useIsMobile();
   const { onChangeTimeframe } = useDashboardActions();
@@ -87,38 +80,38 @@ const Linee = ({
           >
             <YAxis domain={["dataMin - 20", "dataMax + 20"]} hide />
 
-            {!hideHoldings && (
-              <ChartTooltip
-                cursor={false}
-                content={
-                  <ChartTooltipContent
-                    indicator="line"
-                    formatter={(value, name, entry, index, payload: any) => {
-                      const date = new Date(payload?.taken_at);
-                      const formattedDate = date.toLocaleString(undefined, {
-                        day: "2-digit",
-                        month: "2-digit",
-                        year: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      });
+            <ChartTooltip
+              cursor={false}
+              content={
+                <ChartTooltipContent
+                  indicator="line"
+                  formatter={(value, name, entry, index, payload: any) => {
+                    const date = new Date(payload?.taken_at);
+                    const formattedDate = date.toLocaleString(undefined, {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    });
 
-                      return (
-                        <>
-                          <div className="text-muted-foreground">
-                            {formattedDate}
-                          </div>
-                          -
-                          <div className="text-foreground font-mono font-medium">
-                            {`${value.toLocaleString()} ${currency}`}
-                          </div>
-                        </>
-                      );
-                    }}
-                  />
-                }
-              />
-            )}
+                    return (
+                      <>
+                        <div className="text-muted-foreground">
+                          {formattedDate}
+                        </div>
+                        -
+                        <DisplayCurrency
+                          className="text-foreground font-mono font-medium"
+                          value={value as number}
+                        />
+                      </>
+                    );
+                  }}
+                />
+              }
+            />
+
             <Line
               dataKey="total_value"
               type="natural"
