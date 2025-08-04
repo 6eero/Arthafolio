@@ -6,7 +6,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { Asset } from "@/app/types/dashboard";
+import { History } from "@/app/types/dashboard";
 import { useTranslations } from "next-intl";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
@@ -14,15 +14,16 @@ import { useDashboardActions } from "@/api/Holdings/tasks";
 import { TimeframeKey } from "@/Utils/types/timeframes";
 import { useDashboardContext } from "@/Context/Dashboard";
 import * as R from "ramda";
+import { Currency } from "@/app/types/user";
 
 const Linee = ({
   data,
   hideHoldings,
   currency,
 }: {
-  data: Asset[];
+  data: History[];
   hideHoldings: boolean;
-  currency: "€" | "$";
+  currency: Currency;
 }) => {
   const t = useTranslations("dashboard.charts.linechart");
   const isMobile = useIsMobile();
