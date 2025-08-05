@@ -15,7 +15,7 @@ import { useGlobalContext } from "@/Context/Global";
 import { useRouter } from "next/navigation";
 
 import * as R from "ramda";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, SquareArrowOutUpRight } from "lucide-react";
 
 const Settings = () => {
   const t = useTranslations("");
@@ -85,7 +85,7 @@ const Settings = () => {
                         <ThemeSwitcher />
                       </div>
 
-                      {/* Riga 2: Valuta */}
+                      {/* Valuta */}
                       <div className="flex items-center justify-between py-4 sm:p-4">
                         <div>
                           <Label className="font-semibold pb-2">
@@ -102,11 +102,11 @@ const Settings = () => {
                             { key: "eur", value: "EUR" },
                             { key: "usd", value: "USD" },
                           ]}
-                          className="w-[120px]"
+                          className="w-[90px]"
                         />
                       </div>
 
-                      {/* Riga 3: Nascondi Valori */}
+                      {/* Nascondi Valori */}
                       <div className="flex items-center justify-between py-4 sm:p-4">
                         <div>
                           <Label
@@ -122,7 +122,32 @@ const Settings = () => {
                         <Switch name={"hide_holdings"} formik={formik} />
                       </div>
 
-                      {/* Riga 4: Versione App */}
+                      {/* Contattami */}
+                      <div className="flex items-center justify-between py-4 sm:p-4">
+                        <div>
+                          <Label
+                            htmlFor="contact_me"
+                            className="font-semibold pb-2"
+                          >
+                            {t("settings.contact_me")}
+                          </Label>
+                          <p className="text-sm text-muted-foreground">
+                            {t("settings.contact_me_description")}
+                          </p>
+                        </div>
+                        <CustomButton
+                          variant="outline"
+                          type="button"
+                          onClick={() => {
+                            router.push("https://telegram.me/geroED");
+                          }}
+                        >
+                          6eero
+                          <SquareArrowOutUpRight size={20} />
+                        </CustomButton>
+                      </div>
+
+                      {/* Versione App */}
                       <div className="flex items-center justify-between py-4 sm:p-4">
                         <div>
                           <p className="text-sm font-medium text-muted-foreground">

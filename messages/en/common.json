@@ -137,7 +137,9 @@
     "currency": "Currencies",
     "hide_values": "Privacy Mode",
     "hide_values_description": "Hide all sensitive amounts in the interface.",
-    "app_version": "Application version",
-    "preferences_updated": "Updated preferences!"
+    "app_version": "Arthafolio version",
+    "preferences_updated": "Updated preferences!",
+    "contact_me": "Contact the dev",
+    "contact_me_description": "Get in touch with our me on Telegram."
   }
 }

@@ -45,7 +45,7 @@ const MobileAssetList = ({
     </Card>
     {/* Mobile */}
     <Tabs defaultValue="all" className="sm:hidden">
-      <Card className="sm:bg-card bg-transparent sm:border border-0 !p-0">
+      <Card className="sm:bg-card bg-transparent sm:border border-0 !p-0 !pt-6">
         <div className="flex justify-between text-sm text-muted-foreground px-2">
           <div className="w-1/3">Quantity</div>
           <div className="w-1/3 text-center">Price</div>
