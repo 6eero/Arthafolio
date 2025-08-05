@@ -121,6 +121,7 @@ const Linee = ({ data }: { data: History[] }) => {
               activeDot={{
                 r: 5,
               }}
+              animationDuration={1000}
             ></Line>
           </LineChart>
         </ChartContainer>
