@@ -1,0 +1,10 @@
+services:
+  web:
+    build: .
+    env_file:
+      - ${ENV_FILE:-env.development}
+    volumes:
+      - .:/app
+    ports:
+      - "3001:3000"
+    command: bash /usr/bin/entrypoint.sh
