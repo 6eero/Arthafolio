@@ -1,0 +1,16 @@
+{
+  "invalid_email_or_password": "Invalid email or password",
+  "email_not_confirmed": "It looks like your email hasn't been confirmed yet. Check your inbox or sign up again.",
+  "fields": {
+    "auth": {
+      "required": "Field is required",
+      "username_min": "Username must be at least {min} characters",
+      "username_max": "Username cannot be longer than {max} characters",
+      "username_format": "Username can only contain letters, numbers, and underscores",
+      "password_min": "Password must be at least {min} characters",
+      "password_complexity": "Password must contain at least one uppercase letter, one number, and one special character",
+      "password_match": "Passwords do not match",
+      "invalid_email": "Invalid email address"
+    }
+  }
+}

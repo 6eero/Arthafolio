@@ -1,0 +1,135 @@
+{
+  "app_name": "Arthafolio",
+  "generic": {
+    "actions": {
+      "add": "Aggiungi",
+      "edit": "Modifica",
+      "delete": "Elimina",
+      "remove": "Rimuovi",
+      "cancel": "Cancella",
+      "close": "Chiudi",
+      "save": "Salva"
+    },
+    "categories": {
+      "crypto": "Criptovalute",
+      "etf": "ETF"
+    }
+  },
+  "auth": {
+    "fields": {
+      "username_or_email": {
+        "label": "Username or Email",
+        "placeholder": "Insert your username or email"
+      },
+      "username": {
+        "label": "Username or Email",
+        "placeholder": "Insert your username"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Insert your email"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Insert your password"
+      },
+      "password_confirmation": {
+        "label": "Repeat password",
+        "placeholder": "Insert your password on more time"
+      }
+    },
+    "login": {
+      "title": "Login to your account",
+      "description": "Enter your email below to login to your account",
+      "proceed": "Login",
+      "switch": "Don't have an account?"
+    },
+    "register": {
+      "title": "Register your new account",
+      "description": "Enter your email and password below",
+      "proceed": "Register",
+      "switch": "Already have an account?"
+    }
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "ai-tools": "AI Tools",
+    "settings": "Impostazioni",
+    "logout": "Logout"
+  },
+  "dashboard": {
+    "title": "Detenzioni",
+    "add_investment": "Aggiungi investimento",
+    "analize_portfolio": "Analizza il portafoglio",
+    "totals": {
+      "total": "Totale",
+      "profit_and_loss_last_day": "Profitto/Perdita ultimo giorno",
+      "profit_and_loss_last_week": "Profitto/Perdita ultima settimana",
+      "profit_and_loss_last_month": "Profitto/Perdita ultimo mese"
+    },
+    "charts": {
+      "linechart": {
+        "title": "Andamento degli Investimenti",
+        "description": "Variazioni del portafoglio nel tempo",
+        "value": "Valore"
+      },
+      "piechart": {
+        "title": "Allocazione degli Investimenti",
+        "description": "Come sono distribuiti gli asset"
+      }
+    },
+    "table": {
+      "title": "Portafoglio Investimenti",
+      "description": "Panoramica degli asset attualmente allocati nel tuo portafoglio d'investimento."
+    },
+    "header": {
+      "label": "Erichettaa",
+      "category": "Categoria",
+      "price": "Prezzo",
+      "quantity": "Quantità",
+      "value": "Valore",
+      "percentage": "Percentale",
+      "actions": "Azioni"
+    },
+    "manage_asset_modal": {
+      "add": "Aggiungi un investimento",
+      "edit": "Modifica l'investimento",
+      "description_add": "Compila i campi seguenti per registrare un nuovo investimento nel tuo portafoglio.",
+      "description_edit": "Compila i campi seguenti per modificare questo investimento.",
+      "fields": {
+        "label": {
+          "label": "Etichetta",
+          "placeholder": "Inserisci l'etichetta"
+        },
+        "quantity": {
+          "label": "Quantità",
+          "placeholder": "Inserisci la quantità"
+        }
+      }
+    },
+    "confirm_delete_asset_modal": {
+      "title": "Sei sicuro di voler eliminare questo asset?",
+      "message": "Questa operazione è definitiva e non può essere annullata."
+    },
+    "ai_sheet": {
+      "title": "Analisi del tuo Portafoglio"
+    }
+  },
+  "ai": {
+    "title": "Strumenti AI"
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "change_theme": "Tema dell'applicazione",
+    "theme_description": "Scegli tra tema chiaro, scuro o di sistema.",
+    "change_default_currency": "Valuta predefinita",
+    "currency_description": "Seleziona la valuta principale per l'app.",
+    "select_currency": "Seleziona valuta",
+    "currency": "Valute",
+    "hide_values": "Modalità privacy",
+    "hide_values_description": "Nascondi tutti gli importi sensibili nell'interfaccia.",
+    "app_version": "Versione applicazione",
+    "preferences_updated": "Impostazioni aggiornate",
+    "contact_me": "Contattami su Telegram"
+  }
+}

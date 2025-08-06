@@ -1,0 +1,16 @@
+{
+  "invalid_email_or_password": "Email o password non validi",
+  "email_not_confirmed": "Sembra che la tua email non sia ancora stata confermata. Controlla la tua casella di posta o registrati di nuovo.",
+  "fields": {
+    "auth": {
+      "required": "Campo obbligatorio",
+      "username_min": "Il nome utente deve contenere almeno {min} caratteri",
+      "username_max": "Il nome utente non può superare {max} caratteri",
+      "username_format": "Il nome utente può contenere solo lettere, numeri e underscore",
+      "password_min": "La password deve contenere almeno {min} caratteri",
+      "password_complexity": "La password deve contenere almeno una lettera maiuscola, un numero e un carattere speciale",
+      "password_match": "Le password non corrispondono",
+      "invalid_email": "Email non valida"
+    }
+  }
+}
