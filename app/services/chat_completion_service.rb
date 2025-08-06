@@ -3,9 +3,9 @@ require 'net/http'
 require 'json'
 require 'uri'
 
-class ChatCompletionService
+class ChatCompletionService # rubocop:disable Style/Documentation
   API_URL = 'https://openrouter.ai/api/v1/chat/completions'.freeze
-  MODEL_NAME = 'qwen/qwen3-coder:free'.freeze
+  MODEL_NAME = 'qwen/qwen3-235b-a22b:free'.freeze
 
   def initialize(user:)
     @user = user
@@ -39,18 +39,12 @@ class ChatCompletionService
                                   message: "API Error: #{response.code} - Controlla i log del server." }.to_json}\n\n")
           return 
         end
-
-        Rails.logger.info '------------------------------------------------------------------------------------------------'
-        Rails.logger.info "[ChatCompletionService] Prompt generato:\n#{prompt}"
-        Rails.logger.info "[ChatCompletionService] Inizio tichiesta HTTP a #{uri}"
-        Rails.logger.info '[ChatCompletionService] Ricevuta risposta. Streaming in corso...'
-        Rails.logger.info '------------------------------------------------------------------------------------------------'
         
         response.read_body do |chunk|
           chunk.lines.each do |line|
             next unless line.start_with?('data: ')
 
-            content = line.delete_prefix('data: ').strip
+            content = line.delete_prefix('data: ')
 
             if content == '[DONE]'
               Rails.logger.info '[ChatCompletionService] Streaming completato. Invio del messaggio finale con testo completo.'
@@ -58,10 +52,12 @@ class ChatCompletionService
               break 
             end
 
+            # when normal chuks arrives
             begin
+              Rails.logger.info "[DEBUG SSE] Chunk completo: #{content}"
               parsed = JSON.parse(content)
               text = parsed.dig('choices', 0, 'delta', 'content')
-              next if text.blank?
+              next if text.nil?
 
               @full_text << text
               stream.write("data: #{{ type: 'TEXT', message: text }.to_json}\n\n")
