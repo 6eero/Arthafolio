@@ -13,6 +13,13 @@ class ChatCompletionService # rubocop:disable Style/Documentation
   end
 
   def stream_to(stream)
+    unless @user.can_use_ai_api?
+      Rails.logger.warn "[ChatCompletionService] Utente ha esaurito il limite di chiamate API AI."
+      stream.write("data: #{{ type: 'TEXT', message: 'Hai raggiunto il limite mensile di chiamate AI.' }.to_json}\n\n")
+      stream.close
+      return
+    end
+
     prompt = format_holdings_for_prompt
     uri = URI(API_URL)
     
@@ -69,6 +76,8 @@ class ChatCompletionService # rubocop:disable Style/Documentation
         end
       end
     end
+    @user.increment_ai_api_usage!
+
   rescue StandardError => e
     Rails.logger.error "[ChatCompletionService] Errore durante la richiesta: #{e.message}"
     stream.write("data: Errore: #{e.message}\n\n")

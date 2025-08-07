@@ -33,7 +33,7 @@ class User < ApplicationRecord
   # Callback
   before_create :generate_confirmation_token
 
-  # Metodi conferma email
+  # Metodi pubblici
   def confirmed?
     confirmed_at.present?
   end
@@ -42,9 +42,31 @@ class User < ApplicationRecord
     update(confirmed_at: Time.current, confirmation_token: nil)
   end
 
+  # Checks if the user can make an AI API call based on monthly limits.
+  def can_use_ai_api?
+    reset_ai_api_usage_if_needed
+    ai_api_calls_used_this_month < monthly_ai_api_call_limit
+  end
+
+  # Increments the count of AI API calls used by the user this month.
+  def increment_ai_api_usage!
+    reset_ai_api_usage_if_needed
+    increment!(:ai_api_calls_used_this_month)
+  end
+
   private
 
   def generate_confirmation_token
     self.confirmation_token = SecureRandom.urlsafe_base64(32)
+  end
+
+  # Resets the AI API usage count if the current month has changed or if never reset before.
+  def reset_ai_api_usage_if_needed
+    return unless ai_api_calls_reset_at.nil? || ai_api_calls_reset_at < Time.current.beginning_of_month
+
+    update!(
+      ai_api_calls_used_this_month: 0,
+      ai_api_calls_reset_at: Time.current.beginning_of_month
+    )
   end
 end
