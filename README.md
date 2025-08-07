@@ -2,7 +2,7 @@
 
 # 📊 Arthafolio
 
-Arthafolio is a **cryptocurrency portfolio tracker** designed to help users effortlessly manage and monitor their digital assets 💰.
+Arthafolio is a sleek and user-friendly **cryptocurrency portfolio tracker** that makes monitoring your digital assets effortless 💰.
 
 ## ⚡ Features
 
