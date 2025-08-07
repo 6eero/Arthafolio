@@ -1,5 +1,7 @@
 ![Arthafolio header](assets/images/header.png)
 
+# 📊 Arthafolio
+
 Arthafolio is a **cryptocurrency portfolio tracker** designed to help users effortlessly manage and monitor their digital assets 💰.
 
 ## ⚡ Features
