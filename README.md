@@ -6,7 +6,7 @@ Arthafolio is a sleek and user-friendly **cryptocurrency portfolio tracker** tha
 
 ## ⚡ Features
 
-- Effortlessly add, remove, and edit your holdings in real time through a clean and intuitive interface ✍️
+- Add, remove, and edit your holdings in real time through a clean and intuitive interface ✍️
 - Monitor your portfolio’s value with hourly snapshots, and explore performance over multiple timeframes: daily, weekly, monthly, quarterly, and yearly 📈
 - Secure account management with user registration, email verification, and login functionality 🔐
 - Personalize your experience with customizable preferences:
