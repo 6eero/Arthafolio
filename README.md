@@ -1,12 +1,12 @@
-# 💎 Arthafolio
-
 ![Arthafolio header](assets/images/header.png)
 
-Arthafolio is a **cryptocurrency portfolio tracker** designed to help users effortlessly manage and monitor their digital assets 💰.
+# 📊 Arthafolio
+
+Arthafolio is a sleek and user-friendly **cryptocurrency portfolio tracker** that makes monitoring your digital assets effortless 💰.
 
 ## ⚡ Features
 
-- Effortlessly add, remove, and edit your holdings in real time through a clean and intuitive interface ✍️
+- Add, remove, and edit your holdings in real time through a clean and intuitive interface ✍️
 - Monitor your portfolio’s value with hourly snapshots, and explore performance over multiple timeframes: daily, weekly, monthly, quarterly, and yearly 📈
 - Secure account management with user registration, email verification, and login functionality 🔐
 - Personalize your experience with customizable preferences:
@@ -20,6 +20,8 @@ Built as a **Progressive Web App (PWA)** 📱, providing a fast, reliable, and n
 **Coming soon:** AI integration with Sonnet 4 to deliver smart insights and information about your portfolio 🤖✨
 
 ## 🚀 How to Run Locally
+
+This project is built with Next.js 15 for the frontend and Ruby on Rails 8 for the backend. Follow the steps below to set up and run the application locally.
 
 ### 1. Clone the Repository
 
