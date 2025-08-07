@@ -21,6 +21,8 @@ Built as a **Progressive Web App (PWA)** 📱, providing a fast, reliable, and n
 
 ## 🚀 How to Run Locally
 
+This project is built with Next.js 15 for the frontend and Ruby on Rails 8 for the backend. Follow the steps below to set up and run the application locally.
+
 ### 1. Clone the Repository
 
 ```bash
