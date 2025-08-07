@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_30_203802) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_07_211642) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -59,6 +59,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_30_203802) do
     t.string "preferred_currency", default: "EUR"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
+    t.integer "monthly_ai_api_call_limit", default: 30, null: false
+    t.integer "ai_api_calls_used_this_month", default: 0, null: false
+    t.datetime "ai_api_calls_reset_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["refresh_token"], name: "index_users_on_refresh_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
