@@ -103,20 +103,46 @@ class ChatCompletionService # rubocop:disable Style/Documentation
     Rails.logger.info "[ChatCompletionService] Valore totale stimato: #{total.round(2)} EUR"
 
     <<~TEXT
-      The user exclusively holds cryptocurrencies, **only crypto assets are considered**. Exclude stocks, ETFs, real estate, etc. This is their portfolio:
+      The user exclusively holds cryptocurrencies — exclude stocks, ETFs, or real estate. This is their portfolio:  
       #{formatted.join("\n")}
-      
+
       Estimated total value: #{total.round(2)} EUR.
-      
+
       # Objective
-      
-      Give an opinion to the crypto portfolio, considering the following criteria:
-      
-      1. **Memecoins and low-caps**: A high percentage of speculative or low-cap tokens lowers the score.
-      2. **High-cap cryptocurrencies**: Investing in established assets like Bitcoin or Ethereum increases the score.
-      3. **Reliable stablecoins**: The presence of well-capitalized stablecoins improves portfolio resilience.
-      4. **Diversification across ecosystems**: A portfolio spread across multiple blockchains and sectors reduces systemic risk.
-      5. **Asset liquidity**: Liquid and easily tradable assets make the portfolio more flexible.
+
+      Evaluate the portfolio based on the following criteria:
+
+      1. Memecoins and low-caps  
+      2. High-cap cryptocurrencies  
+      3. Diversification across ecosystems  
+      4. Asset liquidity  
+
+      Then, provide the following:
+
+      1. A brief opinion on the portfolio (max 3 sentences)  
+      2. A score from 1 to 10, where 10 represents an excellent, well-balanced crypto portfolio  
+      3. A **fun and descriptive portfolio name** (e.g., "The Cautious Strategist", "The Wild Gambler") that reflects its style  
+      4. 2-3 concise improvement suggestions
+
+      **Output format:**
+
+      ### 🧠 Opinion  
+      [short paragraph]  
+
+      ### 🏆 Score  
+      **[X] / 10**
+
+      ### 🏷️ Portfolio Name  
+      **"[descriptive nickname]"**
+
+      ### 📈 Suggestions  
+        - [suggestion 1]  
+        - [suggestion 2]  
+        - [suggestion 3]
+
+      Do **not** justify or explain the reasoning behind the score or suggestions.  
+      Do **not** repeat the portfolio contents.  
+      Keep the tone professional but engaging.
     TEXT
   end
 end
