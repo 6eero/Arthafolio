@@ -5,7 +5,7 @@ require 'uri'
 
 class ChatCompletionService # rubocop:disable Style/Documentation
   API_URL = 'https://openrouter.ai/api/v1/chat/completions'.freeze
-  MODEL_NAME = 'qwen/qwen3-235b-a22b:free'.freeze
+  MODEL_NAME = 'openai/gpt-oss-20b:free'.freeze
 
   def initialize(user:)
     @user = user
