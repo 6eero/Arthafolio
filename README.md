@@ -64,8 +64,8 @@ cd backend
 Copy the example environment file for both environments:
 
 ```bash
-cp .env.general .env.development
-cp .env.general .env.production
+cp .env.example .env.development
+cp .env.example .env.production
 ```
 
 Edit the files and insert the correct values as needed. Then build and run the containers:
