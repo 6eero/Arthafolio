@@ -42,7 +42,7 @@ Then:
 nvm install
 nvm use
 npm install
-cp .env.general .env.local
+cp .env.example .env.local
 ```
 
 Edit `.env.local` and fill in the required values.
