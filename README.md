@@ -80,5 +80,5 @@ Backend will be running at: [http://localhost:3001](http://localhost:3001)
 
 ### 🧪 Environment Variables
 
-- The `.env.general` file is a template.
+- The `.env.example` file is a template.
 - Use it to create your `.env.local`, `.env.development`, and `.env.production` files as needed.
