@@ -39,6 +39,7 @@ cd frontend
 Then:
 
 ```bash
+nvm install
 nvm use
 npm install
 cp .env.general .env.local
