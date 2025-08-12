@@ -1,0 +1,2 @@
+class CryptoPriceHistory < ApplicationRecord
+end
