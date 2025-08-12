@@ -26,6 +26,8 @@ class PriceUpdater
     return if records_to_upsert.empty?
 
     Price.upsert_all(records_to_upsert, unique_by: :label)
+    CryptoPriceHistory.insert_all(records_to_upsert.map { |r| r.merge(created_at: Time.current, updated_at: Time.current) })
+    
     Rails.logger.info "[💾 PriceUpdater] - Updated prices for: #{fetched_prices.keys.join(', ')}"
   end
 
