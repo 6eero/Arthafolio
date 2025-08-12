@@ -26,5 +26,7 @@ export const useDashboardData = (context: unknown): DashboardData => {
       "month",
     ])(context),
   };
-  return { totals, history, assets, profitLoss };
+  const priceHistory = R.pathOr([], ["priceHistoryData", "history"])(context);
+
+  return { totals, history, assets, profitLoss, priceHistory };
 };

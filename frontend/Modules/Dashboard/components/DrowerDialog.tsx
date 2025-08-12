@@ -27,6 +27,9 @@ import SelectWithSearch from "../../../components/formik/SelectWithSearch";
 import { cryptoLabels } from "@/lib/crypto";
 import * as R from "ramda";
 import { useDashboardActions } from "@/api/Holdings/tasks";
+import { useDashboardData } from "@/hooks/useDashboardData";
+import { useDashboardContext } from "@/Context/Dashboard";
+import { Line, LineChart, ResponsiveContainer, YAxis } from "recharts";
 
 const DrawerDialog = ({
   open,
@@ -45,6 +48,8 @@ const DrawerDialog = ({
   const t = useTranslations("");
 
   const availableCryptoLabels = R.difference(cryptoLabels, assetsLabel);
+  const context = useDashboardContext();
+  const { priceHistory } = useDashboardData(context);
 
   if (isMobile === undefined) return null;
   const isEdit = R.isNotEmpty(initialValues.label);
@@ -56,7 +61,7 @@ const DrawerDialog = ({
       onClose={() => setClickedAsset({ label: "", quantity: 0 })}
     >
       <DrawerContent>
-        <DrawerHeader className="text-left pb-10 pt-8">
+        <DrawerHeader className="text-left pb-0 pt-8">
           <DrawerTitle>
             {isEdit
               ? t("dashboard.manage_asset_modal.edit")
@@ -68,6 +73,21 @@ const DrawerDialog = ({
               : t("dashboard.manage_asset_modal.description_add")}
           </DrawerDescription>
         </DrawerHeader>
+        <ResponsiveContainer width="100%" height={200} className={"my-10"}>
+          <LineChart
+            data={priceHistory}
+            margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+          >
+            <YAxis domain={["dataMin - 5", "dataMax + 5"]} hide />
+            <Line
+              type="monotone"
+              dataKey="price"
+              stroke="var(--foreground)"
+              strokeWidth={2}
+              dot={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
         <ProfileForm
           initialValues={initialValues}
           setOpen={setOpen}
@@ -141,70 +161,74 @@ const ProfileForm = ({
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={(values) => {
-        if (isEdit) {
-          onEditHolding(values);
-        } else {
-          onAddHolding(values);
-        }
-        setOpen(false);
-        setClickedAsset({ label: "", quantity: 0 });
-      }}
-    >
-      {(formik) => (
-        <form onSubmit={formik.handleSubmit}>
-          <div className="sm:mx-0 mx-4">
-            <div className="flex flex-col gap-6 pb-6">
-              <SelectWithSearch
-                name="label"
-                label={"dashboard.manage_asset_modal.fields.label.label"}
-                placeholder={
-                  "dashboard.manage_asset_modal.fields.label.placeholder"
-                }
-                domain={availableCryptoLabels}
-                formik={formik}
-                disabled={isEdit}
-              />
-              <FormikInput
-                type="number"
-                name="quantity"
-                label={"dashboard.manage_asset_modal.fields.quantity.label"}
-                placeholder={
-                  "dashboard.manage_asset_modal.fields.quantity.placeholder"
-                }
-                formik={formik}
-              />
-            </div>
-            <div className="flex flex-col gap-2 mt-6">
-              <Button
-                type="submit"
-                className="w-full"
-                disabled={
-                  !formik.values.label ||
-                  !R.includes(formik.values.label, cryptoLabels) ||
-                  !formik.values.quantity ||
-                  formik.values.quantity <= 0
-                }
-              >
-                {isEdit ? t("generic.actions.edit") : t("generic.actions.add")}
-              </Button>
-              {isEdit && (
+    <>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={(values) => {
+          if (isEdit) {
+            onEditHolding(values);
+          } else {
+            onAddHolding(values);
+          }
+          setOpen(false);
+          setClickedAsset({ label: "", quantity: 0 });
+        }}
+      >
+        {(formik) => (
+          <form onSubmit={formik.handleSubmit}>
+            <div className="sm:mx-0 mx-4">
+              <div className="flex flex-col gap-6 pb-6">
+                <SelectWithSearch
+                  name="label"
+                  label={"dashboard.manage_asset_modal.fields.label.label"}
+                  placeholder={
+                    "dashboard.manage_asset_modal.fields.label.placeholder"
+                  }
+                  domain={availableCryptoLabels}
+                  formik={formik}
+                  disabled={isEdit}
+                />
+                <FormikInput
+                  type="number"
+                  name="quantity"
+                  label={"dashboard.manage_asset_modal.fields.quantity.label"}
+                  placeholder={
+                    "dashboard.manage_asset_modal.fields.quantity.placeholder"
+                  }
+                  formik={formik}
+                />
+              </div>
+              <div className="flex flex-col gap-2 mt-6">
                 <Button
-                  onClick={handleRemove}
                   type="submit"
-                  variant="destructive"
                   className="w-full"
+                  disabled={
+                    !formik.values.label ||
+                    !R.includes(formik.values.label, cryptoLabels) ||
+                    !formik.values.quantity ||
+                    formik.values.quantity <= 0
+                  }
                 >
-                  {t("generic.actions.delete")}
+                  {isEdit
+                    ? t("generic.actions.edit")
+                    : t("generic.actions.add")}
                 </Button>
-              )}
+                {isEdit && (
+                  <Button
+                    onClick={handleRemove}
+                    type="submit"
+                    variant="destructive"
+                    className="w-full"
+                  >
+                    {t("generic.actions.delete")}
+                  </Button>
+                )}
+              </div>
             </div>
-          </div>
-        </form>
-      )}
-    </Formik>
+          </form>
+        )}
+      </Formik>
+    </>
   );
 };
 

@@ -7,6 +7,7 @@ export type DashboardData = {
     week: ProfitLoss;
     month: ProfitLoss;
   };
+  priceHistory: PriceHistory[];
 };
 
 export type Asset = {
@@ -26,6 +27,10 @@ export type Totals = {
 export type History = {
   taken_at: string;
   total_value: number;
+};
+export type PriceHistory = {
+  time: string;
+  price: number;
 };
 
 export type ProfitLoss = {

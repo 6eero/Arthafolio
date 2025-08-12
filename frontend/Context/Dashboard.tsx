@@ -8,6 +8,8 @@ const initState: DashboardState = {
   error: false,
   data: [],
   timeframe: "7d",
+  loadingDrower: false,
+  priceHistoryData: [],
 };
 
 export const DashboardDispatchContext =

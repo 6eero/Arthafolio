@@ -21,8 +21,10 @@ type DashboardAction = {
 
 type DashboardState = {
   loading: boolean;
+  loadingDrower: boolean;
   error: boolean;
   data: any[];
+  priceHistoryData: any[];
   timeframe: TimeframeKey;
 };
 

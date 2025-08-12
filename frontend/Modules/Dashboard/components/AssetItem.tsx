@@ -1,3 +1,4 @@
+import { useDashboardActions } from "@/api/Holdings/tasks";
 import { Asset } from "@/app/types/dashboard";
 
 import DisplayCurrency from "@/components/custom/Display/DisplayCurrency";
@@ -15,7 +16,10 @@ const AssetItem = ({
   setIsManageAssetModalOpen: (value: boolean) => void;
   setClickedAsset: (value: { label: string; quantity: number }) => void;
 }) => {
+  const { onGetPriceHistory } = useDashboardActions();
+
   const handleAssetClick = () => {
+    onGetPriceHistory(label, 30);
     setIsManageAssetModalOpen(true);
     setClickedAsset({ label, quantity });
   };

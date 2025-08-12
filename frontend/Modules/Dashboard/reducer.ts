@@ -27,17 +27,23 @@ const reducer = produce(
       }
 
       case actions.GET_PRICE_HISTORY: {
-        state.loading = false;
-        state.componentLoading = true;
+        state.timeframeDrower = true;
         state.error = false;
         return;
       }
       case actions.GET_PRICE_HISTORY_SUCCESS: {
         const { data } = action.payload;
-        state.priceHistory = data;
-        state.loading = false;
-        state.componentLoading = false;
+        state.priceHistoryData = data;
+        state.timeframeDrower = false;
         state.error = false;
+        return;
+      }
+
+      case actions.GET_PRICE_HISTORY_FAIL: {
+        const { error } = action.payload;
+        state.loading = false;
+        state.timeframeDrower = false;
+        state.error = error;
         return;
       }
 
@@ -58,8 +64,7 @@ const reducer = produce(
       case actions.ADD_HOLDING_FAIL:
       case actions.EDIT_HOLDING_FAIL:
       case actions.REMOVE_HOLDING_FAIL:
-      case actions.CHANGE_TIMEFRAME_FAIL:
-      case actions.GET_PRICE_HISTORY_FAIL: {
+      case actions.CHANGE_TIMEFRAME_FAIL: {
         const { error } = action.payload;
         state.loading = false;
         state.componentLoading = false;
