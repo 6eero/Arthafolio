@@ -87,5 +87,17 @@ export const useDashboardActions = () => {
         dispatch(actions.removeHoldingFail({ error }));
       }
     },
+
+    onGetPriceHistory: async (label: string, range: number) => {
+      dispatch(actions.getPriceHistory({}));
+
+      try {
+        const { data } = await APIDashboard.getPriceHistory(label, range);
+
+        dispatch(actions.getPriceHistorySuccess({ data }));
+      } catch (error) {
+        dispatch(actions.getPriceHistoryFail({ error }));
+      }
+    },
   };
 };

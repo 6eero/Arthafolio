@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     post '/snapshots', to: 'snapshots#create'
 
     resources :holdings, only: %i[index create destroy update]
-    resources :crypto_price_histories, only: [:index]
+    resources :price_histories, only: [:index]
 
     post 'ai/chat', to: 'ai#chat'
   end

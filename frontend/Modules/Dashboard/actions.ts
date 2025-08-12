@@ -12,6 +12,7 @@ const types = [
   "REMOVE_HOLDING",
   "EDIT_HOLDING",
   "CHANGE_TIMEFRAME",
+  "GET_PRICE_HISTORY",
 ];
 
 const actions: any = {

@@ -1,5 +1,5 @@
 module Api
-  class CryptoPriceHistoriesController < ApplicationController
+  class PriceHistoriesController < ApplicationController
     before_action :authenticate_request
 
     def index

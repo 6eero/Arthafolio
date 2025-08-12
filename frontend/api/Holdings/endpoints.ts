@@ -58,3 +58,14 @@ export const removeHolding = async (label: string) => {
 
   return { data, headers };
 };
+
+export const getPriceHistory = async (label: string, range: number) => {
+  const { data, headers } = await makeApiRequest(
+    `/api/price_histories`,
+    "GET",
+    {
+      queryParams: { label, range },
+    }
+  );
+  return { data, headers };
+};

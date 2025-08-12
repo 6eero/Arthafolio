@@ -25,7 +25,7 @@ const Dashboard = () => {
   const isMobile = useIsMobile();
   const t = useTranslations("");
   const context = useDashboardContext();
-  const { onLoad, onRemoveHolding } = useDashboardActions();
+  const { onLoad, onRemoveHolding, onGetPriceHistory } = useDashboardActions();
   const { totals, history, assets, profitLoss } = useDashboardData(context);
 
   const {
@@ -82,6 +82,7 @@ const Dashboard = () => {
       <div className="w-full flex flex-col">
         <Header title={t("dashboard.title")} />
         <main className="flex-1 flex flex-col gap-4 sm:m-4 mt-4 ">
+          <button onClick={() => onGetPriceHistory("ETH", 30)}>test</button>
           <SummaryCards totals={totals} profitLoss={profitLoss} />
 
           <ChartsSection
