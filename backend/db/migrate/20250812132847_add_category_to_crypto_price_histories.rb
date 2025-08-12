@@ -1,0 +1,5 @@
+class AddCategoryToCryptoPriceHistories < ActiveRecord::Migration[8.0]
+  def change
+    add_column :crypto_price_histories, :category, :integer, default: 0, null: false
+  end
+end
